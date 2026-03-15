@@ -1,0 +1,1214 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Processos Estocásticos — Simulações</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=JetBrains+Mono:wght@300;400;600&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --bg: #0a0a0f;
+    --panel: #11111a;
+    --border: #1e1e2e;
+    --accent: #e8c547;
+    --accent2: #e05c6e;
+    --accent3: #5ce0c0;
+    --accent4: #a07be8;
+    --text: #d4d4e8;
+    --muted: #666688;
+    --grid: #1a1a28;
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'JetBrains Mono', monospace;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* background grid */
+  body::before {
+    content:'';
+    position:fixed; inset:0; z-index:0;
+    background-image:
+      linear-gradient(var(--grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+    background-size: 40px 40px;
+    opacity:0.5;
+    pointer-events:none;
+  }
+
+  header {
+    position:relative; z-index:1;
+    padding: 2.5rem 3rem 1.5rem;
+    border-bottom: 1px solid var(--border);
+    display:flex; align-items:baseline; gap:1.5rem;
+  }
+
+  header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    color: var(--accent);
+    letter-spacing: -0.02em;
+  }
+  header span {
+    color: var(--muted);
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  .tabs {
+    position:relative; z-index:1;
+    display:flex; gap:0;
+    padding: 0 3rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .tab {
+    padding: 1rem 1.8rem;
+    cursor:pointer;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+  .tab:hover { color: var(--text); }
+  .tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+
+  .page { display:none; }
+  .page.active { display:flex; flex-direction:column; }
+
+  .layout {
+    position:relative; z-index:1;
+    display:grid;
+    grid-template-columns: 300px 1fr;
+    gap:0;
+    flex:1;
+    min-height: calc(100vh - 130px);
+  }
+
+  .controls {
+    border-right: 1px solid var(--border);
+    padding: 2rem 1.5rem;
+    display:flex; flex-direction:column; gap:1.5rem;
+    background: var(--panel);
+  }
+
+  .ctrl-section { display:flex; flex-direction:column; gap:0.8rem; }
+  .ctrl-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding-bottom: 0.3rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .ctrl-row {
+    display:flex; align-items:center; justify-content:space-between; gap:0.5rem;
+  }
+  .ctrl-row label { font-size:0.8rem; color: var(--text); }
+  .ctrl-row .val {
+    font-size:0.9rem; color: var(--accent);
+    min-width: 2.5rem; text-align:right;
+  }
+
+  input[type=range] {
+    -webkit-appearance:none;
+    flex:1;
+    height:3px;
+    background: var(--border);
+    outline:none;
+    border-radius:2px;
+  }
+  input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance:none;
+    width:14px; height:14px;
+    border-radius:50%;
+    background: var(--accent);
+    cursor:pointer;
+    transition: transform 0.1s;
+  }
+  input[type=range]::-webkit-slider-thumb:hover { transform:scale(1.3); }
+
+  .btn {
+    padding: 0.65rem 1rem;
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text);
+    cursor:pointer;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: all 0.15s;
+    border-radius:2px;
+  }
+  .btn:hover { border-color: var(--accent); color: var(--accent); }
+  .btn.primary {
+    background: var(--accent);
+    color: #0a0a0f;
+    border-color: var(--accent);
+    font-weight:600;
+  }
+  .btn.primary:hover { background: #f0d060; }
+  .btn.danger { border-color: var(--accent2); color: var(--accent2); }
+  .btn.danger:hover { background: var(--accent2); color: #fff; }
+
+  .btn-group { display:flex; gap:0.5rem; flex-wrap:wrap; }
+
+  .stat-grid {
+    display:grid; grid-template-columns:1fr 1fr; gap:0.5rem;
+  }
+  .stat-box {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    padding: 0.6rem 0.8rem;
+    border-radius:2px;
+  }
+  .stat-box .slabel { font-size:0.6rem; color:var(--muted); letter-spacing:0.1em; text-transform:uppercase; }
+  .stat-box .sval { font-size:1.1rem; color:var(--accent3); margin-top:0.1rem; }
+
+  .viz-area {
+    display:flex; flex-direction:column;
+    padding: 1.5rem 2rem;
+    gap:1.5rem;
+    overflow:hidden;
+  }
+
+  canvas {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius:2px;
+    display:block;
+  }
+
+  .canvas-label {
+    font-size:0.65rem; letter-spacing:0.15em;
+    text-transform:uppercase; color:var(--muted);
+    margin-bottom:0.4rem;
+  }
+
+  .multi-path-info {
+    font-size:0.72rem; color:var(--muted);
+    margin-top:0.3rem;
+  }
+
+  /* speed control */
+  .speed-row { display:flex; align-items:center; gap:0.5rem; }
+  .speed-row span { font-size:0.75rem; color:var(--muted); }
+
+  /* legends */
+  .legend { display:flex; gap:1rem; flex-wrap:wrap; margin-top:0.3rem; }
+  .legend-item { display:flex; align-items:center; gap:0.4rem; font-size:0.7rem; color:var(--muted); }
+  .legend-dot { width:8px; height:8px; border-radius:50%; }
+
+  /* tooltip */
+  #tooltip {
+    position:fixed;
+    background: var(--panel);
+    border:1px solid var(--border);
+    padding:0.4rem 0.7rem;
+    font-size:0.72rem;
+    pointer-events:none;
+    z-index:100;
+    display:none;
+    border-radius:2px;
+  }
+
+  /* axis tick */
+  .axis-info { font-size:0.7rem; color:var(--muted); margin-top:0.3rem; }
+
+  @media(max-width:900px){
+    .layout { grid-template-columns:1fr; }
+    .controls { border-right:none; border-bottom:1px solid var(--border); }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Processos Estocásticos</h1>
+  <span>Simulações Interativas</span>
+</header>
+
+<div class="tabs">
+  <div class="tab active" onclick="switchTab('gambler')">Ruína do Jogador</div>
+  <div class="tab" onclick="switchTab('rw1d')">Passeio em ℤ</div>
+  <div class="tab" onclick="switchTab('rw2d')">Passeio em ℤ²</div>
+  <div class="tab" onclick="switchTab('rw3d')">Passeio em ℤ³</div>
+</div>
+
+<!-- ===================== GAMBLER'S RUIN ===================== -->
+<div class="page active" id="page-gambler">
+<div class="layout">
+  <div class="controls">
+    <div class="ctrl-section">
+      <div class="ctrl-label">Parâmetros</div>
+      <div class="ctrl-row">
+        <label>p (ganhar)</label>
+        <input type="range" id="g-p" min="0.01" max="0.99" step="0.01" value="0.5"
+               oninput="document.getElementById('g-p-val').textContent=parseFloat(this.value).toFixed(2); gamblerReset()"/>
+        <span class="val" id="g-p-val">0.50</span>
+      </div>
+      <div class="ctrl-row">
+        <label>Fortuna N</label>
+        <input type="range" id="g-N" min="5" max="50" step="1" value="20"
+               oninput="document.getElementById('g-N-val').textContent=this.value; gamblerReset()"/>
+        <span class="val" id="g-N-val">20</span>
+      </div>
+      <div class="ctrl-row">
+        <label>Capital k₀</label>
+        <input type="range" id="g-k" min="1" max="49" step="1" value="10"
+               oninput="document.getElementById('g-k-val').textContent=this.value; gamblerReset()"/>
+        <span class="val" id="g-k-val">10</span>
+      </div>
+      <div class="ctrl-row">
+        <label>Nº trajetórias</label>
+        <input type="range" id="g-paths" min="1" max="20" step="1" value="5"
+               oninput="document.getElementById('g-paths-val').textContent=this.value; gamblerReset()"/>
+        <span class="val" id="g-paths-val">5</span>
+      </div>
+    </div>
+
+    <div class="ctrl-section">
+      <div class="ctrl-label">Velocidade</div>
+      <div class="ctrl-row">
+        <label>ms/passo</label>
+        <input type="range" id="g-speed" min="10" max="500" step="10" value="80"
+               oninput="document.getElementById('g-speed-val').textContent=this.value"/>
+        <span class="val" id="g-speed-val">80</span>
+      </div>
+    </div>
+
+    <div class="ctrl-section">
+      <div class="ctrl-label">Controles</div>
+      <div class="btn-group">
+        <button class="btn primary" onclick="gamblerStart()">▶ Simular</button>
+        <button class="btn" onclick="gamblerPause()">⏸ Pausar</button>
+        <button class="btn danger" onclick="gamblerReset()">↺ Reset</button>
+      </div>
+      <button class="btn" onclick="gamblerBatch(1000)" style="margin-top:0.3rem">Rodar 1000× (rápido)</button>
+    </div>
+
+    <div class="ctrl-section">
+      <div class="ctrl-label">Estatísticas</div>
+      <div class="stat-grid">
+        <div class="stat-box"><div class="slabel">Ruínas</div><div class="sval" id="g-stat-ruin">—</div></div>
+        <div class="stat-box"><div class="slabel">Fortunas</div><div class="sval" id="g-stat-win">—</div></div>
+        <div class="stat-box"><div class="slabel">P(Fortuna) emp.</div><div class="sval" id="g-stat-pwin">—</div></div>
+        <div class="stat-box"><div class="slabel">P(Fortuna) teórica</div><div class="sval" id="g-stat-theory">—</div></div>
+        <div class="stat-box"><div class="slabel">Passos médios</div><div class="sval" id="g-stat-steps">—</div></div>
+        <div class="stat-box"><div class="slabel">Passos teórico</div><div class="sval" id="g-stat-steps-theory">—</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="viz-area">
+    <div>
+      <div class="canvas-label">Trajetórias do Capital</div>
+      <canvas id="gamblerCanvas" width="800" height="340"></canvas>
+      <div class="legend">
+        <div class="legend-item"><div class="legend-dot" style="background:#e8c547"></div>em jogo</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#e05c6e"></div>ruína</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#5ce0c0"></div>fortuna</div>
+      </div>
+    </div>
+    <div>
+      <div class="canvas-label">Distribuição de Resultados (histórico)</div>
+      <canvas id="gamblerHist" width="800" height="160"></canvas>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ===================== RANDOM WALK Z ===================== -->
+<div class="page" id="page-rw1d">
+<div class="layout">
+  <div class="controls">
+    <div class="ctrl-section">
+      <div class="ctrl-label">Parâmetros</div>
+      <div class="ctrl-row">
+        <label>p (direita)</label>
+        <input type="range" id="r1-p" min="0.01" max="0.99" step="0.01" value="0.5"
+               oninput="document.getElementById('r1-p-val').textContent=parseFloat(this.value).toFixed(2); rw1Reset()"/>
+        <span class="val" id="r1-p-val">0.50</span>
+      </div>
+      <div class="ctrl-row">
+        <label>Nº passos</label>
+        <input type="range" id="r1-steps" min="50" max="5000" step="50" value="500"
+               oninput="document.getElementById('r1-steps-val').textContent=this.value; rw1Reset()"/>
+        <span class="val" id="r1-steps-val">500</span>
+      </div>
+      <div class="ctrl-row">
+        <label>Nº trajetórias</label>
+        <input type="range" id="r1-paths" min="1" max="20" step="1" value="6"
+               oninput="document.getElementById('r1-paths-val').textContent=this.value; rw1Reset()"/>
+        <span class="val" id="r1-paths-val">6</span>
+      </div>
+    </div>
+
+    <div class="ctrl-section">
+      <div class="ctrl-label">Velocidade</div>
+      <div class="ctrl-row">
+        <label>ms/passo</label>
+        <input type="range" id="r1-speed" min="1" max="100" step="1" value="10"
+               oninput="document.getElementById('r1-speed-val').textContent=this.value"/>
+        <span class="val" id="r1-speed-val">10</span>
+      </div>
+    </div>
+
+    <div class="ctrl-section">
+      <div class="ctrl-label">Controles</div>
+      <div class="btn-group">
+        <button class="btn primary" onclick="rw1Start()">▶ Simular</button>
+        <button class="btn" onclick="rw1Pause()">⏸ Pausar</button>
+        <button class="btn danger" onclick="rw1Reset()">↺ Reset</button>
+      </div>
+    </div>
+
+    <div class="ctrl-section">
+      <div class="ctrl-label">Estatísticas (última simulação)</div>
+      <div class="stat-grid">
+        <div class="stat-box"><div class="slabel">Posição final média</div><div class="sval" id="r1-stat-mean">—</div></div>
+        <div class="stat-box"><div class="slabel">Desvio padrão</div><div class="sval" id="r1-stat-std">—</div></div>
+        <div class="stat-box"><div class="slabel">Retornos à origem</div><div class="sval" id="r1-stat-ret">—</div></div>
+        <div class="stat-box"><div class="slabel">E[X_n] teórico</div><div class="sval" id="r1-stat-theory">—</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="viz-area">
+    <div>
+      <div class="canvas-label">Trajetórias em ℤ (posição × tempo)</div>
+      <canvas id="rw1Canvas" width="800" height="340"></canvas>
+    </div>
+    <div>
+      <div class="canvas-label">Distribuição de Posições Finais</div>
+      <canvas id="rw1Hist" width="800" height="160"></canvas>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ===================== RANDOM WALK Z^2 ===================== -->
+<div class="page" id="page-rw2d">
+<div class="layout">
+  <div class="controls">
+    <div class="ctrl-section">
+      <div class="ctrl-label">Probabilidades de transição</div>
+      <div class="ctrl-row"><label>p(direita →)</label>
+        <input type="range" id="r2-pr" min="0" max="1" step="0.01" value="0.25"
+               oninput="r2update('pr',this.value)"/>
+        <span class="val" id="r2-pr-val">0.25</span>
+      </div>
+      <div class="ctrl-row"><label>p(esquerda ←)</label>
+        <input type="range" id="r2-pl" min="0" max="1" step="0.01" value="0.25"
+               oninput="r2update('pl',this.value)"/>
+        <span class="val" id="r2-pl-val">0.25</span>
+      </div>
+      <div class="ctrl-row"><label>p(cima ↑)</label>
+        <input type="range" id="r2-pu" min="0" max="1" step="0.01" value="0.25"
+               oninput="r2update('pu',this.value)"/>
+        <span class="val" id="r2-pu-val">0.25</span>
+      </div>
+      <div class="ctrl-row"><label>p(baixo ↓)</label>
+        <input type="range" id="r2-pd" min="0" max="1" step="0.01" value="0.25"
+               oninput="r2update('pd',this.value)"/>
+        <span class="val" id="r2-pd-val">0.25</span>
+      </div>
+      <div id="r2-sum-warn" style="font-size:0.72rem;color:var(--accent2);display:none">
+        ⚠ Soma das probs ≠ 1. Será normalizada.
+      </div>
+    </div>
+
+    <div class="ctrl-section">
+      <div class="ctrl-label">Simulação</div>
+      <div class="ctrl-row"><label>Nº passos</label>
+        <input type="range" id="r2-steps" min="100" max="10000" step="100" value="2000"
+               oninput="document.getElementById('r2-steps-val').textContent=this.value; rw2Reset()"/>
+        <span class="val" id="r2-steps-val">2000</span>
+      </div>
+      <div class="ctrl-row"><label>ms/passo</label>
+        <input type="range" id="r2-speed" min="1" max="100" step="1" value="5"
+               oninput="document.getElementById('r2-speed-val').textContent=this.value"/>
+        <span class="val" id="r2-speed-val">5</span>
+      </div>
+    </div>
+
+    <div class="ctrl-section">
+      <div class="ctrl-label">Controles</div>
+      <div class="btn-group">
+        <button class="btn primary" onclick="rw2Start()">▶ Simular</button>
+        <button class="btn" onclick="rw2Pause()">⏸ Pausar</button>
+        <button class="btn danger" onclick="rw2Reset()">↺ Reset</button>
+      </div>
+    </div>
+
+    <div class="ctrl-section">
+      <div class="ctrl-label">Estatísticas</div>
+      <div class="stat-grid">
+        <div class="stat-box"><div class="slabel">Posição (x,y)</div><div class="sval" id="r2-pos">—</div></div>
+        <div class="stat-box"><div class="slabel">Passos</div><div class="sval" id="r2-steps-done">—</div></div>
+        <div class="stat-box"><div class="slabel">Dist. à origem</div><div class="sval" id="r2-dist">—</div></div>
+        <div class="stat-box"><div class="slabel">Ret. à origem</div><div class="sval" id="r2-ret">—</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="viz-area">
+    <div>
+      <div class="canvas-label">Trajetória em ℤ² (plano XY)</div>
+      <canvas id="rw2Canvas" width="800" height="500"></canvas>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ===================== RANDOM WALK Z^3 ===================== -->
+<div class="page" id="page-rw3d">
+<div class="layout">
+  <div class="controls">
+    <div class="ctrl-section">
+      <div class="ctrl-label">Probabilidades de transição</div>
+      <div class="ctrl-row"><label>p(+x)</label>
+        <input type="range" id="r3-ppx" min="0" max="1" step="0.01" value="0.1667"
+               oninput="r3update('ppx',this.value)"/>
+        <span class="val" id="r3-ppx-val">0.17</span>
+      </div>
+      <div class="ctrl-row"><label>p(−x)</label>
+        <input type="range" id="r3-pmx" min="0" max="1" step="0.01" value="0.1667"
+               oninput="r3update('pmx',this.value)"/>
+        <span class="val" id="r3-pmx-val">0.17</span>
+      </div>
+      <div class="ctrl-row"><label>p(+y)</label>
+        <input type="range" id="r3-ppy" min="0" max="1" step="0.01" value="0.1667"
+               oninput="r3update('ppy',this.value)"/>
+        <span class="val" id="r3-ppy-val">0.17</span>
+      </div>
+      <div class="ctrl-row"><label>p(−y)</label>
+        <input type="range" id="r3-pmy" min="0" max="1" step="0.01" value="0.1667"
+               oninput="r3update('pmy',this.value)"/>
+        <span class="val" id="r3-pmy-val">0.17</span>
+      </div>
+      <div class="ctrl-row"><label>p(+z)</label>
+        <input type="range" id="r3-ppz" min="0" max="1" step="0.01" value="0.1667"
+               oninput="r3update('ppz',this.value)"/>
+        <span class="val" id="r3-ppz-val">0.17</span>
+      </div>
+      <div class="ctrl-row"><label>p(−z)</label>
+        <input type="range" id="r3-pmz" min="0" max="1" step="0.01" value="0.1667"
+               oninput="r3update('pmz',this.value)"/>
+        <span class="val" id="r3-pmz-val">0.17</span>
+      </div>
+      <div id="r3-sum-warn" style="font-size:0.72rem;color:var(--accent2);display:none">
+        ⚠ Soma das probs ≠ 1. Será normalizada.
+      </div>
+    </div>
+
+    <div class="ctrl-section">
+      <div class="ctrl-label">Simulação</div>
+      <div class="ctrl-row"><label>Nº passos</label>
+        <input type="range" id="r3-steps" min="100" max="10000" step="100" value="3000"
+               oninput="document.getElementById('r3-steps-val').textContent=this.value; rw3Reset()"/>
+        <span class="val" id="r3-steps-val">3000</span>
+      </div>
+      <div class="ctrl-row"><label>ms/passo</label>
+        <input type="range" id="r3-speed" min="1" max="100" step="1" value="5"
+               oninput="document.getElementById('r3-speed-val').textContent=this.value"/>
+        <span class="val" id="r3-speed-val">5</span>
+      </div>
+    </div>
+
+    <div class="ctrl-section">
+      <div class="ctrl-label">Controles</div>
+      <div class="btn-group">
+        <button class="btn primary" onclick="rw3Start()">▶ Simular</button>
+        <button class="btn" onclick="rw3Pause()">⏸ Pausar</button>
+        <button class="btn danger" onclick="rw3Reset()">↺ Reset</button>
+      </div>
+    </div>
+
+    <div class="ctrl-section">
+      <div class="ctrl-label">Estatísticas</div>
+      <div class="stat-grid">
+        <div class="stat-box"><div class="slabel">Posição (x,y,z)</div><div class="sval" id="r3-pos">—</div></div>
+        <div class="stat-box"><div class="slabel">Passos</div><div class="sval" id="r3-steps-done">—</div></div>
+        <div class="stat-box"><div class="slabel">Dist. à origem</div><div class="sval" id="r3-dist">—</div></div>
+        <div class="stat-box"><div class="slabel">Ret. à origem</div><div class="sval" id="r3-ret">—</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="viz-area">
+    <div>
+      <div class="canvas-label">Trajetória em ℤ³ (projeção isométrica)</div>
+      <canvas id="rw3Canvas" width="800" height="500"></canvas>
+    </div>
+  </div>
+</div>
+</div>
+
+<div id="tooltip"></div>
+
+<script>
+// ─────────────────────────────────────────────────────────────────────────────
+// UTILITIES
+// ─────────────────────────────────────────────────────────────────────────────
+const COLORS = ['#e8c547','#5ce0c0','#a07be8','#e05c6e','#5cbfe8','#e08a5c',
+                '#b0e85c','#e85cb0','#5ce8a0','#c0c0e8','#e8b05c','#60e8e0',
+                '#e870a0','#80c0ff','#ffa080','#c0ffa0'];
+
+function randomColor(i){ return COLORS[i % COLORS.length]; }
+
+function clearCanvas(canvas){
+  const ctx = canvas.getContext('2d');
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  ctx.fillStyle = '#11111a';
+  ctx.fillRect(0,0,canvas.width,canvas.height);
+  // subtle grid
+  ctx.strokeStyle = '#1a1a28'; ctx.lineWidth=1;
+  const step=40;
+  for(let x=0;x<canvas.width;x+=step){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,canvas.height);ctx.stroke();}
+  for(let y=0;y<canvas.height;y+=step){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(canvas.width,y);ctx.stroke();}
+}
+
+function switchTab(name){
+  document.querySelectorAll('.tab').forEach((t,i)=>{
+    const names=['gambler','rw1d','rw2d','rw3d'];
+    t.classList.toggle('active', names[i]===name);
+  });
+  document.querySelectorAll('.page').forEach(p=>{
+    p.classList.toggle('active', p.id==='page-'+name);
+  });
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 1. GAMBLER'S RUIN
+// ─────────────────────────────────────────────────────────────────────────────
+let gState = {
+  paths:[], timer:null, running:false,
+  totalRuin:0, totalWin:0, totalSteps:0, totalFinished:0,
+  stepsHistory:[]
+};
+
+function gamblerParams(){
+  return {
+    p: parseFloat(document.getElementById('g-p').value),
+    N: parseInt(document.getElementById('g-N').value),
+    k0: Math.min(parseInt(document.getElementById('g-k').value), parseInt(document.getElementById('g-N').value)-1),
+    nPaths: parseInt(document.getElementById('g-paths').value),
+    speed: parseInt(document.getElementById('g-speed').value)
+  };
+}
+
+function gamblerTheory(p, k, N){
+  let pwin, esteps;
+  if(Math.abs(p-0.5)<1e-6){
+    pwin = k/N;
+    esteps = k*(N-k);
+  } else {
+    const r = (1-p)/p;
+    const rN = Math.pow(r,N), rk = Math.pow(r,k);
+    pwin = (1-rk)/(1-rN);
+    const num = k/p - N*(1-rk)/(1-rN)/p;
+    esteps = num / (2*p-1) * (-1);  // simplified
+    // Correct formula: E_k = k/(2p-1) - N*(1-(1-p/p)^k)/((2p-1)*(1-(1-p/p)^N))
+    // Use standard formula
+    const q=1-p, rho=q/p;
+    if(Math.abs(rho-1)>1e-9){
+      esteps = (k - N*pwin) / (q - p);
+    } else {
+      esteps = k*(N-k);
+    }
+  }
+  return {pwin, esteps};
+}
+
+function gamblerReset(){
+  if(gState.timer) clearInterval(gState.timer);
+  gState = {paths:[], timer:null, running:false,
+            totalRuin:0, totalWin:0, totalSteps:0, totalFinished:0, stepsHistory:[]};
+  const {p,N,k0,nPaths} = gamblerParams();
+  for(let i=0;i<nPaths;i++) gState.paths.push({k:k0, history:[k0], done:false, result:null});
+  gamblerDraw();
+  gamblerDrawHist();
+
+  // theory
+  const t = gamblerTheory(p,k0,N);
+  document.getElementById('g-stat-theory').textContent = t.pwin.toFixed(3);
+  document.getElementById('g-stat-steps-theory').textContent = Math.round(t.esteps);
+  document.getElementById('g-stat-ruin').textContent='—';
+  document.getElementById('g-stat-win').textContent='—';
+  document.getElementById('g-stat-pwin').textContent='—';
+  document.getElementById('g-stat-steps').textContent='—';
+}
+
+function gamblerStart(){
+  if(gState.running) return;
+  const allDone = gState.paths.every(p=>p.done);
+  if(allDone) gamblerReset();
+  gState.running=true;
+  const {p,N,speed} = gamblerParams();
+  gState.timer = setInterval(()=>{
+    let anyActive=false;
+    for(let path of gState.paths){
+      if(path.done) continue;
+      anyActive=true;
+      if(Math.random()<p) path.k++;
+      else path.k--;
+      path.history.push(path.k);
+      if(path.k<=0){ path.done=true; path.result='ruin';
+        gState.totalRuin++; gState.totalFinished++;
+        gState.stepsHistory.push(path.history.length-1);
+      } else if(path.k>=N){ path.done=true; path.result='win';
+        gState.totalWin++; gState.totalFinished++;
+        gState.stepsHistory.push(path.history.length-1);
+      }
+    }
+    gamblerDraw();
+    if(!anyActive){ clearInterval(gState.timer); gState.running=false; gamblerUpdateStats(); }
+  }, speed);
+}
+
+function gamblerPause(){
+  if(gState.timer){ clearInterval(gState.timer); gState.timer=null; gState.running=false; }
+}
+
+function gamblerBatch(n){
+  gamblerPause();
+  const {p,N,k0} = gamblerParams();
+  let ruin=0,win=0,totalS=0;
+  for(let i=0;i<n;i++){
+    let k=k0, steps=0;
+    while(k>0&&k<N){ if(Math.random()<p)k++; else k--; steps++; }
+    if(k<=0) ruin++; else win++;
+    totalS+=steps;
+    gState.stepsHistory.push(steps);
+  }
+  gState.totalRuin+=ruin; gState.totalWin+=win; gState.totalFinished+=n;
+  gamblerUpdateStats();
+  gamblerDrawHist();
+}
+
+function gamblerUpdateStats(){
+  const tot=gState.totalFinished;
+  if(!tot) return;
+  document.getElementById('g-stat-ruin').textContent=gState.totalRuin;
+  document.getElementById('g-stat-win').textContent=gState.totalWin;
+  document.getElementById('g-stat-pwin').textContent=(gState.totalWin/tot).toFixed(3);
+  const meanSteps = gState.stepsHistory.reduce((a,b)=>a+b,0)/gState.stepsHistory.length;
+  document.getElementById('g-stat-steps').textContent=Math.round(meanSteps);
+  gamblerDrawHist();
+}
+
+function gamblerDraw(){
+  const canvas = document.getElementById('gamblerCanvas');
+  const ctx = canvas.getContext('2d');
+  const {N,k0} = gamblerParams();
+  const W=canvas.width, H=canvas.height;
+  clearCanvas(canvas);
+
+  // axis
+  ctx.strokeStyle='#333355'; ctx.lineWidth=1;
+  ctx.setLineDash([4,4]);
+  const y0 = H - 30 - (k0/(N)) * (H-60);
+  ctx.beginPath(); ctx.moveTo(40,y0); ctx.lineTo(W-10,y0); ctx.stroke();
+  ctx.setLineDash([]);
+
+  // N line
+  ctx.strokeStyle='#5ce0c044';
+  ctx.beginPath(); ctx.moveTo(40, H-30-(N/N)*(H-60)); ctx.lineTo(W-10, H-30-(N/N)*(H-60)); ctx.stroke();
+  // 0 line
+  ctx.strokeStyle='#e05c6e44';
+  ctx.beginPath(); ctx.moveTo(40, H-30); ctx.lineTo(W-10, H-30); ctx.stroke();
+
+  // labels
+  ctx.fillStyle='#5ce0c0'; ctx.font='10px JetBrains Mono';
+  ctx.fillText('N='+N, 5, H-30-(N/N)*(H-60)+4);
+  ctx.fillStyle='#e05c6e';
+  ctx.fillText('0', 8, H-26);
+
+  // paths
+  for(let i=0;i<gState.paths.length;i++){
+    const path=gState.paths[i];
+    const len=path.history.length;
+    if(len<2) continue;
+    const color = path.done
+      ? (path.result==='ruin' ? '#e05c6e' : '#5ce0c0')
+      : randomColor(i);
+    ctx.strokeStyle=color+'cc'; ctx.lineWidth=1.5;
+    ctx.beginPath();
+    for(let t=0;t<len;t++){
+      const px = 40 + (t/(Math.max(gState.paths.reduce((a,p)=>Math.max(a,p.history.length-1),1),1))) * (W-55);
+      const py = H - 30 - (path.history[t]/N)*(H-60);
+      if(t===0) ctx.moveTo(px,py); else ctx.lineTo(px,py);
+    }
+    ctx.stroke();
+    // dot at end
+    if(path.done){
+      ctx.fillStyle=color;
+      ctx.beginPath();
+      const px=40+(len-1)/(Math.max(gState.paths.reduce((a,p)=>Math.max(a,p.history.length-1),1),1))*(W-55);
+      const py=H-30-(path.history[len-1]/N)*(H-60);
+      ctx.arc(px,py,4,0,Math.PI*2); ctx.fill();
+    }
+  }
+}
+
+function gamblerDrawHist(){
+  const canvas=document.getElementById('gamblerHist');
+  const ctx=canvas.getContext('2d');
+  const W=canvas.width,H=canvas.height;
+  clearCanvas(canvas);
+  const hist=gState.stepsHistory;
+  if(!hist.length) return;
+
+  const max=Math.max(...hist);
+  const bins=40;
+  const binSize=Math.ceil(max/bins)||1;
+  const counts=new Array(bins).fill(0);
+  hist.forEach(s=>{ const b=Math.min(Math.floor(s/binSize),bins-1); counts[b]++; });
+  const maxC=Math.max(...counts);
+  const bw=(W-60)/bins;
+
+  ctx.fillStyle='#a07be866';
+  ctx.strokeStyle='#a07be8';
+  ctx.lineWidth=1;
+  counts.forEach((c,i)=>{
+    const x=40+i*bw;
+    const bh=(c/maxC)*(H-40);
+    ctx.fillRect(x,H-20-bh,bw-1,bh);
+    ctx.strokeRect(x,H-20-bh,bw-1,bh);
+  });
+  ctx.fillStyle='#666688'; ctx.font='9px JetBrains Mono';
+  ctx.fillText('0',38,H-8);
+  ctx.fillText(max,W-30,H-8);
+  ctx.fillStyle='#888899';
+  ctx.fillText('nº de passos →', W/2-40, H-5);
+}
+
+gamblerReset();
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 2. RANDOM WALK Z
+// ─────────────────────────────────────────────────────────────────────────────
+let rw1State={paths:[],timer:null,running:false};
+
+function rw1Params(){
+  return {
+    p: parseFloat(document.getElementById('r1-p').value),
+    maxSteps: parseInt(document.getElementById('r1-steps').value),
+    nPaths: parseInt(document.getElementById('r1-paths').value),
+    speed: parseInt(document.getElementById('r1-speed').value)
+  };
+}
+
+function rw1Reset(){
+  if(rw1State.timer) clearInterval(rw1State.timer);
+  rw1State={paths:[],timer:null,running:false};
+  const {nPaths}=rw1Params();
+  for(let i=0;i<nPaths;i++) rw1State.paths.push({x:0,history:[0],done:false,returns:0});
+  rw1Draw(); rw1DrawHist();
+  document.getElementById('r1-stat-mean').textContent='—';
+  document.getElementById('r1-stat-std').textContent='—';
+  document.getElementById('r1-stat-ret').textContent='—';
+  const {p,maxSteps}=rw1Params();
+  document.getElementById('r1-stat-theory').textContent=(2*p-1>0?'+':'')+(((2*p-1)*maxSteps).toFixed(1));
+}
+
+function rw1Start(){
+  if(rw1State.running) return;
+  const allDone=rw1State.paths.every(p=>p.done);
+  if(allDone) rw1Reset();
+  rw1State.running=true;
+  const {p,maxSteps,speed}=rw1Params();
+  rw1State.timer=setInterval(()=>{
+    let anyActive=false;
+    for(const path of rw1State.paths){
+      if(path.done) continue;
+      anyActive=true;
+      path.x += Math.random()<p ? 1 : -1;
+      if(path.x===0) path.returns++;
+      path.history.push(path.x);
+      if(path.history.length>maxSteps) path.done=true;
+    }
+    rw1Draw();
+    if(!anyActive){
+      clearInterval(rw1State.timer); rw1State.running=false;
+      rw1DrawHist(); rw1UpdateStats();
+    }
+  }, speed);
+}
+
+function rw1Pause(){
+  if(rw1State.timer){clearInterval(rw1State.timer);rw1State.timer=null;rw1State.running=false;}
+}
+
+function rw1UpdateStats(){
+  const finals=rw1State.paths.map(p=>p.x);
+  const mean=finals.reduce((a,b)=>a+b,0)/finals.length;
+  const std=Math.sqrt(finals.reduce((a,b)=>a+(b-mean)**2,0)/finals.length);
+  const returns=rw1State.paths.reduce((a,p)=>a+p.returns,0)/rw1State.paths.length;
+  document.getElementById('r1-stat-mean').textContent=mean.toFixed(2);
+  document.getElementById('r1-stat-std').textContent=std.toFixed(2);
+  document.getElementById('r1-stat-ret').textContent=returns.toFixed(1);
+}
+
+function rw1Draw(){
+  const canvas=document.getElementById('rw1Canvas');
+  const ctx=canvas.getContext('2d');
+  const W=canvas.width,H=canvas.height;
+  clearCanvas(canvas);
+
+  const allVals=rw1State.paths.flatMap(p=>p.history);
+  const minV=Math.min(...allVals,-1), maxV=Math.max(...allVals,1);
+  const range=Math.max(maxV-minV,2);
+  const maxLen=Math.max(...rw1State.paths.map(p=>p.history.length),2);
+
+  const toX=t=>45+(t/(maxLen-1))*(W-55);
+  const toY=v=>H/2-((v-(minV+maxV)/2)/range)*(H-40);
+
+  // zero line
+  ctx.strokeStyle='#333355'; ctx.lineWidth=1; ctx.setLineDash([4,4]);
+  const y0=toY(0);
+  ctx.beginPath(); ctx.moveTo(45,y0); ctx.lineTo(W-5,y0); ctx.stroke();
+  ctx.setLineDash([]);
+  ctx.fillStyle='#444466'; ctx.font='9px JetBrains Mono';
+  ctx.fillText('0',5,y0+3);
+
+  // y axis ticks
+  const tickStep=Math.ceil(range/8);
+  for(let v=Math.ceil(minV/tickStep)*tickStep; v<=maxV; v+=tickStep){
+    const y=toY(v);
+    ctx.strokeStyle='#222233'; ctx.lineWidth=1;
+    ctx.beginPath(); ctx.moveTo(43,y); ctx.lineTo(W-5,y); ctx.stroke();
+    ctx.fillStyle='#555577'; ctx.font='9px JetBrains Mono';
+    ctx.fillText(v,2,y+3);
+  }
+
+  for(let i=0;i<rw1State.paths.length;i++){
+    const path=rw1State.paths[i];
+    const h=path.history;
+    if(h.length<2) continue;
+    ctx.strokeStyle=randomColor(i)+'cc'; ctx.lineWidth=1.5;
+    ctx.beginPath();
+    h.forEach((v,t)=>{ const px=toX(t),py=toY(v); t===0?ctx.moveTo(px,py):ctx.lineTo(px,py); });
+    ctx.stroke();
+    // current dot
+    ctx.fillStyle=randomColor(i);
+    ctx.beginPath();
+    ctx.arc(toX(h.length-1),toY(h[h.length-1]),3.5,0,Math.PI*2);
+    ctx.fill();
+  }
+}
+
+function rw1DrawHist(){
+  const canvas=document.getElementById('rw1Hist');
+  const ctx=canvas.getContext('2d');
+  const W=canvas.width,H=canvas.height;
+  clearCanvas(canvas);
+  const finals=rw1State.paths.map(p=>p.x);
+  if(!finals.length) return;
+  const minV=Math.min(...finals), maxV=Math.max(...finals);
+  if(minV===maxV){
+    ctx.fillStyle='#e8c547'; ctx.fillRect(W/2-10,20,20,H-40);
+    return;
+  }
+  const bins=Math.min(20,maxV-minV+1);
+  const range=maxV-minV;
+  const bw=(W-60)/bins;
+  const counts=new Array(bins).fill(0);
+  finals.forEach(v=>{ const b=Math.min(Math.floor((v-minV)/range*(bins-0.001)),bins-1); counts[b]++; });
+  const maxC=Math.max(...counts,1);
+  counts.forEach((c,i)=>{
+    const x=40+i*bw, bh=(c/maxC)*(H-40);
+    ctx.fillStyle='#e8c54766'; ctx.strokeStyle='#e8c547'; ctx.lineWidth=1;
+    ctx.fillRect(x,H-20-bh,bw-1,bh);
+    ctx.strokeRect(x,H-20-bh,bw-1,bh);
+  });
+  ctx.fillStyle='#666688'; ctx.font='9px JetBrains Mono';
+  ctx.fillText(minV,38,H-5);
+  ctx.fillText(maxV,W-35,H-5);
+  ctx.fillText('posição final →',W/2-40,H-5);
+}
+
+rw1Reset();
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 3. RANDOM WALK Z^2
+// ─────────────────────────────────────────────────────────────────────────────
+let rw2Probs={pr:0.25,pl:0.25,pu:0.25,pd:0.25};
+let rw2State={x:0,y:0,history:[],timer:null,running:false,returns:0,step:0};
+
+function r2update(key, val){
+  rw2Probs[key]=parseFloat(val);
+  document.getElementById('r2-'+key+'-val').textContent=parseFloat(val).toFixed(2);
+  const sum=Object.values(rw2Probs).reduce((a,b)=>a+b,0);
+  document.getElementById('r2-sum-warn').style.display=Math.abs(sum-1)>0.02?'block':'none';
+}
+
+function rw2Params(){
+  return {
+    maxSteps: parseInt(document.getElementById('r2-steps').value),
+    speed: parseInt(document.getElementById('r2-speed').value)
+  };
+}
+
+function rw2Normalize(){
+  const sum=Object.values(rw2Probs).reduce((a,b)=>a+b,0);
+  const norm={};
+  for(const k in rw2Probs) norm[k]=rw2Probs[k]/sum;
+  return norm;
+}
+
+function rw2Reset(){
+  if(rw2State.timer) cancelAnimationFrame(rw2State.timer);
+  if(rw2State.interval) clearInterval(rw2State.interval);
+  rw2State={x:0,y:0,history:[[0,0]],timer:null,running:false,returns:0,step:0,interval:null};
+  rw2Draw();
+  document.getElementById('r2-pos').textContent='(0,0)';
+  document.getElementById('r2-steps-done').textContent='0';
+  document.getElementById('r2-dist').textContent='0';
+  document.getElementById('r2-ret').textContent='0';
+}
+
+function rw2Start(){
+  if(rw2State.running) return;
+  const allDone=rw2State.step>=rw2Params().maxSteps;
+  if(allDone) rw2Reset();
+  rw2State.running=true;
+  const {maxSteps,speed}=rw2Params();
+  rw2State.interval=setInterval(()=>{
+    if(rw2State.step>=maxSteps){
+      clearInterval(rw2State.interval); rw2State.running=false; return;
+    }
+    const p=rw2Normalize();
+    const r=Math.random();
+    let cum=0;
+    cum+=p.pr; if(r<cum){rw2State.x++;} 
+    else { cum+=p.pl; if(r<cum){rw2State.x--;}
+    else { cum+=p.pu; if(r<cum){rw2State.y++;}
+    else {rw2State.y--;}}}
+    rw2State.step++;
+    rw2State.history.push([rw2State.x,rw2State.y]);
+    if(rw2State.x===0&&rw2State.y===0) rw2State.returns++;
+    // limit history length for perf
+    if(rw2State.history.length>10000) rw2State.history.splice(0,1000);
+    rw2Draw();
+    document.getElementById('r2-pos').textContent=`(${rw2State.x},${rw2State.y})`;
+    document.getElementById('r2-steps-done').textContent=rw2State.step;
+    document.getElementById('r2-dist').textContent=Math.sqrt(rw2State.x**2+rw2State.y**2).toFixed(1);
+    document.getElementById('r2-ret').textContent=rw2State.returns;
+  }, speed);
+}
+
+function rw2Pause(){
+  if(rw2State.interval){clearInterval(rw2State.interval);rw2State.interval=null;rw2State.running=false;}
+}
+
+function rw2Draw(){
+  const canvas=document.getElementById('rw2Canvas');
+  const ctx=canvas.getContext('2d');
+  const W=canvas.width,H=canvas.height;
+  clearCanvas(canvas);
+
+  const hist=rw2State.history;
+  if(!hist.length) return;
+  const xs=hist.map(p=>p[0]), ys=hist.map(p=>p[1]);
+  const minX=Math.min(...xs,-5), maxX=Math.max(...xs,5);
+  const minY=Math.min(...ys,-5), maxY=Math.max(...ys,5);
+  const pad=40;
+  const scaleX=(W-2*pad)/(maxX-minX||1);
+  const scaleY=(H-2*pad)/(maxY-minY||1);
+  const sc=Math.min(scaleX,scaleY);
+  const cx=W/2, cy=H/2;
+  const toX=x=>cx+(x-(minX+maxX)/2)*sc;
+  const toY=y=>cy-(y-(minY+maxY)/2)*sc;
+
+  // axes
+  ctx.strokeStyle='#2a2a44'; ctx.lineWidth=1;
+  ctx.beginPath(); ctx.moveTo(pad,toY(0)); ctx.lineTo(W-pad,toY(0)); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(toX(0),pad); ctx.lineTo(toX(0),H-pad); ctx.stroke();
+
+  // origin dot
+  ctx.fillStyle='#e8c54788';
+  ctx.beginPath(); ctx.arc(toX(0),toY(0),5,0,Math.PI*2); ctx.fill();
+
+  // path
+  const n=hist.length;
+  const skip=Math.max(1,Math.floor(n/3000));
+  ctx.lineWidth=1;
+  for(let i=skip;i<n;i+=skip){
+    const t=i/n;
+    const r=Math.round(90+t*165), g=Math.round(180-t*120), b=Math.round(200+t*55);
+    ctx.strokeStyle=`rgba(${r},${g},${b},0.6)`;
+    ctx.beginPath();
+    ctx.moveTo(toX(hist[i-skip][0]),toY(hist[i-skip][1]));
+    ctx.lineTo(toX(hist[i][0]),toY(hist[i][1]));
+    ctx.stroke();
+  }
+
+  // current position
+  ctx.fillStyle='#e8c547';
+  ctx.beginPath();
+  ctx.arc(toX(rw2State.x),toY(rw2State.y),6,0,Math.PI*2);
+  ctx.fill();
+
+  // coord label
+  ctx.fillStyle='#888899'; ctx.font='10px JetBrains Mono';
+  ctx.fillText('x',W-pad+5,toY(0)+4);
+  ctx.fillText('y',toX(0)-15,pad-5);
+}
+
+rw2Reset();
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 4. RANDOM WALK Z^3 — isometric projection
+// ─────────────────────────────────────────────────────────────────────────────
+let rw3Probs={ppx:1/6,pmx:1/6,ppy:1/6,pmy:1/6,ppz:1/6,pmz:1/6};
+let rw3State={x:0,y:0,z:0,history:[],timer:null,running:false,returns:0,step:0,interval:null};
+
+function r3update(key,val){
+  rw3Probs[key]=parseFloat(val);
+  document.getElementById('r3-'+key+'-val').textContent=parseFloat(val).toFixed(2);
+  const sum=Object.values(rw3Probs).reduce((a,b)=>a+b,0);
+  document.getElementById('r3-sum-warn').style.display=Math.abs(sum-1)>0.02?'block':'none';
+}
+
+function rw3Normalize(){
+  const sum=Object.values(rw3Probs).reduce((a,b)=>a+b,0);
+  const norm={};
+  for(const k in rw3Probs) norm[k]=rw3Probs[k]/sum;
+  return norm;
+}
+
+function rw3Params(){
+  return {
+    maxSteps:parseInt(document.getElementById('r3-steps').value),
+    speed:parseInt(document.getElementById('r3-speed').value)
+  };
+}
+
+function rw3Reset(){
+  if(rw3State.interval) clearInterval(rw3State.interval);
+  rw3State={x:0,y:0,z:0,history:[[0,0,0]],running:false,returns:0,step:0,interval:null};
+  rw3Draw();
+  document.getElementById('r3-pos').textContent='(0,0,0)';
+  document.getElementById('r3-steps-done').textContent='0';
+  document.getElementById('r3-dist').textContent='0';
+  document.getElementById('r3-ret').textContent='0';
+}
+
+function rw3Start(){
+  if(rw3State.running) return;
+  if(rw3State.step>=rw3Params().maxSteps) rw3Reset();
+  rw3State.running=true;
+  const {maxSteps,speed}=rw3Params();
+  rw3State.interval=setInterval(()=>{
+    if(rw3State.step>=maxSteps){
+      clearInterval(rw3State.interval); rw3State.running=false; return;
+    }
+    const p=rw3Normalize();
+    const r=Math.random();
+    let cum=0;
+    cum+=p.ppx; if(r<cum){rw3State.x++;}
+    else{cum+=p.pmx; if(r<cum){rw3State.x--;}
+    else{cum+=p.ppy; if(r<cum){rw3State.y++;}
+    else{cum+=p.pmy; if(r<cum){rw3State.y--;}
+    else{cum+=p.ppz; if(r<cum){rw3State.z++;}
+    else{rw3State.z--;} }}}}
+    rw3State.step++;
+    rw3State.history.push([rw3State.x,rw3State.y,rw3State.z]);
+    if(rw3State.x===0&&rw3State.y===0&&rw3State.z===0) rw3State.returns++;
+    if(rw3State.history.length>15000) rw3State.history.splice(0,1000);
+    rw3Draw();
+    document.getElementById('r3-pos').textContent=`(${rw3State.x},${rw3State.y},${rw3State.z})`;
+    document.getElementById('r3-steps-done').textContent=rw3State.step;
+    document.getElementById('r3-dist').textContent=Math.sqrt(rw3State.x**2+rw3State.y**2+rw3State.z**2).toFixed(1);
+    document.getElementById('r3-ret').textContent=rw3State.returns;
+  }, speed);
+}
+
+function rw3Pause(){
+  if(rw3State.interval){clearInterval(rw3State.interval);rw3State.interval=null;rw3State.running=false;}
+}
+
+// Isometric projection: x→right-down, y→up, z→left-down
+function iso(x,y,z, cx,cy, sc){
+  // standard iso: rotate 45° around y, then tilt 30°
+  const ix = (x - z) * Math.cos(Math.PI/6);
+  const iy = (x + z) * Math.sin(Math.PI/6) - y;
+  return [cx + ix*sc, cy + iy*sc];
+}
+
+function rw3Draw(){
+  const canvas=document.getElementById('rw3Canvas');
+  const ctx=canvas.getContext('2d');
+  const W=canvas.width,H=canvas.height;
+  clearCanvas(canvas);
+
+  const cx=W/2, cy=H/2;
+  const hist=rw3State.history;
+  if(!hist.length) return;
+
+  // compute scale
+  const coords=hist.flatMap(p=>[Math.abs(p[0]),Math.abs(p[1]),Math.abs(p[2])]);
+  const maxCoord=Math.max(...coords,5);
+  const sc=Math.min(W,H)*0.35/maxCoord;
+
+  // draw axes
+  const axLen=Math.min(W,H)*0.18;
+  const axes=[[1,0,0,'x','#e05c6e'],[0,1,0,'y','#5ce0c0'],[0,0,1,'z','#a07be8']];
+  axes.forEach(([dx,dy,dz,lbl,col])=>{
+    const [ax,ay]=iso(0,0,0,cx,cy,sc);
+    const [bx,by]=iso(dx*maxCoord*0.5,dy*maxCoord*0.5,dz*maxCoord*0.5,cx,cy,sc);
+    ctx.strokeStyle=col+'55'; ctx.lineWidth=1; ctx.setLineDash([4,4]);
+    ctx.beginPath(); ctx.moveTo(ax,ay); ctx.lineTo(bx,by); ctx.stroke();
+    ctx.setLineDash([]);
+    ctx.fillStyle=col; ctx.font='11px JetBrains Mono';
+    ctx.fillText(lbl,bx+4,by+4);
+  });
+
+  // origin
+  const [ox,oy]=iso(0,0,0,cx,cy,sc);
+  ctx.fillStyle='#e8c54766';
+  ctx.beginPath(); ctx.arc(ox,oy,5,0,Math.PI*2); ctx.fill();
+
+  // path
+  const n=hist.length;
+  const skip=Math.max(1,Math.floor(n/3000));
+  ctx.lineWidth=1.2;
+  for(let i=skip;i<n;i+=skip){
+    const t=i/n;
+    const r=Math.round(80+t*120), g=Math.round(160+t*50), b=Math.round(230-t*30);
+    ctx.strokeStyle=`rgba(${r},${g},${b},0.55)`;
+    const [ax2,ay2]=iso(...hist[i-skip],cx,cy,sc);
+    const [bx2,by2]=iso(...hist[i],cx,cy,sc);
+    ctx.beginPath(); ctx.moveTo(ax2,ay2); ctx.lineTo(bx2,by2); ctx.stroke();
+  }
+
+  // current position
+  const [px,py]=iso(rw3State.x,rw3State.y,rw3State.z,cx,cy,sc);
+  ctx.fillStyle='#e8c547';
+  ctx.beginPath(); ctx.arc(px,py,6,0,Math.PI*2); ctx.fill();
+  ctx.fillStyle='#e8c547'; ctx.font='10px JetBrains Mono';
+  ctx.fillText(`(${rw3State.x},${rw3State.y},${rw3State.z})`,px+10,py-8);
+
+  // legend axes
+  ctx.font='10px JetBrains Mono';
+  [['x','#e05c6e'],['y','#5ce0c0'],['z','#a07be8']].forEach(([l,c],i)=>{
+    ctx.fillStyle=c; ctx.fillText('— eixo '+l, 10, 20+i*15);
+  });
+}
+
+rw3Reset();
+</script>
+</body>
+</html>

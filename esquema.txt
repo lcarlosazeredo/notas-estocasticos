@@ -1,0 +1,9 @@
+notas-estocasticos/
+├── mkdocs.yml  (Arquivo de configuração)
+├── venv/
+└── docs/
+    ├── index.md       (Um resumo ou introdução)
+    ├── aulas/
+    │   └── Aula01_090326.md  <-- Onde está o seu iframe(O conteúdo que geramos da Aula 1)
+    └── simulacoes/           <-- Crie aqui (preferencialmente sem acento)
+        └── passeio_aleatorio.html

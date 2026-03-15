@@ -1,0 +1,44 @@
+site_name: Processos Estocásticos - 26.1
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/seu-usuario/seu-repo
+      name: Repositório no GitHub
+  
+theme:
+  name: material
+  language: pt-BR
+  palette:
+    scheme: default #slate -> Modo escuro
+    primary: indigo
+    accent: indigo
+  #logo: assets/logo_ufrj.png -> alterar icone da página
+  #favicon: assets/favicon.ico 
+  features:
+    - navigation.footer  # Ativa o rodapé de navegação 
+    
+markdown_extensions:
+  - pymdownx.arithmatex:
+      generic: true   
+  - pymdownx.emoji:
+     emoji_index: !!python/name:material.extensions.emoji.twemoji
+     emoji_generator: !!python/name:material.extensions.emoji.to_svg  
+  - tables    
+  - attr_list
+  - pymdownx.superfences
+  - admonition
+  - pymdownx.details
+  - toc:
+      permalink: false # true ativa o busca
+
+extra_javascript:
+  - javascripts/mathjax.js
+  - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
+  
+nav:
+  - Início: index.md
+  - Aulas:
+      - Aula 01: aulas/Aula01.md
+      - Aula 02: aulas/Aula02.md
+      - Aula 03: aulas/Aula03.md

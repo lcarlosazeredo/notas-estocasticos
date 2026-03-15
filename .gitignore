@@ -1,0 +1,18 @@
+# Ambiente Virtual (Essencial)
+.venv/
+venv/
+ENV/
+
+# Python (Arquivos temporários que o Linux gera ao rodar scripts)
+**/__pycache__/
+*.py[cod]
+
+# MkDocs (Pasta onde o site é gerado localmente)
+/site/
+
+# IDEs (Configurações locais do seu editor)
+.vscode/
+.idea/
+
+# Sistema
+.DS_Store
