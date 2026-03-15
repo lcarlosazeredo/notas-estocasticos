@@ -3,7 +3,7 @@ site_name: Processos Estocásticos - 26.1
 extra:
   social:
     - icon: fontawesome/brands/github
-      link: https://github.com/seu-usuario/seu-repo
+      link: https://github.com/lcarlosazeredo/notas-estocasticos
       name: Repositório no GitHub
   
 theme:
