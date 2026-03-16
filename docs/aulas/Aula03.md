@@ -64,7 +64,7 @@ Como simular uma C.M. com 2 estados e matriz $P$?
 &emsp;&emsp;&emsp;$X_t = \begin{cases} 1 & \text{se } U_t \le p \\ 0 & \text{caso contrário} \end{cases}$
      
 &emsp;Se $X_{t-1} = 1$, defina:  
-&emsp;&emsp;&emsp;$X_t = \begin{cases} 0 & \text{se } U_t \le q \\ 1 & \text{caso contrário} \end{cases}$
+&emsp;&emsp;&emsp;$X_t = \begin{cases} 1 & \text{se } U_t \le 1-q \\ 0 & \text{caso contrário} \end{cases}$
 
 Obs.: Neste algoritmo representamos $X_t = F(X_{t-1}, U_t)$  
 onde $F(X_{t-1}, U_t) = \begin{cases} 1 & \text{se }(x=1 \quad e \quad u \le 1-q) \text{ ou } (x=0 \quad e \quad  u \le p)\\ 0 & \text{c. c.} \end{cases}$
@@ -141,4 +141,4 @@ $$\Delta_t = \Delta_0 (1 - (p+q))^t$$
 
 
 !!! info "Simulação Interativa Disponível"
-    [Acessar Simulador :material-open-in-new:](../simulacoes/markov_2state_simulation[6].html){: .md-button target="_blank" }
+    [Acessar Simulador :material-open-in-new:](../simulacoes/teste[6].html){: .md-button target="_blank" }
