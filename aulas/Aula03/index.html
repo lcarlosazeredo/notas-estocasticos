@@ -612,7 +612,7 @@
 <p>&emsp;Se <span class="arithmatex">\(X_{t-1} = 0\)</span>, defina:<br />
 &emsp;&emsp;&emsp;<span class="arithmatex">\(X_t = \begin{cases} 1 &amp; \text{se } U_t \le p \\ 0 &amp; \text{caso contrário} \end{cases}\)</span></p>
 <p>&emsp;Se <span class="arithmatex">\(X_{t-1} = 1\)</span>, defina:<br />
-&emsp;&emsp;&emsp;<span class="arithmatex">\(X_t = \begin{cases} 0 &amp; \text{se } U_t \le q \\ 1 &amp; \text{caso contrário} \end{cases}\)</span></p>
+&emsp;&emsp;&emsp;<span class="arithmatex">\(X_t = \begin{cases} 1 &amp; \text{se } U_t \le 1-q \\ 0 &amp; \text{caso contrário} \end{cases}\)</span></p>
 <p>Obs.: Neste algoritmo representamos <span class="arithmatex">\(X_t = F(X_{t-1}, U_t)\)</span><br />
 onde <span class="arithmatex">\(F(X_{t-1}, U_t) = \begin{cases} 1 &amp; \text{se }(x=1 \quad e \quad u \le 1-q) \text{ ou } (x=0 \quad e \quad  u \le p)\\ 0 &amp; \text{c. c.} \end{cases}\)</span></p>
 <hr />
@@ -663,7 +663,7 @@ onde <span class="arithmatex">\(F(X_{t-1}, U_t) = \begin{cases} 1 &amp; \text{se
 <div class="arithmatex">\[\Delta_t = \Delta_0 (1 - (p+q))^t\]</div>
 <div class="admonition info">
 <p class="admonition-title">Simulação Interativa Disponível</p>
-<p><a class="md-button" href="../../simulacoes/markov_2state_simulation%5B6%5D.html" target="_blank">Acessar Simulador <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3m-2 16H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2z"/></svg></span></a></p>
+<p><a class="md-button" href="../../simulacoes/teste%5B6%5D.html" target="_blank">Acessar Simulador <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3m-2 16H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2z"/></svg></span></a></p>
 </div>
 
 
