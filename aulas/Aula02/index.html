@@ -72,7 +72,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#aula-2-processos-estocasticos" class="md-skip">
+        <a href="#aula-2" class="md-skip">
           Pular para conteúdo
         </a>
       
@@ -598,60 +598,111 @@
 
 
 
-<h1 id="aula-2-processos-estocasticos">Aula 2: Processos Estocásticos</h1>
-<p><strong>Data:</strong> 11/03 [cite: 70]</p>
-<p>Seja <span class="arithmatex">\((\Omega, \mathcal{F}, \mathbb{P})\)</span> um espaço de probabilidade [cite: 70].
-Dizemos que <span class="arithmatex">\((X_t)_{t \ge 0}\)</span> é uma Cadeia de Markov se assume valores em um conjunto finito ou enumerável <span class="arithmatex">\(X\)</span> [cite: 70, 71]:</p>
+<h1 id="aula-2">Aula 2</h1>
+<p><strong>Data:</strong> 11/03</p>
+<p><span class="arithmatex">\(Def.:\)</span> Seja <span class="arithmatex">\((\Omega, \mathcal{F}, \mathbb{P})\)</span> um espaço de probabilidade.
+Dizemos que a seq. <span class="arithmatex">\((X_t)_{t \ge 0}\)</span> de V.A.'s assumindo valores em <span class="arithmatex">\(\mathcal{X}\)</span> é uma Cadeia de Markov, se:</p>
 <div class="arithmatex">\[\mathbb{P}(X_{t+1}=y \mid X_t=x, X_{t-1}=x_{t-1}, \dots, X_0=x_0) = \mathbb{P}(X_{t+1}=y \mid X_t=x) =: P_t(x,y)\]</div>
-<p>Esta é a <strong>Propriedade de Markov</strong> [cite: 71].</p>
-<p>A cadeia é dita <strong>Homogênea no tempo</strong> se <span class="arithmatex">\(P_t(x,y)\)</span> não depende de <span class="arithmatex">\(t\)</span> [cite: 71]. Vamos nos concentrar no caso homogêneo, onde <span class="arithmatex">\(P_t(x,y) = P_1(x,y) = P(x,y)\)</span> [cite: 72].</p>
+<p><span class="arithmatex">\(\forall x_{0}, \dots, x_{t-1}, x, y \in \mathcal{X}\)</span> e <span class="arithmatex">\(t \ge 0\)</span> tais que:
+<span class="arithmatex">\(\mathbb{P}(X_{0}=x_{0}, \dots, X_{t-1}=x_{t-1}, X_{t}=x) &gt; 0\)</span></p>
+<p>i.e., se vale a <strong>Propriedade de Markov</strong>.</p>
+<p>A cadeia é dita <strong>Homogênea no tempo</strong> se <span class="arithmatex">\(P_t(x,y)\)</span> não depende de <span class="arithmatex">\(t\)</span>.<br />
+Vamos nos concentrar no caso homogêneo, onde <span class="arithmatex">\(P_t(x,y) = P_1(x,y) = P(x,y)\)</span>.</p>
 <hr />
 <h2 id="1-matriz-de-transicao-p">1. Matriz de Transição (<span class="arithmatex">\(P\)</span>)</h2>
-<p>Coletamos as probabilidades de transição em uma matriz <span class="arithmatex">\(P = (P(x,y))\)</span> [cite: 73].
-<strong>Propriedades (Matriz Estocástica):</strong> [cite: 73]
-1. <span class="arithmatex">\(P(x,y) \ge 0, orall x,y \in X\)</span>.
-2. <span class="arithmatex">\(\sum_{y \in X} P(x,y) = 1, orall x \in X\)</span> (pela lei da Probabilidade Total).</p>
-<hr />
+<p>Coletamos as probabilidades de transição em uma matriz <span class="arithmatex">\(P = (P(x,y))\)</span>.<br />
+<strong>Propriedades (Matriz Estocástica):</strong></p>
+<ol>
+<li><span class="arithmatex">\(P(x,y) \ge 0, \quad \forall x,y \in \mathcal{X}\)</span>.</li>
+<li>A soma de cada linha é igual a 1, <span class="arithmatex">\(\forall x \in \mathcal{X}\)</span>:<br />
+<span class="arithmatex">\(\sum_{y \in \mathcal{X}} P(x,y) = \sum_{y \in \mathcal{X}} \mathbb{P}(X_1 = y \mid X_0 = x) = \mathbb{P}(X_1 \in \mathcal{X} \mid X_0 = x) = 1\)</span><br />
+<em>Isso ocorre pois <span class="arithmatex">\(\mathcal{X} = \bigcup_{y \in \mathcal{X}} \{y\}\)</span> (o espaço de estados completo).</em></li>
+</ol>
+<blockquote>
+<p><strong>Conclusão:</strong> Uma matriz <span class="arithmatex">\(P\)</span> com essas propriedades é chamada de <strong>Matriz Estocástica</strong> e ela representa a transição de estados de uma Cadeia de Markov.</p>
+</blockquote>
 <h2 id="2-distribuicao-inicial-mu">2. Distribuição Inicial (<span class="arithmatex">\(\mu\)</span>)</h2>
-<p>A distribuição de <span class="arithmatex">\(X_0\)</span> é chamada de distribuição inicial [cite: 74]:
-$<span class="arithmatex">\(\mu(x) = \mathbb{P}(X_0 = x), \quad x \in X\)</span>$
-Notação: <span class="arithmatex">\(\mu = (\mu(x))_{x \in X}\)</span> [cite: 74].
-Note que <span class="arithmatex">\(\mu(x) \ge 0\)</span> e <span class="arithmatex">\(\sum_{x \in X} \mu(x) = 1\)</span> [cite: 74].</p>
+<p>A distribuição de <span class="arithmatex">\(X_0\)</span> é chamada de <strong>distribuição inicial</strong>:  <br />
+<span class="arithmatex">\(&emsp;&emsp;&emsp;&emsp;\mu(x) = \mathbb{P}(X_0 = x), \quad x \in \mathcal{X}\)</span>      </p>
+<p><u>Notação:</u> <span class="arithmatex">\(\mu = (\mu(x))_{x \in \mathcal{X}}\)</span>.<br />
+Note que <span class="arithmatex">\(\mu(x) \ge 0\)</span> e <span class="arithmatex">\(\sum_{x \in \mathcal{X}} \mu(x) = 1, \quad \forall x \in \mathcal{X}\)</span>.</p>
 <h3 id="exemplo-eugene-onegin">Exemplo: Eugene Onegin</h3>
 <ul>
-<li><strong>Espaço de estados:</strong> <span class="arithmatex">\(X = \{    ext{"Vogal"},   ext{"Consoante"}\}\)</span> [cite: 74].</li>
-<li><strong>Codificação:</strong> $    ext{Vogal} \mapsto 0$, $    ext{Consoante} \mapsto 1$ [cite: 74].</li>
-<li><strong>Matriz:</strong> <span class="arithmatex">\(P =  egin{pmatrix} 1-p &amp; p \ q &amp; 1-q \end{pmatrix}\)</span> [cite: 74].<ul>
-<li>Onde <span class="arithmatex">\(1-p = 0,128\)</span> e <span class="arithmatex">\(q = 0,663\)</span> [cite: 74].</li>
-</ul>
+<li><strong>Espaço de Estados:</strong> <span class="arithmatex">\(\mathcal{X} = \{\text{"Vogal"}, \text{"Consoante"}\}\)</span>  </li>
+<li>
+<p><strong>Codificação:</strong> - "Vogal" <span class="arithmatex">\(\longleftrightarrow 0\)</span><br />
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;- "Consoante" <span class="arithmatex">\(\longleftrightarrow 1\)</span><br />
+<span class="arithmatex">\(\quad P = \begin{pmatrix} P(0,0) &amp; P(0,1) \\ P(1,0) &amp; P(1,1) \end{pmatrix} = \begin{pmatrix} 1-p &amp; p \\ q &amp; 1-q \end{pmatrix}\)</span></p>
+</li>
+<li>
+<p>Dados do exemplo:- <span class="arithmatex">\(1-p = 0,128 \implies p = 0,872\)</span><br />
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; - <span class="arithmatex">\(q = 0,663 \implies 1-q = 0,337\)</span></p>
 </li>
 </ul>
 <hr />
 <h2 id="3-perguntas-frequentes">3. Perguntas Frequentes</h2>
 <ol>
-<li>Qual o comportamento assintótico da cadeia? (Como <span class="arithmatex">\(\mu_t\)</span> se comporta para <span class="arithmatex">\(t\)</span> grande) [cite: 75].</li>
-<li>Como a distribuição inicial <span class="arithmatex">\(\mu_0 = \mu\)</span> afeta o comportamento da cadeia? [cite: 75].</li>
-<li>Ao observar os passos <span class="arithmatex">\(X_0, X_1, \dots, X_n\)</span>, como podemos estimar a matriz <span class="arithmatex">\(P\)</span>? [cite: 76].</li>
-<li>Como simular no computador uma Cadeia de Markov? [cite: 77].</li>
+<li>Qual o comportamento assintótico da cadeia?<br />
+Em outras palavras, se definimos <span class="arithmatex">\(\mu_t = (\mu_{t}(0), \mu_{t}(1)) = (\mathbb{P}(X_t=0), \mathbb{P}(X_t=1))\)</span><br />
+Como <span class="arithmatex">\(\mu_t\)</span> se comporta para <span class="arithmatex">\(t\)</span> grande?</li>
+<li>Como a distribuição inicial <span class="arithmatex">\(\mu_0 = \mu = (\mu(0), \mu(1))\)</span> <u>afeta</u> o comportamento da cadeia?</li>
+<li>Ao observar os <span class="arithmatex">\(n+1\)</span> passos da cadeia, <span class="arithmatex">\(X_0, X_1, \dots, X_n\)</span>, como podemos estimar a matriz de transição <span class="arithmatex">\(P\)</span>?</li>
+<li>Como simular no computador uma Cadeia de Markov?</li>
 </ol>
 <hr />
 <h2 id="4-evolucao-da-distribuicao-mu_t">4. Evolução da Distribuição (<span class="arithmatex">\(\mu_t\)</span>)</h2>
-<p>Para o tempo <span class="arithmatex">\(t=1\)</span> [cite: 78]:
-$<span class="arithmatex">\(\mu_1(0) = \mathbb{P}(X_1=0) = \mathbb{P}(X_0=0, X_1=0) + \mathbb{P}(X_0=1, X_1=0)\)</span>$
-$<span class="arithmatex">\(\mu_1(0) = \mu(0)P(0,0) + \mu(1)P(1,0)\)</span>$
-Isso implica em <span class="arithmatex">\(\mu_1 = \mu_0 P\)</span> [cite: 78].</p>
-<p>Para o tempo <span class="arithmatex">\(t=2\)</span> [cite: 79]:
-$<span class="arithmatex">\(\mu_2(0) = \mu_1(0)P(0,0) + \mu_1(1)P(1,0)\)</span>$
-<span class="arithmatex">\(\mu_2 = \mu_1 P = (\mu_0 P) P = \mu_0 P^2\)</span> [cite: 79].</p>
-<p><strong>Iterando o argumento:</strong> [cite: 79]
-$<span class="arithmatex">\(\mu_t = \mu_0 P^t,    ext{ com } P^0 = I =  egin{pmatrix} 1 &amp; 0 \ 0 &amp; 1 \end{pmatrix}\)</span>$</p>
+<p>Queremos saber qual a probabilidade da cadeia estar em um estado específico no tempo <span class="arithmatex">\(t\)</span>, ou seja, <span class="arithmatex">\(\mu_t(x) = \mathbb{P}(X_t = x)\)</span>. Tomemos <span class="arithmatex">\(x=0\)</span>:</p>
+<p><u>Para o tempo <span class="arithmatex">\(t=0\)</span>:</u> <span class="arithmatex">\(\qquad \mu_t(0) = \mu_0(0) = \mu(0)\)</span></p>
+<p><u>Para o tempo <span class="arithmatex">\(t=1\)</span>:</u></p>
+<div class="arithmatex">\[
+\begin{aligned}
+\mu_1(0) &amp;= \mathbb{P}(X_1=0)\\
+&amp;= \mathbb{P}(X_0=0, X_1=0) + \mathbb{P}(X_0=1, X_1=0)\\      
+&amp;= \mathbb{P}(X_0=0)\mathbb{P}(X_1=0 \mid X_0=0) + \mathbb{P}(X_0=1)\mathbb{P}(X_1=0 \mid X_0=1)\\    
+&amp;= \mu_0(0)P(0,0) + \mu_0(1)P(1,0)
+\end{aligned}
+\]</div>
+<p>Note que o termo acima é a primeira entrada da multiplicação vetor-matriz:</p>
+<div class="arithmatex">\[(\mu_0(0), \mu_0(1)) \begin{pmatrix} P(0,0) &amp; P(0,1) \\ P(1,0) &amp; P(1,1) \end{pmatrix}\]</div>
+<p>Logo, de forma geral:</p>
+<div class="arithmatex">\[\mu_1 = \mu_0 P\]</div>
+<hr />
+<p><u>Para o tempo <span class="arithmatex">\(t=2\)</span>:</u></p>
+<div class="arithmatex">\[
+\begin{aligned}
+\mu_2(0) &amp;= \mathbb{P}(X_2=0) \\
+&amp;= \mathbb{P}(X_1=0, X_2=0) + \mathbb{P}(X_1=1, X_2=0) \\
+&amp;= \mathbb{P}(X_1=0)\mathbb{P}(X_2=0 \mid X_1=0) + \mathbb{P}(X_1=1)\mathbb{P}(X_2=0 \mid X_1=1) \\
+&amp;= \mu_1(0)P(0,0) + \mu_1(1)P(1,0)
+\end{aligned}
+\]</div>
+<p>Substituindo o resultado anterior (<span class="arithmatex">\(\mu_1 = \mu_0 P\)</span>):</p>
+<div class="arithmatex">\[\mu_2 = \mu_1 P = (\mu_0 P) P = \mu_0 P^2\]</div>
+<hr />
+<p>Iterando o argumento, podemos mostrar que:</p>
+<p>&emsp;<span class="arithmatex">\(\mu_t = \mu_0 P^t\)</span>, para todo <span class="arithmatex">\(t \ge 0\)</span>, com a condição <span class="arithmatex">\(P^0 = \begin{pmatrix} 1 &amp; 0 \\ 0 &amp; 1 \end{pmatrix}\)</span></p>
 <hr />
 <h2 id="5-identificando-a-distribuicao-estacionaria-pi">5. Identificando a Distribuição Estacionária (<span class="arithmatex">\(\pi\)</span>)</h2>
-<p>Supondo que existe o limite [cite: 80]:
-$<span class="arithmatex">\(\lim_{t   o \infty} \mu_t(0) = \pi(0) \quad   ext{e} \quad \lim_{t    o \infty} \mu_t(1) = \pi(1) = 1 - \pi(0)\)</span>$</p>
-<p>Tomando o limite nas equações [cite: 81]:
-$$ egin{cases} \pi(0) = \pi(0)(1-p) + \pi(1)q \ \pi(1) = \pi(0)p + \pi(1)(1-q) \end{cases}$$
-E a condição <span class="arithmatex">\(\pi(0) + \pi(1) = 1\)</span> [cite: 81].</p>
+<p>Supondo que existe</p>
+<div class="arithmatex">\[\lim_{t \to \infty} \mu_t(0) = \pi(0)\]</div>
+<div class="arithmatex">\[\implies \lim_{t \to \infty} \mu_t(1) = \lim_{t \to \infty} (1 - \mu_t(0)) = 1 - \lim_{t \to \infty} \mu_t(0) = 1 - \pi(0) := \pi(1)\]</div>
+<hr />
+<p>Como identificar <span class="arithmatex">\((\pi(0), \pi(1)) = \pi\)</span>?</p>
+<div class="arithmatex">\[
+\begin{cases} 
+\mu_t(0) = \mu_{t-1}(0) P(0,0) + \mu_{t-1}(1) P(1,0) = \mu_{t-1}(0) (1-p) + \mu_{t-1}(1) q\\ 
+\mu_t(1) = \mu_{t-1}(0) P(0,1) + \mu_{t-1}(1) P(1,1) = \mu_{t-1}(0) p + \mu_{t-1}(1) (1-q)
+\end{cases}
+\]</div>
+<hr />
+<p>Tomando <span class="arithmatex">\(t \to \infty\)</span>:</p>
+<div class="arithmatex">\[
+\begin{cases} 
+\pi(0) = \pi(0) (1-p) + \pi(1) q \\ 
+\pi(1) = \pi(0) p + \pi(1) (1-q) 
+\end{cases}
+\]</div>
+<p><strong><span class="arithmatex">\(\pi(0) + \pi(1) = 1\)</span></strong>.</p>
 
 
 
@@ -760,8 +811,6 @@ E a condição <span class="arithmatex">\(\pi(0) + \pi(1) = 1\)</span> [cite: 81
       <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
         <script src="../../javascripts/mathjax.js"></script>
-      
-        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
       
     
   </body>

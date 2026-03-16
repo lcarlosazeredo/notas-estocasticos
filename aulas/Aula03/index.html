@@ -70,7 +70,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#aula-3-processos-estocasticos" class="md-skip">
+        <a href="#aula-3" class="md-skip">
           Pular para conteúdo
         </a>
       
@@ -424,23 +424,6 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="2. Distribuição Estacionária">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#exemplos" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Exemplos:
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
         <li class="md-nav__item">
@@ -455,10 +438,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#4-velocidade-de-convergencia" class="md-nav__link">
+  <a href="#4-velocidade-de-convergencia-para-a-distribuicao-estacionaria" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4. Velocidade de Convergência
+        4. Velocidade de Convergência para a Distribuição Estacionária
       
     </span>
   </a>
@@ -538,23 +521,6 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="2. Distribuição Estacionária">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#exemplos" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Exemplos:
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
         <li class="md-nav__item">
@@ -569,10 +535,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#4-velocidade-de-convergencia" class="md-nav__link">
+  <a href="#4-velocidade-de-convergencia-para-a-distribuicao-estacionaria" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4. Velocidade de Convergência
+        4. Velocidade de Convergência para a Distribuição Estacionária
       
     </span>
   </a>
@@ -596,7 +562,7 @@
 
 
 
-<h1 id="aula-3-processos-estocasticos">Aula 3: Processos Estocásticos</h1>
+<h1 id="aula-3">Aula 3</h1>
 <p><strong>Data:</strong> 13/03/2026</p>
 <h2 id="datas-de-provas">📅 Datas de Provas</h2>
 <ul>
@@ -607,51 +573,98 @@
 </ul>
 <hr />
 <h2 id="1-revisao">1. Revisão</h2>
-<p>Cadeia de Markov e matriz de transição com 2 estados (<span class="arithmatex">\(\mathcal{X} = \{0, 1\}\)</span>):
-$<span class="arithmatex">\(P = \begin{pmatrix} 1-p &amp; p \\ q &amp; 1-q \end{pmatrix}\)</span>$</p>
-<p>Definimos <span class="arithmatex">\(\mu_t = (\mu_t(0), \mu_t(1))\)</span> para <span class="arithmatex">\(t \ge 0\)</span>, com <span class="arithmatex">\(\mu_t(x) = \mathbb{P}(X_t = x)\)</span>.
-Vimos que:
-$<span class="arithmatex">\(\mu_t = \mu_0 P^t\)</span>$
-Para provar esta relação, usamos que <span class="arithmatex">\(\mu_t = \mu_{t-1} P\)</span>.</p>
-<p>Assumindo que existe o limite:
-* <span class="arithmatex">\(\lim_{t \to \infty} \mu_t(0) = \pi(0)\)</span>
-* <span class="arithmatex">\(\lim_{t \to \infty} \mu_t(1) = \pi(1)\)</span></p>
-<p>Deduzimos o sistema:
-$<span class="arithmatex">\(\begin{cases} \pi(0) = \pi(0)(1-p) + \pi(1)q \\ \pi(1) = \pi(0)p + \pi(1)(1-q) \end{cases} \iff \pi = \pi P\)</span>$
-Além disso, temos a condição para vetor de probabilidade: <span class="arithmatex">\(\pi(0) + \pi(1) = 1\)</span>.</p>
+<p><span class="arithmatex">\((X_t)_{t \ge 0}\)</span> Cadeia de Markov com 2 estados (<span class="arithmatex">\(\mathcal{X} = \{0, 1\}\)</span>) e matriz de transição  </p>
+<div class="arithmatex">\[P = \begin{pmatrix} 1-p &amp; p \\ q &amp; 1-q \end{pmatrix}\]</div>
+<p>Definimos <span class="arithmatex">\(\mu_t = (\mu_t(0), \mu_t(1))\)</span> para <span class="arithmatex">\(t \ge 0\)</span>, com <span class="arithmatex">\(\mu_t(x) = \mathbb{P}(X_t = x)\)</span>, <span class="arithmatex">\(x \in \mathcal{X}\)</span>.</p>
+<p>Vimos que:<span class="arithmatex">\(\quad \mu_t = \mu_0 P^t\)</span></p>
+<p>Para provar esta relação, usamos que <span class="arithmatex">\(\mu_t = \mu_{t-1} P, \forall t \ge 1\)</span></p>
+<p>Assumindo que existe</p>
+<ul>
+<li>
+<p><span class="arithmatex">\(\lim_{t \to \infty} \mu_t(0) = \pi(0)\)</span></p>
+</li>
+<li>
+<p><span class="arithmatex">\(\lim_{t \to \infty} \mu_t(1) = \pi(1)\)</span></p>
+</li>
+</ul>
+<p>Deduzimos o sistema:</p>
+<div class="arithmatex">\[\begin{cases} \pi(0) = \pi(0)(1-p) + \pi(1)q \\ \pi(1) = \pi(0)p + \pi(1)(1-q) \end{cases} \iff \pi = \pi P\]</div>
+<p>Além disso,</p>
+<p><span class="arithmatex">\(\pi(0) + \pi(1) = \lim_{t \to \infty} \mu_t(0)  + \lim_{t \to \infty} \mu_t(1)  =  \lim_{t \to \infty}(\mu_t(0) + \mu_t(1))   =  1\)</span>.</p>
 <hr />
 <h2 id="2-distribuicao-estacionaria">2. Distribuição Estacionária</h2>
-<p>Resolvendo o sistema anterior, encontramos:
-$<span class="arithmatex">\(\pi(0) = \frac{q}{p+q} \quad \text{e} \quad \pi(1) = \frac{p}{p+q}\)</span>$</p>
-<p><strong>Definição:</strong> Qualquer vetor de probabilidade <span class="arithmatex">\(v\)</span> tal que <span class="arithmatex">\(v = v P\)</span> é chamado de <strong>medida estacionária</strong> ou <strong>invariante</strong> para a cadeia.</p>
-<h3 id="exemplos">Exemplos:</h3>
+<p>Resolvendo o sistema anterior, encontramos:</p>
+<div class="arithmatex">\[\pi(0) = \frac{q}{p+q} \quad \text{e} \quad \pi(1) = \frac{p}{p+q}\]</div>
+<p><span class="arithmatex">\(Def:\)</span> Qualquer vetor de probabilidade <span class="arithmatex">\(v\)</span> tal que <span class="arithmatex">\(v = v P\)</span> é chamado de <strong>medida estacionária</strong> ou <strong>invariante</strong> para a cadeia.</p>
+<p>Exemplos:</p>
 <ol>
 <li><strong>Se <span class="arithmatex">\(p = q \neq 0\)</span>:</strong> <span class="arithmatex">\(\pi(0) = \pi(1) = \frac{1}{2}\)</span>.</li>
-<li><strong>Se <span class="arithmatex">\(p = q = 0\)</span>:</strong> A matriz é a identidade (<span class="arithmatex">\(P = I\)</span>). Para qualquer <span class="arithmatex">\(\mu_0\)</span>, temos <span class="arithmatex">\(\mu_t = \mu_0 P^t = \mu_0 I = \mu_0\)</span>. Logo, <span class="arithmatex">\(\pi = \lim_{t \to \infty} \mu_t = \mu_0\)</span>.</li>
+<li><strong>Se <span class="arithmatex">\(p = q = 0\)</span>:</strong> A matriz é a identidade (<span class="arithmatex">\(P = I\)</span>).<br />
+    Para qualquer <span class="arithmatex">\(\mu_0\)</span>, temos <span class="arithmatex">\(\mu_t = \mu_0 P^t = \mu_0 I = \mu_0\)</span>.<br />
+    Logo, <span class="arithmatex">\(\pi = \lim_{t \to \infty} \mu_t = \lim_{t \to \infty} \mu_0 = \mu_0\)</span>.</li>
 </ol>
 <hr />
 <h2 id="3-simulacao-de-uma-cm-com-2-estados">3. Simulação de uma C.M. com 2 Estados</h2>
-<p>Como simular no computador dada a matriz <span class="arithmatex">\(P\)</span>?</p>
-<p><strong>Algoritmo:</strong>
-1.  Inicializa <span class="arithmatex">\(X_0\)</span> com uma certa distribuição <span class="arithmatex">\(\mu\)</span>.
-2.  Para <span class="arithmatex">\(t \ge 1\)</span>, gera uma variável uniforme <span class="arithmatex">\(U_t \sim \text{Unif}[0, 1]\)</span> independente de tudo o resto.
-3.  Se <span class="arithmatex">\(X_{t-1} = 0\)</span>, define:
-    $<span class="arithmatex">\(X_t = \begin{cases} 1 &amp; \text{se } U_t \le p \\ 0 &amp; \text{caso contrário} \end{cases}\)</span>$
-4.  Se <span class="arithmatex">\(X_{t-1} = 1\)</span>, define:
-    $<span class="arithmatex">\(X_t = \begin{cases} 0 &amp; \text{se } U_t \le q \\ 1 &amp; \text{caso contrário} \end{cases}\)</span>$</p>
-<p>Este algoritmo pode ser representado por <span class="arithmatex">\(X_t = F(X_{t-1}, U_t)\)</span>.</p>
+<p>Como simular uma C.M. com 2 estados e matriz <span class="arithmatex">\(P\)</span>?</p>
+<p><strong>Algoritmo:</strong><br />
+1.  Inicializa <span class="arithmatex">\(X_0\)</span> com uma certa distribuição <span class="arithmatex">\(\mu\)</span>.<br />
+2.  Para <span class="arithmatex">\(t \ge 1\)</span>, gera uma variável uniforme <span class="arithmatex">\(U_t \sim \text{Unif}[0, 1]\)</span> independente de tudo o resto. </p>
+<p>&emsp;Se <span class="arithmatex">\(X_{t-1} = 0\)</span>, defina:<br />
+&emsp;&emsp;&emsp;<span class="arithmatex">\(X_t = \begin{cases} 1 &amp; \text{se } U_t \le p \\ 0 &amp; \text{caso contrário} \end{cases}\)</span></p>
+<p>&emsp;Se <span class="arithmatex">\(X_{t-1} = 1\)</span>, defina:<br />
+&emsp;&emsp;&emsp;<span class="arithmatex">\(X_t = \begin{cases} 0 &amp; \text{se } U_t \le q \\ 1 &amp; \text{caso contrário} \end{cases}\)</span></p>
+<p>Obs.: Neste algoritmo representamos <span class="arithmatex">\(X_t = F(X_{t-1}, U_t)\)</span><br />
+onde <span class="arithmatex">\(F(X_{t-1}, U_t) = \begin{cases} 1 &amp; \text{se }(x=1 \quad e \quad u \le 1-q) \text{ ou } (x=0 \quad e \quad  u \le p)\\ 0 &amp; \text{c. c.} \end{cases}\)</span></p>
 <hr />
-<h2 id="4-velocidade-de-convergencia">4. Velocidade de Convergência</h2>
-<p>Seja <span class="arithmatex">\(\pi = (\pi(0), \pi(1)) = \left(\frac{q}{p+q}, \frac{p}{p+q}\right)\)</span>. Definimos o erro no tempo <span class="arithmatex">\(t\)</span> como:
-$<span class="arithmatex">\(\Delta_t = \mu_t(0) - \pi(0)\)</span>$</p>
-<p>Desenvolvendo a expressão:
-$<span class="arithmatex">\(\Delta_t = \mu_{t-1}(0)(1-p) + \mu_{t-1}(1)q - \pi(0)\)</span>$
-$<span class="arithmatex">\(\Delta_t = \mu_{t-1}(0)(1-p) + (1 - \mu_{t-1}(0))q - \pi(0)\)</span>$
-$<span class="arithmatex">\(\Delta_t = \mu_{t-1}(0)(1 - p - q) + q - \pi(0)\)</span>$</p>
-<p>Como <span class="arithmatex">\(q = \pi(0)(p+q)\)</span>, chegamos a:
-$<span class="arithmatex">\(\Delta_t = \Delta_{t-1}(1 - (p+q))\)</span>$
-Iterando o processo:
-$<span class="arithmatex">\(\Delta_t = \Delta_0 (1 - (p+q))^t\)</span>$</p>
+<p>Por que o algoritmo funciona? (Verifica Matriz P)</p>
+<p>Analisamos a probabilidade de transição condicionada a todo o histórico:</p>
+<div class="arithmatex">\[\mathbb{P}(X_{t+1}=1 \mid X_t=x, X_{t-1}=x_{t-1}, \dots, X_0=x_0)\]</div>
+<p>Pela definição da função <span class="arithmatex">\(F\)</span>:</p>
+<div class="arithmatex">\[= \mathbb{P}(F(X_t, U_{t+1})=1 \mid X_t=x, X_{t-1}=x_{t-1}, \dots, X_0=x_0)\]</div>
+<p>Como <span class="arithmatex">\(X_t = x\)</span> é dado:</p>
+<div class="arithmatex">\[= \mathbb{P}(F(x, U_{t+1})=1 \mid X_t=x, \dots, X_0=x_0)\]</div>
+<p>Como <span class="arithmatex">\(U_{t+1}\)</span> é independente do passado:</p>
+<div class="arithmatex">\[= \mathbb{P}(F(x, U_{t+1})=1) = 
+\begin{cases} 
+\mathbb{P}(U_{t+1} \le 1-q) = 1-q, &amp; \text{se } x=1 \\ 
+\mathbb{P}(U_{t+1} \le p) = p, &amp; \text{se } x=0 
+\end{cases}\]</div>
+<p>De modo similar, podemos mostrar que:</p>
+<div class="arithmatex">\[\mathbb{P}(X_{t+1}=1 \mid X_t=x) = \mathbb{P}(F(x, U_{t+1})=1)\]</div>
+<p>Confirmando que o algoritmo simula corretamente as probabilidades da matriz <span class="arithmatex">\(P\)</span>.</p>
+<hr />
+<h2 id="4-velocidade-de-convergencia-para-a-distribuicao-estacionaria">4. Velocidade de Convergência para a Distribuição Estacionária</h2>
+<p>Lembre que para <span class="arithmatex">\(p, q\)</span> tais que <span class="arithmatex">\(p, q &gt; 0\)</span>.<br />
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<span class="arithmatex">\(\mu_t = (\mu_t(0), \mu_t(1)), \quad \forall t \ge 0\)</span><br />
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<span class="arithmatex">\(\pi = (\pi(0), \pi(1)) = \left( \frac{q}{p+q}, \frac{p}{p+q} \right)\)</span></p>
+<p>E defina <span class="arithmatex">\(\Delta_t\)</span> como a diferença entre a distribuição no tempo <span class="arithmatex">\(t\)</span> e a distribuição estacionária:</p>
+<div class="arithmatex">\[\Delta_t = \mu_t(0) - \pi(0)\]</div>
+<p>Note que</p>
+<div class="arithmatex">\[
+\begin{aligned}
+\Delta_t &amp;= \mu_t(0) - \pi(0) \\
+&amp;= \mu_{t-1}(0)P(0,0) + \mu_{t-1}(1)P(1,0) - \pi(0)\\
+&amp;= \mu_{t-1}(0)(1-p) + \mu_{t-1}(1)q - \pi(0) \\
+&amp;= \mu_{t-1}(0)(1-p) + (1 - \mu_{t-1}(0))q - \pi(0) \\
+&amp;= \mu_{t-1}(0) - p\mu_{t-1}(0) + q - q\mu_{t-1}(0) - \pi(0) \\
+&amp;= [\mu_{t-1}(0) - \pi(0)] - (p+q)\mu_{t-1}(0) + q
+\end{aligned}
+\]</div>
+<p>Como <span class="arithmatex">\(\pi(0) = \frac{q}{p+q}\)</span>, temos que <span class="arithmatex">\(q = (p+q)\pi(0)\)</span>. Substituindo:</p>
+<div class="arithmatex">\[
+\begin{aligned}
+\Delta_t &amp;= \Delta_{t-1} - (p+q)\mu_{t-1}(0) + (p+q)\pi(0) \\
+&amp;= \Delta_{t-1} - (p+q)[\mu_{t-1}(0) - \pi(0)] \\
+&amp;= \Delta_{t-1} - (p+q)\Delta_{t-1} \\
+&amp;= \Delta_{t-1}(1 - (p+q))
+\end{aligned}
+\]</div>
+<p>Iterando o argumento até o tempo inicial <span class="arithmatex">\(t=0\)</span>:</p>
+<div class="arithmatex">\[\Delta_t = \Delta_0 (1 - (p+q))^t\]</div>
+<div class="admonition info">
+<p class="admonition-title">Simulação Interativa Disponível</p>
+<p><a class="md-button" href="../../simulacoes/markov_2state_simulation%5B6%5D.html" target="_blank">Acessar Simulador <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3m-2 16H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2z"/></svg></span></a></p>
+</div>
 
 
 
@@ -744,8 +757,6 @@ $<span class="arithmatex">\(\Delta_t = \Delta_0 (1 - (p+q))^t\)</span>$</p>
       <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
         <script src="../../javascripts/mathjax.js"></script>
-      
-        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
       
     
   </body>
