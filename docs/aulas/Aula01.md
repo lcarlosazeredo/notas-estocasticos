@@ -1,4 +1,4 @@
-# Aula 1:
+# Aula 1
 
 **Data:** 09/03  
 **Professor:**   
