@@ -12,14 +12,19 @@ Acesse diretamente as notas de cada encontro:
 | **Aula 01** | Definição de Cadeia de Markov e Propriedade de Markov | [:material-file-document: Ver Notas](aulas/Aula01.md) |
 | **Aula 02** | Matriz de Transição e Exemplos | [:material-file-document: Ver Notas](aulas/Aula02.md) |
 | **Aula 03** | Distribuição Estacionária | [:material-file-document: Ver Notas](aulas/Aula03.md) |
+| **Aula 04** | Convergência e Processos Estacionários | [:material-file-document: Ver Notas](aulas/Aula04.md) |
+| **Aula 05** | Passeios Aleatórios em Grafos | [:material-file-document: Ver Notas](aulas/Aula05.md) |
+
 
 ---
 
 ### 📅 Cronograma de Provas
-!!! info "Datas Importantes"
-    * **P1:** A definir
-    * **P2:** A definir
-    * **Segunda Chamada:** A definir
+!!! info "Datas"
+    * **P1:** 06/05
+    * **P2:** 26/06
+    * **PF:** 03/07 
+    * **2CH:** 08/07 
+      
 
 ---
 <p align="center">

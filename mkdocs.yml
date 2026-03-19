@@ -37,6 +37,8 @@ extra_javascript:
 nav:
   - Início: index.md
   - Aulas:
-      - Aula 01: aulas/Aula01.md
-      - Aula 02: aulas/Aula02.md
-      - Aula 03: aulas/Aula03.md
+      - Aula 01 | 09/03/2026: aulas/Aula01.md
+      - Aula 02 | 11/03/2026: aulas/Aula02.md
+      - Aula 03 | 13/03/2026: aulas/Aula03.md
+      - Aula 04 | 16/03/2026: aulas/Aula04.md
+      - Aula 05 | 18/03/2026: aulas/Aula05.md
