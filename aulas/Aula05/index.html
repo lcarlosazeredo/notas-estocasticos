@@ -637,8 +637,8 @@
 <p><span class="arithmatex">\(\qquad\)</span>  <span class="arithmatex">\(V \neq \emptyset\)</span>, enumerável (Conjunto dos <strong>vértices</strong> de <span class="arithmatex">\(G\)</span>).</p>
 <p><span class="arithmatex">\(\qquad\)</span>  <span class="arithmatex">\(E \subseteq \{\{u, v\} : u, v \in V, u \neq v\}\)</span> (conjunto das <strong>arestas</strong> (elos) de <span class="arithmatex">\(G\)</span>)</p>
 <p><strong>Exemplo:</strong>
-<span class="arithmatex">\(V=\{1, 2, 3\}\)</span> e <span class="arithmatex">\(E=\{\{1, 2\}, \{2, 3\}\}\)</span>.
-Neste caso: <span class="arithmatex">\(g(1)=1\)</span>, <span class="arithmatex">\(g(2)=2\)</span>, <span class="arithmatex">\(g(3)=1\)</span>.</p>
+<span class="arithmatex">\(V=\{1, 2, 3\}\)</span> e <span class="arithmatex">\(E=\{\{1, 2\}, \{2, 3\}\} \subset \{\{1, 2\}, \{2, 3\}, \{1, 3\}\}\)</span>.</p>
+<p>&emsp;Neste caso: <span class="arithmatex">\(g(1)=1\)</span>, <span class="arithmatex">\(g(2)=2\)</span>, <span class="arithmatex">\(g(3)=1\)</span>.</p>
 <hr />
 <p>Vizinhança e Grau</p>
 <p>Dizemos que <span class="arithmatex">\(u, v \in V\)</span>, com <span class="arithmatex">\(u \neq v\)</span>, são <strong>vizinhos</strong> em <span class="arithmatex">\(G\)</span> se <span class="arithmatex">\(\{u, v\} \in E\)</span>.</p>
@@ -660,8 +660,10 @@ Neste caso: <span class="arithmatex">\(g(1)=1\)</span>, <span class="arithmatex"
 </li>
 </ul>
 <p><strong>Exemplos:</strong><br />
-1.  O grafo <span class="arithmatex">\(\mathbb{Z}\)</span> onde <span class="arithmatex">\(V=\mathbb{Z}\)</span> e <span class="arithmatex">\(u \sim v\)</span> se <span class="arithmatex">\(|u-v|=1\)</span>. Aqui, <span class="arithmatex">\(g(v)=2\)</span> para todo <span class="arithmatex">\(v \in \mathbb{Z}\)</span>.<br />
-2.  O grafo <span class="arithmatex">\(\mathbb{Z}^2\)</span> com <span class="arithmatex">\(V=\mathbb{Z}^2\)</span>, onde os vizinhos são definidos por deslocamentos unitários nas coordenadas.<br />
+1.  <span class="arithmatex">\(\mathbb{Z}\)</span> como um grafo: <span class="arithmatex">\(V=\mathbb{Z}\)</span>; <span class="arithmatex">\(E = \{ \{u, u+1\} : u \in \mathbb{Z} \} = \bigcup_{u \in \mathbb{Z}} \{u, u+1\}\)</span>.<br />
+&emsp;Aqui, <span class="arithmatex">\(g(v)=2\)</span> para todo <span class="arithmatex">\(v \in \mathbb{Z}\)</span>.<br />
+2.  <span class="arithmatex">\(\mathbb{Z}^2\)</span> como um grafo: <span class="arithmatex">\(V=\mathbb{Z}^2\)</span>;<br />
+<span class="arithmatex">\(E = \bigcup_{(u, v) \in \mathbb{Z}^2} \{ \{(u, v), (u+1, v)\}, \{(u, v), (u-1, v)\}, \{(u, v), (u, v+1)\}, \{(u, v), (u, v-1)\} \}\)</span>
 3.  Grafos finitos, i.e., quando V for finito, são localmente finitos.  </p>
 <hr />
 <h2 id="passeio-aleatorio-pa">Passeio Aleatório (P.A.)</h2>
@@ -693,7 +695,7 @@ P(x,y) =  \begin{cases}
 <p>Se fosse estacionário,  </p>
 <div class="arithmatex">\[\mathbb{P}_0(X_0 = 0) = 1\]</div>
 <div class="arithmatex">\[\parallel\]</div>
-<div class="arithmatex">\[\mathbb{P}(X_1 = 0) = 0\]</div>
+<div class="arithmatex">\[\mathbb{P}_0(X_1 = 0) = 0\]</div>
 <p>O que seria um absurdo!</p>
 <hr />
 <p>Se <span class="arithmatex">\(g(v) = d\)</span> para todo <span class="arithmatex">\(v \in V\)</span>, o grafo <span class="arithmatex">\(G=(V,E)\)</span> é chamado de <strong>d-regular</strong>.</p>
