@@ -11,8 +11,9 @@ $\qquad$  $V \neq \emptyset$, enumerável (Conjunto dos **vértices** de $G$).
 $\qquad$  $E \subseteq \{\{u, v\} : u, v \in V, u \neq v\}$ (conjunto das **arestas** (elos) de $G$)
 
 **Exemplo:**
-$V=\{1, 2, 3\}$ e $E=\{\{1, 2\}, \{2, 3\}\}$.
-Neste caso: $g(1)=1$, $g(2)=2$, $g(3)=1$.
+$V=\{1, 2, 3\}$ e $E=\{\{1, 2\}, \{2, 3\}\} \subset \{\{1, 2\}, \{2, 3\}, \{1, 3\}\}$.
+
+&emsp;Neste caso: $g(1)=1$, $g(2)=2$, $g(3)=1$.
 
 ---
 
@@ -29,8 +30,10 @@ Dizemos que $u, v \in V$, com $u \neq v$, são **vizinhos** em $G$ se $\{u, v\} 
 > $\hookrightarrow$ Propriedade do vértice.
 
 **Exemplos:**  
-1.  O grafo $\mathbb{Z}$ onde $V=\mathbb{Z}$ e $u \sim v$ se $|u-v|=1$. Aqui, $g(v)=2$ para todo $v \in \mathbb{Z}$.  
-2.  O grafo $\mathbb{Z}^2$ com $V=\mathbb{Z}^2$, onde os vizinhos são definidos por deslocamentos unitários nas coordenadas.  
+1.  $\mathbb{Z}$ como um grafo: $V=\mathbb{Z}$; $E = \{ \{u, u+1\} : u \in \mathbb{Z} \} = \bigcup_{u \in \mathbb{Z}} \{u, u+1\}$.  
+&emsp;Aqui, $g(v)=2$ para todo $v \in \mathbb{Z}$.  
+2.  $\mathbb{Z}^2$ como um grafo: $V=\mathbb{Z}^2$;  
+$E = \bigcup_{(u, v) \in \mathbb{Z}^2} \left\{ \{(u, v), (u+1, v)\}, \{(u, v), (u-1, v)\}, \{(u, v), (u, v+1)\}, \{(u, v), (u, v-1)\} \right\}$
 3.  Grafos finitos, i.e., quando V for finito, são localmente finitos.  
 ---
 
@@ -84,7 +87,7 @@ $$\mathbb{P}_0(X_0 = 0) = 1$$
 
 $$\parallel$$
 
-$$\mathbb{P}(X_1 = 0) = 0$$
+$$\mathbb{P}_0(X_1 = 0) = 0$$
 
 O que seria um absurdo!
 
