@@ -30,9 +30,9 @@ Dizemos que $u, v \in V$, com $u \neq v$, são **vizinhos** em $G$ se $\{u, v\} 
 > $\hookrightarrow$ Propriedade do vértice.
 
 **Exemplos:**  
-1.  $\mathbb{Z}$ como um grafo: $V=\mathbb{Z}$; $E = \{ \{u, u+1\} : u \in \mathbb{Z} \} = \bigcup_{u \in \mathbb{Z}} \{u, u+1\}$.  
+1.  $\mathbb{Z}$, como um grafo: $V=\mathbb{Z}$; $E = \{ \{u, u+1\} : u \in \mathbb{Z} \} = \bigcup_{u \in \mathbb{Z}} \{u, u+1\}$.  
 &emsp;Aqui, $g(v)=2$ para todo $v \in \mathbb{Z}$.  
-2.  $\mathbb{Z}^2$ como um grafo: $V=\mathbb{Z}^2$;  
+2.  $\mathbb{Z}^2$, como um grafo: $V=\mathbb{Z}^2$;  
 $E = \bigcup_{(u, v) \in \mathbb{Z}^2} \{ \{(u, v), (u+1, v)\}, \{(u, v), (u-1, v)\}, \{(u, v), (u, v+1)\}, \{(u, v), (u, v-1)\} \}$
 3.  Grafos finitos, i.e., quando V for finito, são localmente finitos.  
 ---
