@@ -818,15 +818,17 @@ Como <span class="arithmatex">\(\pi = \pi P^t\)</span> (pois <span class="arithm
 <p>Lembre que para cara <span class="arithmatex">\(t \ge 1\)</span> fixado, <span class="arithmatex">\(\pi_1 = \pi_1 P^t\)</span> e <span class="arithmatex">\(\pi_2 = \pi_2 P^t\)</span></p>
 <p>Defina <span class="arithmatex">\(y = \text{arg min}_{z \in \mathcal{X}} \frac{\pi_1(z)}{\pi_2(z)}\)</span>, i.e, </p>
 <p>y é tal que <span class="arithmatex">\(\frac{\pi_1(y)}{\pi_2(y)} \le \frac{\pi_1(z)}{\pi_2(z)},\quad \forall z \in \mathcal{X}\)</span></p>
-<p>Logo,  </p>
-<p>$\pi_1(y) = \sum_{x \in \mathcal{X}} \pi_1(x) P^t(x, y)  $</p>
-<p><span class="arithmatex">\(= \sum_{x \in \mathcal{C}_y^t} \pi_1(x) P^t(x, y),\quad onde \mathcal{C}_y^t = {x \in \mathcal{X}: P^t(x,y) &gt; 0}\)</span></p>
-<p><span class="arithmatex">\(= \sum_{x \in \mathcal{C}_y^t} \frac{\pi_1(x)}{\pi_2(x)} \pi_2(x) P^t(x, y)\)</span></p>
-<p><span class="arithmatex">\(\ge \frac{\pi_1(y)}{\pi_2(y)} \sum_{x \in \mathcal{C}_y^t} \pi_2(x) P^t(x, y)\)</span></p>
-<p>$ = \frac{\pi_1(y)}{\pi_2(y)} \sum_{x \in \mathcal{X}} \pi_2(y) = \pi_1(y)$</p>
-<p>$ = \frac{\pi_1(y)}{\pi_2(y)} \pi_2(y) = \pi_1(y)$</p>
-<p><span class="arithmatex">\(\Rightarrow \frac{\pi_1(x)}{\pi_2(x)} = \frac{\pi_1(y)}{\pi_2(y)}\)</span> para todo <span class="arithmatex">\(x \in \mathcal{C}_y^t\)</span>.</p>
-<p>Como a cadeia é <strong>irredutível</strong>, dado <span class="arithmatex">\(x\)</span>, existe <span class="arithmatex">\(t = t(x,y)\)</span> t.q. <span class="arithmatex">\(P^t(x,y) &gt; 0\)</span>:</p>
+<p>Logo,</p>
+<div class="arithmatex">\[\begin{aligned}
+\pi_1(y) &amp;= \sum_{x \in \mathcal{X}} \pi_1(x) P^t(x, y) \\
+&amp;= \sum_{x \in \mathcal{C}_y^t} \pi_1(x) P^t(x, y), \quad \text{onde } \mathcal{C}_y^t = \{x \in \mathcal{X}: P^t(x,y) &gt; 0\} \\
+&amp;= \sum_{x \in \mathcal{C}_y^t} \frac{\pi_1(x)}{\pi_2(x)} \pi_2(x) P^t(x, y) \\
+&amp;\ge \frac{\pi_1(y)}{\pi_2(y)} \sum_{x \in \mathcal{C}_y^t} \pi_2(x) P^t(x, y) \\
+&amp;= \frac{\pi_1(y)}{\pi_2(y)} \sum_{x \in \mathcal{X}} \pi_2(x) P^t(x, y) \\
+&amp;= \frac{\pi_1(y)}{\pi_2(y)} \pi_2(y) = \pi_1(y) \\
+&amp;\Rightarrow \frac{\pi_1(x)}{\pi_2(x)} = \frac{\pi_1(y)}{\pi_2(y)} \quad \forall x \in \mathcal{C}_y^t.
+\end{aligned}\]</div>
+<p>Como a cadeia é <strong>irredutível</strong> , dado <span class="arithmatex">\(x\)</span>, existe <span class="arithmatex">\(t = t(x,y)\)</span> tal que <span class="arithmatex">\(P^t(x,y) &gt; 0\)</span></p>
 <div class="arithmatex">\[\Rightarrow x \in \mathcal{C}_y^t \Rightarrow \frac{\pi_1(x)}{\pi_2(x)} = c \Rightarrow \pi_1(x) = c \cdot \pi_2(x)\]</div>
 <div class="arithmatex">\[\Rightarrow 1 = \sum_{x \in \mathcal{X}} \pi_1(x) = \sum_{x \in \mathcal{X}} c \cdot \pi_2(x)\]</div>
 <div class="arithmatex">\[= c \cdot \sum_{x \in \mathcal{X}} \pi_2(x) = c\]</div>
