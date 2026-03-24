@@ -44,7 +44,7 @@ $d_y = \text{MDC } \mathcal{T}(y) \geq d_x$
 
 ---
 
-## Observação:
+Observação:
 
 Para mostrar que $l + r \in \mathcal{T}(y)$, precisamos mostrar que a probabilidade de transição em $l+r$ passos é estritamente positiva:
 
@@ -96,9 +96,9 @@ $$\pi = \pi P \quad \text{e} \quad \boxed{\pi = \lim_{T \to \infty} \nu_T}$$
 
 Se, além disso, $P$ é **irredutível**, então $\pi$ é **único** e $\pi(x) > 0$ para todo $x \in \mathcal{X}$.
 
-## Interpretação Probabilística da Distribuição Estacionária
+### Interpretação Probabilística da Distribuição Estacionária
 
-### Interpretação:
+Interpretação:
 
 $$
 \begin{aligned}
