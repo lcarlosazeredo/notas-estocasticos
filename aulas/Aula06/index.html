@@ -491,17 +491,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#observacao" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Observação:
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#2-equacao-de-chapman-kolmogorov" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -535,28 +524,11 @@
   
 </li>
         
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
+          <li class="md-nav__item">
   <a href="#interpretacao-probabilistica-da-distribuicao-estacionaria" class="md-nav__link">
     <span class="md-ellipsis">
       
         Interpretação Probabilística da Distribuição Estacionária
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Interpretação Probabilística da Distribuição Estacionária">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#interpretacao" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Interpretação:
       
     </span>
   </a>
@@ -602,28 +574,11 @@
   
 </li>
         
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
+          <li class="md-nav__item">
   <a href="#prova-o-limite-da-media-ergodica-e-uma-distribuicao-estacionaria" class="md-nav__link">
     <span class="md-ellipsis">
       
         Prova: O Limite da Média Ergódica é uma Distribuição Estacionária
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Prova: O Limite da Média Ergódica é uma Distribuição Estacionária">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#prova" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Prova:
       
     </span>
   </a>
@@ -717,17 +672,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#observacao" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Observação:
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#2-equacao-de-chapman-kolmogorov" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -761,28 +705,11 @@
   
 </li>
         
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
+          <li class="md-nav__item">
   <a href="#interpretacao-probabilistica-da-distribuicao-estacionaria" class="md-nav__link">
     <span class="md-ellipsis">
       
         Interpretação Probabilística da Distribuição Estacionária
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Interpretação Probabilística da Distribuição Estacionária">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#interpretacao" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Interpretação:
       
     </span>
   </a>
@@ -828,28 +755,11 @@
   
 </li>
         
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
+          <li class="md-nav__item">
   <a href="#prova-o-limite-da-media-ergodica-e-uma-distribuicao-estacionaria" class="md-nav__link">
     <span class="md-ellipsis">
       
         Prova: O Limite da Média Ergódica é uma Distribuição Estacionária
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Prova: O Limite da Média Ergódica é uma Distribuição Estacionária">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#prova" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Prova:
       
     </span>
   </a>
@@ -905,17 +815,17 @@ Como <span class="arithmatex">\(l + r \in \mathcal{T}(y) \implies l + r = k_1 \c
 <p>Usando que <span class="arithmatex">\(l + r \in \mathcal{T}(x)\)</span> e que <span class="arithmatex">\(t + l + r \in \mathcal{T}(x)\)</span> se <span class="arithmatex">\(t \in \mathcal{T}(y)\)</span>, podemos concluir que:<br />
 <span class="arithmatex">\(d_y = \text{MDC } \mathcal{T}(y) \geq d_x\)</span></p>
 <hr />
-<h2 id="observacao">Observação:</h2>
-<p>Para mostrar que <span class="arithmatex">\(l + r \in \mathcal{T}(y)\)</span>, precisamos mostrar que a probabilidade de transição em <span class="arithmatex">\(l+r\)</span> passos é estritamente positiva:
-$<span class="arithmatex">\(P_{y,y}^{l+r} &gt; 0\)</span>$</p>
+<p>Observação:</p>
+<p>Para mostrar que <span class="arithmatex">\(l + r \in \mathcal{T}(y)\)</span>, precisamos mostrar que a probabilidade de transição em <span class="arithmatex">\(l+r\)</span> passos é estritamente positiva:</p>
+<div class="arithmatex">\[P^{l+r}(y,y) &gt; 0\]</div>
 <p><strong>Prova:</strong>
 Utilizando a propriedade de Chapman-Kolmogorov:</p>
-<div class="arithmatex">\[P_{y,y}^{l+r} = \sum_{z \in \mathcal{X}} P_{y,z}^l P_{z,y}^r \geq P_{y,x}^l P_{x,y}^r &gt; 0\]</div>
+<div class="arithmatex">\[P^{l+r}(y,y) = P^{l}P^{r}(y,y) =\sum_{z \in \mathcal{X}} P^l(y,z) P^r(z,y) \geq P^l(y,x) P^r(x,y) &gt; 0\]</div>
 <p>Isso é verdade pois, se os estados se comunicam, existem caminhos com probabilidade positiva entre <span class="arithmatex">\(y \to x\)</span> (comprimento <span class="arithmatex">\(l\)</span>) e <span class="arithmatex">\(x \to y\)</span> (comprimento <span class="arithmatex">\(r\)</span>).</p>
 <hr />
 <h2 id="2-equacao-de-chapman-kolmogorov">2. Equação de Chapman-Kolmogorov</h2>
 <p>De forma geral:</p>
-<div class="arithmatex">\[P^{t+s}(y,x) = \sum_{z \in \mathcal{X}} P_{y,z}^t P_{z,x}^s\]</div>
+<div class="arithmatex">\[P^{t+s}(y,x) = \sum_{z \in \mathcal{X}} P^t(y,z) P^s(z,x)\]</div>
 <div class="arithmatex">\[\iff\]</div>
 <div class="arithmatex">\[\mathbb{P}_y(X_{t+s} = x) = \sum_{z \in \mathcal{X}} \mathbb{P}_y(X_t = z) \mathbb{P}(X_s = x)\]</div>
 <blockquote>
@@ -934,8 +844,8 @@ Utilizando a propriedade de Chapman-Kolmogorov:</p>
 <p>Então existe um vetor de probabilidade <span class="arithmatex">\(\pi\)</span> tal que:</p>
 <div class="arithmatex">\[\pi = \pi P \quad \text{e} \quad \boxed{\pi = \lim_{T \to \infty} \nu_T}\]</div>
 <p>Se, além disso, <span class="arithmatex">\(P\)</span> é <strong>irredutível</strong>, então <span class="arithmatex">\(\pi\)</span> é <strong>único</strong> e <span class="arithmatex">\(\pi(x) &gt; 0\)</span> para todo <span class="arithmatex">\(x \in \mathcal{X}\)</span>.</p>
-<h2 id="interpretacao-probabilistica-da-distribuicao-estacionaria">Interpretação Probabilística da Distribuição Estacionária</h2>
-<h3 id="interpretacao">Interpretação:</h3>
+<h3 id="interpretacao-probabilistica-da-distribuicao-estacionaria">Interpretação Probabilística da Distribuição Estacionária</h3>
+<p>Interpretação:</p>
 <div class="arithmatex">\[
 \begin{aligned}
 \pi(y) &amp;= \lim_{T \to \infty} \nu_T(y) = \lim_{T \to \infty} \nu Q_T(y) \\
@@ -965,9 +875,9 @@ Utilizando a propriedade de Chapman-Kolmogorov:</p>
 </blockquote>
 <div class="arithmatex">\[\mathbb{P}_{\nu} \left( \lim_{T \to \infty} \frac{\hat{N}_{T-1}(y)}{T} = \pi(y) \right) = 1\]</div>
 <hr />
-<h2 id="prova-o-limite-da-media-ergodica-e-uma-distribuicao-estacionaria">Prova: O Limite da Média Ergódica é uma Distribuição Estacionária</h2>
+<h3 id="prova-o-limite-da-media-ergodica-e-uma-distribuicao-estacionaria">Prova: O Limite da Média Ergódica é uma Distribuição Estacionária</h3>
 <p><strong>Afirmação:</strong> <span class="arithmatex">\(\pi = \lim_{T \to \infty} \nu_T\)</span> é uma distribuição estacionária.</p>
-<h3 id="prova">Prova:</h3>
+<p>Prova:</p>
 <p>Para ser uma distribuição estacionária, devemos mostrar que <span class="arithmatex">\(\pi P = \pi\)</span>.</p>
 <div class="arithmatex">\[
 \begin{aligned}
