@@ -15,9 +15,12 @@ Vimos que,
 
 $$\pi(y) = \lim_{T \to \infty} \mathbb{E}_{\nu} \left[ \frac{1}{T} \sum_{t=0}^{T-1} \mathbb{1}_{\{X_t = y\}} \right]$$
 
+---
 
 Exemplo de Dependência da Condição Inicial:  
 Se a cadeia não for irredutível, o limite $\pi$ pode depender da distribuição inicial $\nu$:
+
+![Diagrama de Transição de Estados](../assets/a7img1.png){ style="display: block; margin: 0 auto; width: 300px;" }
 
 * Se $\nu = (1, 0) \implies \pi = (1, 0)$
 * Se $\nu = (0, 1) \implies \pi = (0, 1)$
@@ -29,6 +32,18 @@ Se a cadeia não for irredutível, o limite $\pi$ pode depender da distribuiçã
 Se, além disso, a cadeia é **irredutível**, então:  
 &emsp;1. $\pi$ é única.  
 &emsp;2. $\pi(x) > 0$ para todo $x \in \mathcal{X}$.
+
+---
+
+Exemplo:
+
+![Diagrama de Transição de Estados](../assets/aula5_img1.png){ style="display: block; margin: 0 auto; width: 300px;" }
+
+<p align="center">
+$$\pi = \left( \frac{q}{p+q}, \frac{p}{p+q} \right), \quad p, q > 0$$
+</p>
+
+---
 
 ### Prova da segunda parte ($\pi(x) > 0)$
 
@@ -64,37 +79,88 @@ $ = \frac{\pi_1(y)}{\pi_2(y)} \pi_2(y) = \pi_1(y)$
 
 $\Rightarrow \frac{\pi_1(x)}{\pi_2(x)} = \frac{\pi_1(y)}{\pi_2(y)}$ para todo $x \in \mathcal{C}_y^t$.
 
-Como a cadeia é <u>irredutível</u>, dado $x$, existe $t = t(x,y)$ tal que $P^t(x,y) > 0$
+Como a cadeia é **irredutível**, dado $x$, existe $t = t(x,y)$ t.q. $P^t(x,y) > 0$:
 
-, logo $\pi_1 = c \pi_2$.
-Como são medidas de probabilidade, então $c = 1$ e $\pi_1 = \pi_2$.
+$$\Rightarrow x \in \mathcal{C}_y^t \Rightarrow \frac{\pi_1(x)}{\pi_2(x)} = c \Rightarrow \pi_1(x) = c \cdot \pi_2(x)$$
+
+$$\Rightarrow 1 = \sum_{x \in \mathcal{X}} \pi_1(x) = \sum_{x \in \mathcal{X}} c \cdot \pi_2(x)$$
+
+$$= c \cdot \sum_{x \in \mathcal{X}} \pi_2(x) = c$$
+
+$$\Rightarrow \pi_1 = \pi_2$$
 
 ---
 
 ## 3. Teorema de Convergência
-Seja $(X_t)_{t \ge 0}$ uma C.M. irredutível e **aperiódica** com matriz $P$ e única distribuição estacionária $\pi$.
-Existem $\alpha \in (0, 1)$ e $C > 0$ tais que:
+Teorema (Teorema de Convergência)
 
-$$\max_{x \in \mathcal{X}} \| P^t(x, \cdot) - \pi \|_{TV} \le C \cdot \alpha^t$$
+Seja $(X_t)_{t \ge 0}$ uma C.M. com matriz $P$ **irredutível** e **aperiódica**.
 
-Onde $\| \mu - \nu \|_{TV} = \frac{1}{2} \sum_{x \in \mathcal{X}} |\mu(x) - \nu(x)|$ é a distância de variação total.
+Denote $\pi$ a única distribuição estacionária. Então, existem $\alpha \in (0, 1)$ e uma constante $C > 0$ tais que:
+
+$$\max_{x \in \mathcal{X}} \frac{1}{2} \underbrace{\sum_{y \in \mathcal{X}} |P^t(x, y) - \pi(y)|}_{\| P^t(x, \cdot) - \pi \|_{TV}} \le C \cdot \alpha^t, \quad \forall t \ge 0$$
+
+---
+
+Aqui, para duas medidas de probabilidade $\mu$ e $\nu$ em $\mathcal{X}$:
+
+$$\|\nu - \mu\|_{TV} = \frac{1}{2} \sum_{x \in \mathcal{X}} |\nu(x) - \mu(x)|$$
+
+é chamada de **distância de Variação Total**.
+
+---
+### Contra-Exemplo: Cadeia Periódica
+
+![Diagrama de Transição de Estados](../assets/a7img3.png){ style="display: block; margin: 0 auto; width: 250px;" }
+
+Considere uma cadeia com dois estados $\{0, 1\}$:
+
+<p align="center">
+Periódica: Período 2
+</p>
+
+<p align="center">
+$$\pi = \left( \frac{1}{2}, \frac{1}{2} \right)$$ 
+</p>
+
+Analisando as probabilidades de transição a partir do estado 0 ($P^t(0, \cdot)$) e do estado 1 ($P^t(1, \cdot)$):
+
+$$P^t(0,0) = \begin{cases} 0, & \text{se } t \text{ é ímpar} \\ 1, & \text{se } t \text{ é par} \end{cases}$$ 
+
+Calculando a Distância de Variação Total ($TV$) em relação ao estacionário:
+
+$$\| P^t(0, \cdot) - \pi \|_{TV} = \frac{1}{2} \left[ |P^t(0, 0) - \pi(0)| + |P^t(0, 1) - \pi(1)| \right]$$ 
+
+$$= \begin{cases} \frac{1}{2}, & \text{se } t \text{ é ímpar} \\ \frac{1}{2}, & \text{se } t \text{ é par} \end{cases}$$ 
+
+$$\Rightarrow \forall t \ge 1, \quad \| P^t(0, \cdot) - \pi \|_{TV} = \frac{1}{2}$$
 
 ---
 
 ## 4. Distância ao Estacionário e Tempo de Mistura
-Defina para $t \ge 0$:
-* $d(t) = \max_{x \in \mathcal{X}} \| P^t(x, \cdot) - \pi \|_{TV}$ 
+Defina para $t \ge 0$:  
+
+* $d(t) = \max_{x \in \mathcal{X}} \| P^t(x, \cdot) - \pi \|_{TV}$  
 * $\bar{d}(t) = \max_{x, y \in \mathcal{X}} \| P^t(x, \cdot) - P^t(y, \cdot) \|_{TV}$
 
-**Propriedades:**
-1. $d(t) \le \bar{d}(t) \le 2 d(t)$
-2. $\bar{d}(t)$ é não-crescente.
-3. $\bar{d}$ é submultiplicativa: $\bar{d}(s+t) \le \bar{d}(s) \cdot \bar{d}(t)$.
+**Propriedades:**  
+&emsp;1. $d(t) \le \bar{d}(t) \le 2 d(t)$  
+&emsp;2. $d(t)$ é não-crescente.  
+&emsp;3. $\bar{d}$ é submultiplicativa, i.e., $\bar{d}(s+t) \le \bar{d}(s) \cdot \bar{d}(t)$.[Verificar]  
 
 ### Tempo de Mistura ($t_{mix}$)
-O tempo necessário para a distância ao estacionário ser menor que $\epsilon$:
+O **tempo de mistura** de uma Cadeia de Markov é dado por:
 
-$$t_{mix}(\epsilon) = \min \{ t \ge 0 : d(t) \le \epsilon \}$$
+$$t_{mix}(\epsilon) = \min \{ t \ge 0 : d(t) \le \epsilon \}, \quad \epsilon > 0$$
 
-O tempo de referência é $t_{mix} = t_{mix}(1/4)$[cite: 402].
-Vale a relação: $t_{mix}(\epsilon) \le t_{mix} \lceil \log_2 \epsilon^{-1} \rceil$.
+Pelo item 2 da prop., $d(t) \le \epsilon, \forall t \ge t_{mix}(\epsilon)$.
+
+O tempo de mistura de referência é:
+
+$$t_{min} := t_{mix}\left(\frac{1}{4}\right)$$
+
+---
+
+**Proposição:** Para todo $\epsilon < 1$,
+
+$$t_{mix}(\epsilon) \le t_{mix} \lceil \log_2 \epsilon^{-1} \rceil$$
