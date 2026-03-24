@@ -63,23 +63,19 @@ Defina $y = \text{arg min}_{z \in \mathcal{X}} \frac{\pi_1(z)}{\pi_2(z)}$, i.e,
 
 y é tal que $\frac{\pi_1(y)}{\pi_2(y)} \le \frac{\pi_1(z)}{\pi_2(z)},\quad \forall z \in \mathcal{X}$
 
-Logo,  
+Logo,
 
-$\pi_1(y) = \sum_{x \in \mathcal{X}} \pi_1(x) P^t(x, y)  $
+$$\begin{aligned}
+\pi_1(y) &= \sum_{x \in \mathcal{X}} \pi_1(x) P^t(x, y) \\
+&= \sum_{x \in \mathcal{C}_y^t} \pi_1(x) P^t(x, y), \quad \text{onde } \mathcal{C}_y^t = \{x \in \mathcal{X}: P^t(x,y) > 0\} \\
+&= \sum_{x \in \mathcal{C}_y^t} \frac{\pi_1(x)}{\pi_2(x)} \pi_2(x) P^t(x, y) \\
+&\ge \frac{\pi_1(y)}{\pi_2(y)} \sum_{x \in \mathcal{C}_y^t} \pi_2(x) P^t(x, y) \\
+&= \frac{\pi_1(y)}{\pi_2(y)} \sum_{x \in \mathcal{X}} \pi_2(x) P^t(x, y) \\
+&= \frac{\pi_1(y)}{\pi_2(y)} \pi_2(y) = \pi_1(y) \\
+&\Rightarrow \frac{\pi_1(x)}{\pi_2(x)} = \frac{\pi_1(y)}{\pi_2(y)} \quad \forall x \in \mathcal{C}_y^t.
+\end{aligned}$$
 
-$= \sum_{x \in \mathcal{C}_y^t} \pi_1(x) P^t(x, y),\quad onde \mathcal{C}_y^t = {x \in \mathcal{X}: P^t(x,y) > 0}$
-
-$= \sum_{x \in \mathcal{C}_y^t} \frac{\pi_1(x)}{\pi_2(x)} \pi_2(x) P^t(x, y)$
-
-$\ge \frac{\pi_1(y)}{\pi_2(y)} \sum_{x \in \mathcal{C}_y^t} \pi_2(x) P^t(x, y)$
-
-$ = \frac{\pi_1(y)}{\pi_2(y)} \sum_{x \in \mathcal{X}} \pi_2(y) = \pi_1(y)$
-
-$ = \frac{\pi_1(y)}{\pi_2(y)} \pi_2(y) = \pi_1(y)$
-
-$\Rightarrow \frac{\pi_1(x)}{\pi_2(x)} = \frac{\pi_1(y)}{\pi_2(y)}$ para todo $x \in \mathcal{C}_y^t$.
-
-Como a cadeia é **irredutível**, dado $x$, existe $t = t(x,y)$ t.q. $P^t(x,y) > 0$:
+Como a cadeia é **irredutível** , dado $x$, existe $t = t(x,y)$ tal que $P^t(x,y) > 0$
 
 $$\Rightarrow x \in \mathcal{C}_y^t \Rightarrow \frac{\pi_1(x)}{\pi_2(x)} = c \Rightarrow \pi_1(x) = c \cdot \pi_2(x)$$
 
