@@ -47,12 +47,13 @@ $d_y = \text{MDC } \mathcal{T}(y) \geq d_x$
 ## Observação:
 
 Para mostrar que $l + r \in \mathcal{T}(y)$, precisamos mostrar que a probabilidade de transição em $l+r$ passos é estritamente positiva:
-$$P_{y,y}^{l+r} > 0$$
+
+$$P^{l+r}(y,y) > 0$$
 
 **Prova:**
 Utilizando a propriedade de Chapman-Kolmogorov:
 
-$$P_{y,y}^{l+r} = \sum_{z \in \mathcal{X}} P_{y,z}^l P_{z,y}^r \geq P_{y,x}^l P_{x,y}^r > 0$$
+$$P^{l+r}(y,y) = P^{l}P^{r}(y,y) =\sum_{z \in \mathcal{X}} P^l(y,z) P^r(z,y) \geq P^l(y,x) P^r(x,y) > 0$$
 
 Isso é verdade pois, se os estados se comunicam, existem caminhos com probabilidade positiva entre $y \to x$ (comprimento $l$) e $x \to y$ (comprimento $r$).
 
@@ -62,7 +63,7 @@ Isso é verdade pois, se os estados se comunicam, existem caminhos com probabili
 
 De forma geral:
 
-$$P^{t+s}(y,x) = \sum_{z \in \mathcal{X}} P_{y,z}^t P_{z,x}^s$$
+$$P^{t+s}(y,x) = \sum_{z \in \mathcal{X}} P^t(y,z) P^s(z,x)$$
 
 $$\iff$$
 
@@ -137,11 +138,11 @@ $$\mathbb{P}_{\nu} \left( \lim_{T \to \infty} \frac{\hat{N}_{T-1}(y)}{T} = \pi(y
 
 ---
 
-## Prova: O Limite da Média Ergódica é uma Distribuição Estacionária
+### Prova: O Limite da Média Ergódica é uma Distribuição Estacionária
 
 **Afirmação:** $\pi = \lim_{T \to \infty} \nu_T$ é uma distribuição estacionária.
 
-### Prova:
+Prova:
 
 Para ser uma distribuição estacionária, devemos mostrar que $\pi P = \pi$.
 
