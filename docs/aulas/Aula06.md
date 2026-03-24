@@ -1,6 +1,7 @@
 # Aula 6
 
 **Data:** 20/03/2026
+
 ## 1. Revisão
 
 $(X_t)_{t \ge 0}$ C.M. com matriz de transição $P$

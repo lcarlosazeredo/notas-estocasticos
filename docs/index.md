@@ -15,6 +15,7 @@ Acesse diretamente as notas de cada encontro:
 | **Aula 04** | Convergência e Processos Estacionários | [:material-file-document: Ver Notas](aulas/Aula04.md) |
 | **Aula 05** | Passeios Aleatórios em Grafos | [:material-file-document: Ver Notas](aulas/Aula05.md) |
 | **Aula 06** | Periodicidade e Teorema Ergódico | [:material-file-document: Ver Notas](aulas/Aula06.md) |
+| **Aula 07** | Convergência e Estacionariedade | [:material-file-document: Ver Notas](aulas/Aula07.md) |
 
 ---
 
