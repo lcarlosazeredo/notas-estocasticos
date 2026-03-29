@@ -1,9 +1,20 @@
 notas-estocasticos/
-├── mkdocs.yml  (Arquivo de configuração)
+├── mkdocs.yml  (Arquivo de configuração da página)
 ├── venv/
-└── docs/
-    ├── index.md       (Um resumo ou introdução)
-    ├── aulas/
-    │   └── Aula01_090326.md  <-- Onde está o seu iframe(O conteúdo que geramos da Aula 1)
-    └── simulacoes/           <-- Crie aqui (preferencialmente sem acento)
-        └── passeio_aleatorio.html
+├── docs/
+│   ├── assets/
+│   │   ├── akimgj.png <-- Imagem j da aula k
+│   │   └── ...    
+│   ├── aulas/
+│   │   ├── Aulai.md  <-- Conteúdo da Aula i
+│   │   └── ...
+│   ├── javascripts/
+│   ├── listas/
+│   │   └── ...    
+│   ├── simulacoes/    
+│   │   └── ...
+│   ├── index.md     
+├── .gitignore    
+├── esquema.txt <-- Este documento
+├── LICENCE
+└── requimrements.txt

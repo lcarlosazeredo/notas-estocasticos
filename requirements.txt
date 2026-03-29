@@ -1,4 +1,4 @@
-# --- DEPENDÊNCIAS DO MEU-RESPONDE-AI ---
+# --- DEPENDÊNCIAS ---
 #mkdocs>=1.5.0
 mkdocs-material>=9.0.0
 #pymdown-extensions>=10.0

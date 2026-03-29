@@ -1,7 +1,7 @@
 # Aula 1
 
 **Data:** 09/03  
-**Professor:**   
+**Professor:** Guilherme Ost  
 **Referência:** Sheldon Ross: Introduction to Probability Models  
 &emsp;&emsp;&emsp;&emsp;&emsp;  Valle & Vares: Processos Estocásticos
 
