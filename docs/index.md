@@ -19,6 +19,7 @@ Acesse diretamente as notas de cada encontro:
 | **Aula 08** | Comportamento Assintótico em Cadeias Periódicas | [:material-file-document: Ver Notas](aulas/Aula08.md) |
 | **Aula 09** | Tempo de Mistura e Acoplamento de Cadeias de Markov | [:material-file-document: Ver Notas](aulas/Aula09.md) |
 | **Aula 10** | Acoplamento e Tempo de Mistura no P.A.P. no Anel | [:material-file-document: Ver Notas](aulas/Aula10.md) |
+| **Aula 11** | Tempo de Parada e Propriedade Forte de Markov | [:material-file-document: Ver Notas](aulas/Aula11.md) |
 
 ---
 
