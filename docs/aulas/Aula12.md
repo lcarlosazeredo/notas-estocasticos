@@ -85,97 +85,75 @@ Logo: $1 = \Delta_0 \sum_{k=0}^{N-1} \left( \frac{1-p}{p} \right)^k$
 
 ---
 
-**Nota:** Para variáveis aleatórias discretas não negativas, a esperança pode ser escrita em termos de sua cauda: $\mathbb{E}[X] = \sum_{x=0}^{\infty} \mathbb{P}(X > x) = \sum_{x=1}^{\infty} \mathbb{P}(X \ge x)$. [Verifique]
-
----
-
 ### 4. Esperança do Tempo de Absorção ($f_k$)
 
-[cite_start]**Objetivo:** Calcular $f_k = \mathbb{E}_k[\tau]$, onde $\tau = \tau_{\{0,N\}}$ é o tempo de absorção nos estados $\{0, N\}$[cite: 27].
-[cite_start]Para os estados absorventes, temos as condições de contorno[cite: 27]:
-* [cite_start]$f_0 = 0$ [cite: 27]
-* [cite_start]$f_N = 0$ [cite: 27]
+**Objetivo:** Calcular $f_k = \mathbb{E}_k[\mathcal{T}]$, onde $\mathcal{T} = \mathcal{T}_{\{0,N\}}$, $0 \le k \le N$.
+Para os estados absorventes, temos as condições:
 
-> [cite_start]**Exercício:** Verificar que para uma V.A. discreta não negativa $X$, a esperança pode ser escrita em termos de sua cauda[cite: 27]:
-> [cite_start]$$\mathbb{E}[X] = \sum_{x=0}^{\infty} \mathbb{P}(X > x) = \sum_{x=1}^{\infty} \mathbb{P}(X \ge x)$$ [cite: 27]
+* $f_0 = 0$ 
+* $f_N = 0$ 
 
-[cite_start]Para $1 \le k \le N-1$[cite: 27]:
-[cite_start]$$f_k = \mathbb{E}_k[\tau] = \sum_{t=0}^{\infty} \mathbb{P}_k(\tau > t) = \mathbb{P}_k(\tau > 0) + \sum_{t=1}^{\infty} \mathbb{P}_k(\tau > t)$$ [cite: 27]
-[cite_start]Sabendo que $\mathbb{P}_k(\tau > 0) = 1$ [cite: 27][cite_start], analisamos para $t \ge 1$ usando a probabilidade total em relação ao primeiro passo[cite: 27]:
-[cite_start]$$\mathbb{P}_k(\tau > t) = \mathbb{P}_k(X_1 = k-1)\mathbb{P}_k(E_t | X_1 = k-1) + \mathbb{P}_k(X_1 = k+1)\mathbb{P}_k(E_t | X_1 = k+1)$$ [cite: 27]
-[cite_start]Onde $E_t$ representa o evento do processo não ser absorvido até o tempo $t$[cite: 27].
+> **Exercício:** Verificar que para uma V.A. discreta não negativa $X$, a esperança pode ser escrita em termos de sua cauda: $\mathbb{E}[X] = \sum_{x=0}^{\infty} \mathbb{P}(X > x) = \sum_{x=1}^{\infty} \mathbb{P}(X \ge x)$
 
-### Caso Particular: $k=1$
-[cite_start]Para $t \ge 1$, e considerando que o estado $0$ é absorvente ($\mathbb{P}_1(E_t | X_1 = 0) = 0$)[cite: 28]:
-[cite_start]$$\mathbb{P}_1(\tau > t) = p \mathbb{P}_1(X_2 \notin \{0,N\}, \dots, X_t \notin \{0,N\} | X_1 = 2)$$ [cite: 28]
-[cite_start]Pela **Propriedade Forte de Markov**, isso se reduz a[cite: 28]:
-[cite_start]$$\mathbb{P}_1(\tau > t) = p \mathbb{P}_2(\tau > t-1)$$ [cite: 28]
+Para $1 \le k \le N-1$:
 
-[cite_start]Assim, a esperança em $k=1$ resulta em[cite: 28]:
-[cite_start]$$f_1 = 1 + p \mathbb{E}_2[\tau] = 1 + p f_2$$ [cite: 28]
-[cite_start]Que também pode ser escrita como $f_1 = p(1 + f_2) + (1-p)(1 + f_0)$[cite: 28].
+$$f_k = \mathbb{E}_k[\mathcal{T}] = \sum_{t=0}^{\infty} \mathbb{P}_k(\mathcal{T} > t) = \mathbb{P}_k(\mathcal{T} > 0) + \sum_{t=1}^{\infty} \mathbb{P}_k(\mathcal{T} > t)$$ 
 
-### Equação Geral de Recorrência
-[cite_start]De modo geral, para $1 \le k \le N-1$[cite: 29]:
-[cite_start]$$f_k = p(1 + f_{k+1}) + (1-p)(1 + f_{k-1}) = 1 + p f_{k+1} + (1-p) f_{k-1}$$ [cite: 29]
+Sabendo que $\mathbb{P}_k(\mathcal{T} > 0) = 1$ , analisamos para $t \ge 1$ usando a probabilidade total em relação ao primeiro passo:
 
----
+$$\mathbb{P}_k(\mathcal{T} > t) = \mathbb{P}_k(X_1 = k-1)\mathbb{P}_k(E_t | X_1 = k-1) + \mathbb{P}_k(X_1 = k+1)\mathbb{P}_k(E_t | X_1 = k+1)$$ 
 
-## Resolução para o Caso Simétrico ($p = 1/2$)
+Onde $E_t$ representa o evento do processo não ser absorvido até o tempo $t$.
 
-[cite_start]Definimos a diferença $\Delta_k = f_{k+1} - f_k$ para $0 \le k \le N-1$[cite: 29].
-[cite_start]Substituindo $p = 1/2$ na equação geral[cite: 29]:
-[cite_start]$$f_k = 1 + \frac{1}{2} f_{k+1} + \frac{1}{2} f_{k-1} \implies \Delta_k = \Delta_{k-1} - 2$$ [cite: 29]
-[cite_start]Ou seja, $\Delta_{k-1} = \Delta_k + 2$[cite: 29].
+#### Caso Particular: $k=1$
+Para $t \ge 1$, e considerando que o estado $0$ é absorvente ($\mathbb{P}_1(E_t | X_1 = 0) = 0$):
 
-### Soma Telescópica
-[cite_start]Utilizando a propriedade da soma telescópica e as condições de contorno[cite: 30]:
-[cite_start]$$\sum_{k=0}^{N-1} \Delta_k = f_N - f_0 = 0$$ [cite: 30]
+$$\mathbb{P}_1(\mathcal{T} > t) = p \mathbb{P}_1(X_2 \notin \{0,N\}, \dots, X_t \notin \{0,N\} | X_1 = 2)$$
 
-[cite_start]Iterando as diferenças a partir de $\Delta_N$[cite: 30]:
-* [cite_start]$\Delta_{N-1} = \Delta_N + 2$ [cite: 30]
-* [cite_start]$\Delta_{N-2} = \Delta_N + 2 \cdot 2$ [cite: 30]
-* [cite_start]$\Delta_k = \Delta_N + 2(N-k)$ [cite: 30]
+Pela **Propriedade Forte de Markov**, isso se reduz a:
 
-[cite_start]Substituindo na soma[cite: 30]:
-[cite_start]$$\sum_{k=0}^{N-1} (\Delta_N + 2(N-k)) = N \Delta_N + 2 \sum_{k=1}^{N} k = 0$$ [cite: 30]
-[cite_start]$$N \Delta_N + 2 \frac{N(N+1)}{2} = N(\Delta_N + N + 1) = 0$$ [cite: 30]
-[cite_start]$\implies \Delta_N = -(N+1)$[cite: 30].
+$$\mathbb{P}_1(\mathcal{T} > t) = p \mathbb{P}_2(\mathcal{T} > t-1)$$ 
 
-[cite_start]**Resultado Final:** Através da integração das diferenças, obtemos $f_k = k(N-k)$[cite: 30].
+Assim, a esperança em $k=1$ resulta em:
 
+$$f_1 = 1 + p \mathbb{E}_2[\mathcal{T}] = 1 + p f_2$$ 
 
+Que também pode ser escrita como $f_1 = p(1 + f_2) + (1-p)(1 + f_0)$.
 
+#### Equação Geral de Recorrência
+De modo geral, para $2 \le k \le N-1$:[Verificar]
 
-
-
-
-
-
-
+$$f_k = p(1 + f_{k+1}) + (1-p)(1 + f_{k-1}) = 1 + p f_{k+1} + (1-p) f_{k-1}$$ 
 
 ---
 
-xxx
+### Resolução para o Caso Simétrico ($p = 1/2$)
 
+Definimos a diferença $\Delta_k = f_{k+1} - f_k$ para $0 \le k \le N-1$.
+Substituindo $p = 1/2$ na equação geral:
 
+$$f_k = 1 + \frac{1}{2} f_{k+1} + \frac{1}{2} f_{k-1} \implies \Delta_k = \Delta_{k-1} - 2$$ 
 
----
+Ou seja, $\Delta_{k-1} = \Delta_k + 2$.
 
-### 2. Esperança do Tempo de Absorção ($f_k$)
-[cite_start]**Objetivo:** Calcular $f_k = \mathbb{E}_k[\mathcal{T}]$, onde $\mathcal{T} = \mathcal{T}_{\{0,N\}}$. [cite: 27]
-[cite_start]Sabemos que $f_0 = 0$ e $f_N = 0$. [cite: 27]
+Além disso,
 
-[cite_start]Para $1 \le k \le N-1$: [cite: 27]
-[cite_start]$$f_k = \mathbb{E}_k[\mathcal{T}] = \sum_{t=0}^{\infty} \mathbb{P}_k(\mathcal{T} > t) = \mathbb{P}_k(\mathcal{T} > 0) + \sum_{t=1}^{\infty} \mathbb{P}_k(\mathcal{T} > t)$$ [cite: 27]
-[cite_start]Pela análise do primeiro passo: [cite: 28, 29]
-[cite_start]$$f_k = p(1 + f_{k+1}) + (1-p)(1 + f_{k-1}) = 1 + p f_{k+1} + (1-p) f_{k-1}$$ [cite: 29]
+Utilizando a propriedade da soma telescópica e as condições de contorno:
 
-#### Caso $p = \frac{1}{2}$
-[cite_start]Defina $\Delta_k = f_{k+1} - f_k$ para $0 \le k \le N-1$. [cite: 29]
-[cite_start]$\implies \Delta_k = \Delta_{k-1} - 2 \iff \Delta_{k-1} = \Delta_k + 2$ [cite: 29]
+$$\sum_{k=0}^{N-1} \Delta_k = f_N - f_0 = 0$$ 
 
-[cite_start]Usando a soma telescópica $\sum_{k=0}^{N-1} \Delta_k = f_N - f_0 = 0$: [cite: 30]
-[cite_start]$$N \Delta_N + 2 \frac{N(N+1)}{2} = 0 \implies \Delta_N = -(N+1)$$ [cite: 30]
+Iterando as diferenças a partir de $\Delta_N$:
 
-[cite_start]Resultando na fórmula final: $f_k = k(N-k)$. [cite: 30]
+* $\Delta_{N-1} = \Delta_N + 2$ 
+* $\Delta_{N-2} = \Delta_N + 2 \cdot 2$ 
+* $\Delta_k = \Delta_N + 2(N-k)$ 
+
+Substituindo na soma:
+
+$$\sum_{k=0}^{N-1} (\Delta_N + 2(N-k)) = N \Delta_N + 2 \sum_{k=1}^{N} k = 0$$
+
+$$N \Delta_N + 2 \frac{N(N+1)}{2} = N(\Delta_N + N + 1) = 0$$
+
+$\implies \Delta_N = -(N+1)$.
+
+**Resultado Final:** Através de iteração, podemos obter que $f_k = k(N-k)$.
