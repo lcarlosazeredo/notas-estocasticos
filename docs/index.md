@@ -23,6 +23,7 @@ Acesse diretamente as notas de cada encontro:
 | **Aula 12** | Ruína do Jogador: Probabilidade de Absorção e Tempo Médio | [:material-file-document: Ver Notas](aulas/Aula12.md) |
 | **Aula 13** | Estados Recorrentes e Tempos de Retorno | [:material-file-document: Ver Notas](aulas/Aula13.md) |
 | **Aula 14** | Recorrência em Cadeias Finitas e Irredutíveis | [:material-file-document: Ver Notas](aulas/Aula14.md) |
+| **Aula 15** | Recorrência e o Teorema Ergódico | [:material-file-document: Ver Notas](aulas/Aula15.md) |
 
 ---
 
