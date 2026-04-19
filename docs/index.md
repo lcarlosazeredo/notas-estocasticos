@@ -25,6 +25,7 @@ Acesse diretamente as notas de cada encontro:
 | **Aula 14** | Recorrência em Cadeias Finitas e Irredutíveis | [:material-file-document: Ver Notas](aulas/Aula14.md) |
 | **Aula 15** | Recorrência e o Teorema Ergódico | [:material-file-document: Ver Notas](aulas/Aula15.md) |
 | **Aula 16** | Prova do Teorema Ergódico | [:material-file-document: Ver Notas](aulas/Aula16.md) |
+| **Aula 17** | Estacionariedade e Reversibilidade | [:material-file-document: Ver Notas](aulas/Aula17.md) |
 
 ---
 
