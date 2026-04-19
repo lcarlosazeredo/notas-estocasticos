@@ -90,12 +90,12 @@ $\mathcal{T}_x^{+,k} = \min \{t \ge \mathcal{T}_x^{+,k-1} + 1 : X_t = x\}$
 
 Pela Prop. Forte de Markov, os blocos 
 
-$(X_{\mathcal{T}_x^{+,0}}, \dots, X_{\mathcal{T}_x^{+,1}}), (X_{\mathcal{T}_x^{+,1}}, \dots, X_{\mathcal{T}_x^{+,2}}), \dots, (X_{\mathcal{T}_x^{+,k}}, \dots, X_{\mathcal{T}_x^{+,k+1}}), \dots$
+$$(X_{\mathcal{T}_x^{+,0}}, \dots, X_{\mathcal{T}_x^{+,1}-1}), (X_{\mathcal{T}_x^{+,1}}, \dots, X_{\mathcal{T}_x^{+,2}-1}), \dots, (X_{\mathcal{T}_x^{+,k}}, \dots, X_{\mathcal{T}_x^{+,k+1}-1}), \dots$$
 
-são i.i.d.
+são **i.i.d.**
 
 ---
 Defina, $Y_k = \sum_{s=\mathcal{T}_x^{+,k-1}}^{\mathcal{T}_x^{+,k}-1} f(X_s)$ 
 
-Logo, $(Y_k)_{k \ge 1}$ é seq. i.i.d.
+Logo, $(Y_k)_{k \ge 1}$ é seq. **i.i.d.**
 

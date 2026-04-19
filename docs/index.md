@@ -24,6 +24,7 @@ Acesse diretamente as notas de cada encontro:
 | **Aula 13** | Estados Recorrentes e Tempos de Retorno | [:material-file-document: Ver Notas](aulas/Aula13.md) |
 | **Aula 14** | Recorrência em Cadeias Finitas e Irredutíveis | [:material-file-document: Ver Notas](aulas/Aula14.md) |
 | **Aula 15** | Recorrência e o Teorema Ergódico | [:material-file-document: Ver Notas](aulas/Aula15.md) |
+| **Aula 16** | Prova do Teorema Ergódico | [:material-file-document: Ver Notas](aulas/Aula16.md) |
 
 ---
 
