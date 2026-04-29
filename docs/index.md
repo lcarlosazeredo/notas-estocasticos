@@ -26,6 +26,7 @@ Acesse diretamente as notas de cada encontro:
 | **Aula 15** | Recorrência e o Teorema Ergódico | [:material-file-document: Ver Notas](aulas/Aula15.md) |
 | **Aula 16** | Prova do Teorema Ergódico | [:material-file-document: Ver Notas](aulas/Aula16.md) |
 | **Aula 17** | Estacionariedade e Reversibilidade | [:material-file-document: Ver Notas](aulas/Aula17.md) |
+| **Aula 18** | Exemplos e Aplicações de Cadeias Reversíveis | [:material-file-document: Ver Notas](aulas/Aula18.md) |
 
 ---
 
