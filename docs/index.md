@@ -27,6 +27,8 @@ Acesse diretamente as notas de cada encontro:
 | **Aula 16** | Prova do Teorema Ergódico | [:material-file-document: Ver Notas](aulas/Aula16.md) |
 | **Aula 17** | Estacionariedade e Reversibilidade | [:material-file-document: Ver Notas](aulas/Aula17.md) |
 | **Aula 18** | Exemplos e Aplicações de Cadeias Reversíveis | [:material-file-document: Ver Notas](aulas/Aula18.md) |
+| **Aula 19** | Cadeia Reversa e Fundamentos de MCMC | [:material-file-document: Ver Notas](aulas/Aula19.md) |
+
 
 ---
 
