@@ -9,24 +9,28 @@
       
       
       
+        <link rel="prev" href="../Aula19/">
+      
+      
+        <link rel="next" href="../../listas/lista1/">
       
       
         
       
       
-      <link rel="icon" href="/assets/images/favicon.png">
+      <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.5">
     
     
       
-        <title>Processos Estocásticos - 26.1</title>
+        <title>Aula 20 | 04/05/2026 - Processos Estocásticos - 26.1</title>
       
     
     
-      <link rel="stylesheet" href="/assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
       
         
-        <link rel="stylesheet" href="/assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -45,7 +49,7 @@
       
     
     
-    <script>__md_scope=new URL("/",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -67,6 +71,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#aula-20" class="md-skip">
+          Pular para conteúdo
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -79,7 +88,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Cabeçalho">
-    <a href="/." title="Processos Estocásticos - 26.1" class="md-header__button md-logo" aria-label="Processos Estocásticos - 26.1" data-md-component="logo">
+    <a href="../.." title="Processos Estocásticos - 26.1" class="md-header__button md-logo" aria-label="Processos Estocásticos - 26.1" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -99,7 +108,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              
+              Aula 20 | 04/05/2026
             
           </span>
         </div>
@@ -177,7 +186,7 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navegação" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="/." title="Processos Estocásticos - 26.1" class="md-nav__button md-logo" aria-label="Processos Estocásticos - 26.1" data-md-component="logo">
+    <a href="../.." title="Processos Estocásticos - 26.1" class="md-nav__button md-logo" aria-label="Processos Estocásticos - 26.1" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -195,7 +204,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/." class="md-nav__link">
+      <a href="../.." class="md-nav__link">
         
   
   
@@ -219,18 +228,20 @@
       
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
         
           
           <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
@@ -251,7 +262,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             
@@ -269,7 +280,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/aulas/Aula01/" class="md-nav__link">
+      <a href="../Aula01/" class="md-nav__link">
         
   
   
@@ -297,7 +308,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/aulas/Aula02/" class="md-nav__link">
+      <a href="../Aula02/" class="md-nav__link">
         
   
   
@@ -325,7 +336,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/aulas/Aula03/" class="md-nav__link">
+      <a href="../Aula03/" class="md-nav__link">
         
   
   
@@ -353,7 +364,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/aulas/Aula04/" class="md-nav__link">
+      <a href="../Aula04/" class="md-nav__link">
         
   
   
@@ -381,7 +392,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/aulas/Aula05/" class="md-nav__link">
+      <a href="../Aula05/" class="md-nav__link">
         
   
   
@@ -409,7 +420,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/aulas/Aula06/" class="md-nav__link">
+      <a href="../Aula06/" class="md-nav__link">
         
   
   
@@ -437,7 +448,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/aulas/Aula07/" class="md-nav__link">
+      <a href="../Aula07/" class="md-nav__link">
         
   
   
@@ -465,7 +476,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/aulas/Aula08/" class="md-nav__link">
+      <a href="../Aula08/" class="md-nav__link">
         
   
   
@@ -493,7 +504,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/aulas/Aula09/" class="md-nav__link">
+      <a href="../Aula09/" class="md-nav__link">
         
   
   
@@ -521,7 +532,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/aulas/Aula10/" class="md-nav__link">
+      <a href="../Aula10/" class="md-nav__link">
         
   
   
@@ -549,7 +560,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/aulas/Aula11/" class="md-nav__link">
+      <a href="../Aula11/" class="md-nav__link">
         
   
   
@@ -577,7 +588,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/aulas/Aula12/" class="md-nav__link">
+      <a href="../Aula12/" class="md-nav__link">
         
   
   
@@ -605,7 +616,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/aulas/Aula13/" class="md-nav__link">
+      <a href="../Aula13/" class="md-nav__link">
         
   
   
@@ -633,7 +644,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/aulas/Aula14/" class="md-nav__link">
+      <a href="../Aula14/" class="md-nav__link">
         
   
   
@@ -661,7 +672,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/aulas/Aula15/" class="md-nav__link">
+      <a href="../Aula15/" class="md-nav__link">
         
   
   
@@ -689,7 +700,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/aulas/Aula16/" class="md-nav__link">
+      <a href="../Aula16/" class="md-nav__link">
         
   
   
@@ -717,7 +728,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/aulas/Aula17/" class="md-nav__link">
+      <a href="../Aula17/" class="md-nav__link">
         
   
   
@@ -745,7 +756,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/aulas/Aula18/" class="md-nav__link">
+      <a href="../Aula18/" class="md-nav__link">
         
   
   
@@ -773,7 +784,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/aulas/Aula19/" class="md-nav__link">
+      <a href="../Aula19/" class="md-nav__link">
         
   
   
@@ -798,10 +809,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="/aulas/Aula20/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Aula 20 | 04/05/2026
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -817,6 +855,87 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#revisao-algoritmo-de-metropolis-hastings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Revisão: Algoritmo de Metropolis-Hastings
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dinamica-de-glauber-amostrador-de-gibbs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dinâmica de Glauber / Amostrador de Gibbs
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Dinâmica de Glauber / Amostrador de Gibbs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#distribuicoes-condicionais-completas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Distribuições Condicionais Completas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#funcionamento-da-dinamica-de-glauber" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Funcionamento da Dinâmica de Glauber
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reversibilidade" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reversibilidade
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -836,7 +955,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/listas/lista1/" class="md-nav__link">
+      <a href="../../listas/lista1/" class="md-nav__link">
         
   
   
@@ -863,7 +982,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/listas/lista2/" class="md-nav__link">
+      <a href="../../listas/lista2/" class="md-nav__link">
         
   
   
@@ -890,7 +1009,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/listas/lista3/" class="md-nav__link">
+      <a href="../../listas/lista3/" class="md-nav__link">
         
   
   
@@ -927,6 +1046,77 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#revisao-algoritmo-de-metropolis-hastings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Revisão: Algoritmo de Metropolis-Hastings
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dinamica-de-glauber-amostrador-de-gibbs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dinâmica de Glauber / Amostrador de Gibbs
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Dinâmica de Glauber / Amostrador de Gibbs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#distribuicoes-condicionais-completas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Distribuições Condicionais Completas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#funcionamento-da-dinamica-de-glauber" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Funcionamento da Dinâmica de Glauber
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reversibilidade" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reversibilidade
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -939,8 +1129,67 @@
               
               <article class="md-content__inner md-typeset">
                 
-  <h1>404 - Not found</h1>
+                  
 
+
+
+<h1 id="aula-20">Aula 20</h1>
+<p><strong>Data:</strong> 04/05/2026</p>
+<h2 id="revisao-algoritmo-de-metropolis-hastings">Revisão: Algoritmo de Metropolis-Hastings</h2>
+<p>Seja <span class="arithmatex">\(Q = (Q(x, y))_{x, y \in \mathcal{X}}\)</span> uma matriz de transição de uma cadeia de Markov sugerida. Construímos uma nova matriz estocástica <span class="arithmatex">\(P = (P(x, y))_{x, y}\)</span> dada por:</p>
+<div class="arithmatex">\[P(x, y) = \alpha(x, y)Q(x, y), \quad x \neq y\]</div>
+<div class="arithmatex">\[P(x, x) = Q(x, x) + \sum_{y \neq x} (1 - \alpha(x, y))Q(x, y)\]</div>
+<hr />
+<h2 id="dinamica-de-glauber-amostrador-de-gibbs">Dinâmica de Glauber / Amostrador de Gibbs</h2>
+<p>Considere o espaço de estados <span class="arithmatex">\(\mathcal{X} = S^V\)</span>, onde:</p>
+<ul>
+<li><span class="arithmatex">\(V\)</span> é o conjunto finito de vértices de um grafo <span class="arithmatex">\(G = (V, E)\)</span>.</li>
+<li><span class="arithmatex">\(S\)</span> é um conjunto finito de estados para cada vértice.</li>
+<li><span class="arithmatex">\(\mathcal{X} = \{x = (x_v)_{v \in V} : x_v \in S, \forall v \in V\}\)</span>.</li>
+</ul>
+<p><strong>Exemplo:</strong> <span class="arithmatex">\(\mathcal{X} = \{-1, 1\}^V = \{x = (x_v)_{v \in V} : x_v \in \{-1, 1\} \}\)</span></p>
+<h3 id="distribuicoes-condicionais-completas">Distribuições Condicionais Completas</h3>
+<p>Seja <span class="arithmatex">\(\pi\)</span> uma medida de probabilidade em <span class="arithmatex">\(\mathcal{X}\)</span> cujas distribuições condicionais completas são conhecidas:</p>
+<div class="arithmatex">\[\pi^{v, x}(y) = \begin{cases} \frac{\pi(y)}{\pi(\mathcal{X}(v, x))} &amp; \text{se } y \in \mathcal{X}(v, x) \\ 0 &amp; \text{se } y \notin \mathcal{X}(v, x) \end{cases}\]</div>
+<p>Onde <span class="arithmatex">\(\mathcal{X}(v, x) = \{y \in \mathcal{X} : y_u = x_u, \forall u \neq v\}\)</span></p>
+<p>Em outras palavras, <span class="arithmatex">\(\pi^{v, x}\)</span> é a distribuição <span class="arithmatex">\(\pi\)</span> condicionada ao conjunto <span class="arithmatex">\(\mathcal{X}(v, x)\)</span>.</p>
+<hr />
+<h3 id="funcionamento-da-dinamica-de-glauber">Funcionamento da Dinâmica de Glauber</h3>
+<p>Suponha que a cadeia esteja no estado <span class="arithmatex">\(x\)</span>. E aplique a seguinte regra para escolher uma novo vértice <span class="arithmatex">\(y\)</span>:</p>
+<ol>
+<li>Escolha um vértice em <span class="arithmatex">\(V\)</span> uniformemente ao acaso.</li>
+<li>Se <span class="arithmatex">\(v\)</span> foi o vértice escolhido, amostre da distribuição <span class="arithmatex">\(\pi^{v, x}\)</span> para obter a nova configuração <span class="arithmatex">\(y\)</span>.</li>
+</ol>
+<p>A matriz de transição <span class="arithmatex">\(P\)</span> associada a essa dinâmica é dada por:</p>
+<div class="arithmatex">\[P(x, y) = \frac{1}{|V|} \sum_{v \in V} \pi^{v, x}(y)\]</div>
+<p>De forma simplificada:</p>
+<ul>
+<li>
+<p><span class="arithmatex">\(P(x, y) = \frac{1}{|V|} \pi^{v^*, x}(y)\)</span> se <span class="arithmatex">\(y\)</span> e <span class="arithmatex">\(x\)</span> coincidem a menos do vértice <span class="arithmatex">\(v^*\)</span>.</p>
+</li>
+<li>
+<p><span class="arithmatex">\(P(x, y) = 0\)</span> se <span class="arithmatex">\(y\)</span> e <span class="arithmatex">\(x\)</span> são distintas em mais de um vértice.</p>
+</li>
+</ul>
+<h3 id="reversibilidade">Reversibilidade</h3>
+<p>Observe também que para <span class="arithmatex">\(x, y\)</span> que são distintos em no máximo um vértice, digamos <span class="arithmatex">\(v^*\)</span>, temos que:</p>
+<div class="arithmatex">\[\pi(x) P(x, y) = \pi(x) \frac{1}{|V|} \left( \frac{\pi(y)}{\pi(\mathcal{X}(v^*, x))} \right)\]</div>
+<div class="arithmatex">\[\pi(y) P(y, x) = \pi(y) \frac{1}{|V|} \left( \frac{\pi(x)}{\pi(\mathcal{X}(v^*, y))} \right)\]</div>
+<p>Como <span class="arithmatex">\(\mathcal{X}(v^*, x) = \mathcal{X}(v^*, y)\)</span>, segue que <span class="arithmatex">\(\pi(\mathcal{X}(v^*, x)) = \pi(\mathcal{X}(v^*, y))\)</span>, logo:</p>
+<div class="arithmatex">\[\pi(x) P(x, y) = \pi(y) P(y, x)\]</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
               </article>
             </div>
           
@@ -952,6 +1201,44 @@
       
         <footer class="md-footer">
   
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Rodapé" >
+        
+          
+          <a href="../Aula19/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: Aula 19 | 29/04/2026">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Anterior
+              </span>
+              <div class="md-ellipsis">
+                Aula 19 | 29/04/2026
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../../listas/lista1/" class="md-footer__link md-footer__link--next" aria-label="Próximo: Lista1">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Próximo
+              </span>
+              <div class="md-ellipsis">
+                Lista1
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
     
   
   <div class="md-footer-meta md-typeset">
@@ -992,12 +1279,12 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "/", "features": ["navigation.footer"], "search": "/assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado para \u00e1rea de transfer\u00eancia", "clipboard.copy": "Copiar para \u00e1rea de transfer\u00eancia", "search.result.more.one": "mais 1 nesta p\u00e1gina", "search.result.more.other": "# mais nesta p\u00e1gina", "search.result.none": "Nenhum documento encontrado", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Digite para iniciar a busca", "search.result.term.missing": "Ausente", "select.version": "Selecione a vers\u00e3o"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.footer"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado para \u00e1rea de transfer\u00eancia", "clipboard.copy": "Copiar para \u00e1rea de transfer\u00eancia", "search.result.more.one": "mais 1 nesta p\u00e1gina", "search.result.more.other": "# mais nesta p\u00e1gina", "search.result.none": "Nenhum documento encontrado", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Digite para iniciar a busca", "search.result.term.missing": "Ausente", "select.version": "Selecione a vers\u00e3o"}, "version": null}</script>
     
     
-      <script src="/assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
-        <script src="/javascripts/mathjax.js"></script>
+        <script src="../../javascripts/mathjax.js"></script>
       
     
   </body>
