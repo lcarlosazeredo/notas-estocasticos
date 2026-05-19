@@ -29,6 +29,7 @@ Acesse diretamente as notas de cada encontro:
 | **Aula 18** | Exemplos e Aplicações de Cadeias Reversíveis | [:material-file-document: Ver Notas](aulas/Aula18.md) |
 | **Aula 19** | Cadeia Reversa e Fundamentos de MCMC | [:material-file-document: Ver Notas](aulas/Aula19.md) |
 | **Aula 20** | Dinâmica de Glauber e Amostrador de Gibbs | [:material-file-document: Ver Notas](aulas/Aula20.md) |
+| **Aula 21** | Modelo de Ising e Classificação de Estados em Espaços Enumeráveis | [:material-file-document: Ver Notas](aulas/Aula21.md) |
 
 ---
 
