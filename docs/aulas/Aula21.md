@@ -145,12 +145,13 @@ $$\mathbb{P}_0(\mathcal{T}_0^+ < \infty) = 1 \iff$$
 
 $$0 = \lim_{m \to \infty} u_m = \lim_{m \to \infty} \prod_{n=0}^{m-1} (1 - p_n) = \prod_{n=0}^{\infty} (1 - p_n)$$
 
-$$\iff \sum_{n=0}^{\infty} p_n < \infty (Exercício)$$
+$$\iff \sum_{n=0}^{\infty} p_n = \infty (Exercício)$$
 
 **Ex.:** 
 
-* $p_n = \dfrac{1}{n} \implies 0$ transiente
-* $p_n = \dfrac{1}{n^{1+\varepsilon}} \implies 0$ recorrente  
+* $p_n = \dfrac{1}{n} \implies 0$ recorrente
+* $p_n = \dfrac{1}{n^{1+\varepsilon}} \implies 0$ transiente
+
  *$\hookrightarrow$ A depender da escolha temos transiência e recorrência*
 
 
