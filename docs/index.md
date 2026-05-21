@@ -33,7 +33,7 @@ Acesse diretamente as notas de cada encontro:
 | **Aula 22** | Recorrência, Transiência e o Passeio Aleatório em $\mathbb{Z}$ | [:material-file-document: Ver Notas](aulas/Aula22.md) |
 | **Aula 23** | Critério de Recorrência e Medidas Invariantes | [:material-file-document: Ver Notas](aulas/Aula23.md) |
 | **Aula 24** | Teoremas Limites em Espaços Enumeráveis e Processos de Poisson | [:material-file-document: Ver Notas](aulas/Aula24.md) |
-
+| **Aula 25** | Processos Pontuais | [:material-file-document: Ver Notas](aulas/Aula25.md) |
 
 ---
 
