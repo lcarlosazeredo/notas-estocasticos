@@ -1040,63 +1040,46 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#processo-pontual-de-poisson-ppp" class="md-nav__link">
+  <a href="#processos-pontuais-de-poisson-ppp" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Processo Pontual de Poisson (PPP)
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Processo Pontual de Poisson (PPP)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#construcao-e-verificacao" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Construção e Verificação
+        Processos Pontuais de Poisson (PPP)
       
     </span>
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#tempos-de-interchegada" class="md-nav__link">
+      
+        <li class="md-nav__item">
+  <a href="#validacao-por-construcao" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Tempos de Interchegada
+        Validação por Construção
       
     </span>
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#propriedade-de-forte-markov-e-desmembramento" class="md-nav__link">
+      
+        <li class="md-nav__item">
+  <a href="#tempos-entre-chegadas-instantes-entre-saltos" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Propriedade de Forte Markov e Desmembramento
+        Tempos Entre Chegadas (Instantes entre Saltos)
       
     </span>
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#independencia-do-passado" class="md-nav__link">
+      
+        <li class="md-nav__item">
+  <a href="#propriedade-forte-de-markov" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Independência do Passado
+        Propriedade Forte de Markov
       
     </span>
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -1224,63 +1207,46 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#processo-pontual-de-poisson-ppp" class="md-nav__link">
+  <a href="#processos-pontuais-de-poisson-ppp" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Processo Pontual de Poisson (PPP)
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Processo Pontual de Poisson (PPP)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#construcao-e-verificacao" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Construção e Verificação
+        Processos Pontuais de Poisson (PPP)
       
     </span>
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#tempos-de-interchegada" class="md-nav__link">
+      
+        <li class="md-nav__item">
+  <a href="#validacao-por-construcao" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Tempos de Interchegada
+        Validação por Construção
       
     </span>
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#propriedade-de-forte-markov-e-desmembramento" class="md-nav__link">
+      
+        <li class="md-nav__item">
+  <a href="#tempos-entre-chegadas-instantes-entre-saltos" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Propriedade de Forte Markov e Desmembramento
+        Tempos Entre Chegadas (Instantes entre Saltos)
       
     </span>
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#independencia-do-passado" class="md-nav__link">
+      
+        <li class="md-nav__item">
+  <a href="#propriedade-forte-de-markov" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Independência do Passado
+        Propriedade Forte de Markov
       
     </span>
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -1303,53 +1269,69 @@
 
 <h1 id="aula-26">Aula 26</h1>
 <p><strong>Data:</strong> 20/05/2026</p>
-<h2 id="processo-pontual-de-poisson-ppp">Processo Pontual de Poisson (PPP)</h2>
-<p><strong>Definição:</strong> Seja <span class="arithmatex">\((N(t))_{t \ge 0}\)</span> um processo de contagem. Esse processo é um <strong>Processo de Poisson</strong> de taxa <span class="arithmatex">\(\lambda &gt; 0\)</span>, se:</p>
+<h2 id="processos-pontuais-de-poisson-ppp">Processos Pontuais de Poisson (PPP)</h2>
+<p><span class="arithmatex">\(Def.:\)</span> Seja <span class="arithmatex">\((N(t))_{t \ge 0}\)</span> um processo de contagem. Esse processo é de <strong>Poisson</strong> de taxa <span class="arithmatex">\(\lambda &gt; 0\)</span>, se:</p>
 <ol>
-<li><span class="arithmatex">\(N([a,b]) \sim \text{Poi}(\lambda(b-a)), \quad \forall a, b \ge 0, \;\; a &lt; b\)</span></li>
-<li>Os incrementos em intervalos disjuntos são independentes, isto é, <span class="arithmatex">\(N([a_i, b_i])\)</span> são independentes para quaisquer intervalos disjuntos.</li>
+<li><span class="arithmatex">\(N([a,b]) \sim \text{Poi}(\lambda(b-a)), \quad \forall a, b \in [0, \infty), \;\; a &lt; b\)</span></li>
+<li><span class="arithmatex">\(\forall a_1, a_2, a_3, \dots, a_k, b_1, \dots, b_k \in [0, \infty)\)</span> t.q. <span class="arithmatex">\(a_i &lt; b_i &lt; a_i+1, i = 1, \dots, k-1\)</span>. As variáveis <span class="arithmatex">\(N([a_i, b_i])\)</span> são independentes.</li>
 </ol>
 <blockquote>
-<p><span class="arithmatex">\(\hookrightarrow\)</span> Note que a condição 1 nos diz que <span class="arithmatex">\(N([a+t, b+t]) \sim N([a,b]), \; \forall t &gt; 0\)</span>, ou seja, o processo possui incrementos estacionários.</p>
+<p><span class="arithmatex">\(\hookrightarrow\)</span> Note que a condição 1 nos diz que <span class="arithmatex">\(N([a+t, b+t]) \sim N([a,b]), \; \forall t \ge 0\)</span></p>
 </blockquote>
 <hr />
-<h3 id="construcao-e-verificacao">Construção e Verificação</h3>
+<h2 id="validacao-por-construcao">Validação por Construção</h2>
 <p>Na construção vista na aula passada:</p>
-<div class="arithmatex">\[N([a,b] \cap A_i) \sim \text{Poi}(\lambda |[a,b] \cap A_i|)\]</div>
+<div class="arithmatex">\[N([a, b] \cap A_i) \sim \text{Poi}(\lambda |[a, b] \cap A_i|)\]</div>
 <p>Para cada <span class="arithmatex">\(i = 1, 2, \dots\)</span></p>
-<p>Usando que:</p>
-<div class="arithmatex">\[N([a,b]) = N([a,b] \cap A_j) + \dots + N([a,b] \cap A_k)\]</div>
-<p>onde <span class="arithmatex">\(j\)</span> é o índice tal que <span class="arithmatex">\(a \in A_j\)</span> e <span class="arithmatex">\(k\)</span> é o índice tal que <span class="arithmatex">\(b \in A_k\)</span>.</p>
-<p>Como cada componente <span class="arithmatex">\(N([a,b] \cap A_i) \sim \text{Poi}(\lambda |[a,b] \cap A_i|)\)</span>, por propriedades da distribuição de Poisson (soma de v.a. independentes), temos:</p>
-<div class="arithmatex">\[\Rightarrow N([a,b]) \sim \text{Poi}(\lambda (b-a))\]</div>
-<p>A condição 2 (incrementos independentes) segue diretamente da construção.</p>
+<p>Usando a propriedade da soma de variáveis de Poisson independentes:</p>
+<div class="arithmatex">\[N([a, b]) = N([a, b] \cap A_{ia}) + \dots + N([a, b] \cap A_{ib})\]</div>
+<ul>
+<li>Onde <span class="arithmatex">\(ia\)</span> é o índice <span class="arithmatex">\(i\)</span> tal que <span class="arithmatex">\(a \in A_{i_a}\)</span>.</li>
+<li>Onde <span class="arithmatex">\(ib\)</span> é o índice <span class="arithmatex">\(i\)</span> tal que <span class="arithmatex">\(b \in A_{i_b}\)</span>.</li>
+</ul>
+<p>Como <span class="arithmatex">\(N([a, b] \cap A_i) \sim \text{Poi}(\lambda |[a, b] \cap A_i|)\)</span>, temos pelo resultado final que:</p>
+<div class="arithmatex">\[N([a, b]) \sim \text{Poi}(\lambda(b - a))\]</div>
+<p>A condição 2 segue da construção.</p>
 <hr />
-<h3 id="tempos-de-interchegada">Tempos de Interchegada</h3>
-<p>Defina <span class="arithmatex">\(T_1 = S_1\)</span> e <span class="arithmatex">\(T_n = S_n - S_{n-1}\)</span> para <span class="arithmatex">\(n \ge 2\)</span> (os tempos entre chegadas consecutivas).</p>
-<p>Propriedades dos tempos de interchegada:</p>
-<div class="arithmatex">\[\begin{aligned}
-\mathbb{P}(T_k &gt; t) &amp;= \mathbb{P}(S_k - S_{k-1} &gt; t) = \mathbb{P}(S_k &gt; S_{k-1} + t) \\ \\
-&amp;= \mathbb{P}\big(N((S_{k-1}, S_{k-1} + t]) = 0\big) \\ \\
-&amp;= e^{-\lambda t}
-\end{aligned}\]</div>
+<h2 id="tempos-entre-chegadas-instantes-entre-saltos">Tempos Entre Chegadas (Instantes entre Saltos)</h2>
+<p>Defina <span class="arithmatex">\(T_1 = \mathcal{S_1}\)</span> e <span class="arithmatex">\(T_n = \mathcal{S_n} - \mathcal{S_{}n-1}\)</span>, para <span class="arithmatex">\(n \ge 1\)</span>, como os <strong>instantes entre saltos</strong> (ou tempos entre chegadas) do processo.</p>
+<p><strong>Perguntas:</strong> Qual é a distribuição de <span class="arithmatex">\(T_n\)</span>? São independentes?</p>
+<p>Para <span class="arithmatex">\(T_1\)</span>:</p>
+<div class="arithmatex">\[P(T_1 &gt; t) = P(N(t) = 0) = P(N((0, t]) = 0) = e^{-\lambda t}, \quad \forall t &gt; 0\]</div>
+<p>Logo, <span class="arithmatex">\(T_1 \sim \text{Exp}(\lambda)\)</span></p>
+<p>Na realidade, podemos provar que: <span class="arithmatex">\(T_n \sim \text{Exp}(\lambda), \quad \forall n \ge 1\)</span></p>
+<p>Além disso, <span class="arithmatex">\(T_1, T_2, T_3, \dots\)</span> <strong>são independentes</strong>. Em particular, <span class="arithmatex">\(\mathbb{E}[T_n] = \frac{1}{\lambda}\)</span></p>
 <hr />
-<h3 id="propriedade-de-forte-markov-e-desmembramento">Propriedade de Forte Markov e Desmembramento</h3>
-<p>Defina o processo de contagem a partir de um tempo fixo <span class="arithmatex">\(h &gt; 0\)</span>:</p>
-<div class="arithmatex">\[\tilde{N}(t) = N((h, h+t]), \quad t \ge 0\]</div>
-<p><strong>Perguntas:</strong>
-1. <span class="arithmatex">\((\tilde{N}(t))_{t \ge 0} \in \text{PPP}(\lambda)\)</span>?
-2. <span class="arithmatex">\((\tilde{N}(t))_{t \ge 0}\)</span> é independente de <span class="arithmatex">\((N(t))_{t \le h}\)</span>?</p>
-<p>Para responder, calculamos a distribuição dos incrementos de <span class="arithmatex">\(\tilde{N}\)</span>:</p>
-<div class="arithmatex">\[\begin{aligned}
-\tilde{N}([a,b]) &amp;= \tilde{N}(b) - \tilde{N}(a) \\ \\
-&amp;= N((h, h+b]) - N((h, h+a]) \\ \\
-&amp;= N((h+a, h+b]) \sim \text{Poi}(\lambda(b-a))
-\end{aligned}\]</div>
+<p>Pode-se mostrar que o processo definido por:</p>
+<div class="arithmatex">\[N(t) = \max\{n : T_1 + T_2 + \dots + T_n \le t\}, \quad t \ge 0\]</div>
+<p>Define um processo de contagem de Poisson de taxa <span class="arithmatex">\(\lambda &gt; 0\)</span>.</p>
 <hr />
-<h3 id="independencia-do-passado">Independência do Passado</h3>
-<p>Para provar a independência em relação a <span class="arithmatex">\((N(t))_{t \le h}\)</span>, avaliamos a probabilidade conjunta das interseções dos eventos nos intervalos antes e depois de <span class="arithmatex">\(h\)</span>:</p>
-<div class="arithmatex">\[\mathbb{P}\left( \bigcap_{j=0}^{k-1} \{N((h+t_j, h+t_{j+1}])) = n_j\} \cap \mathcal{A} \right) = \mathbb{P}\left( \bigcap_{j=0}^{k-1} \{N((h+t_j, h+t_{j+1}])) = n_j\} \right) \cdot \mathbb{P}(\mathcal{A})\]</div>
-<p>onde <span class="arithmatex">\(\mathcal{A}\)</span> é qualquer evento determinado pelo comportamento do processo até o tempo <span class="arithmatex">\(h\)</span>. Isso confirma tanto que o processo pós-<span class="arithmatex">\(h\)</span> se reinicia como um <span class="arithmatex">\(\text{PPP}(\lambda)\)</span> quanto que ele é completamente independente do passado.</p>
+<h2 id="propriedade-forte-de-markov">Propriedade Forte de Markov</h2>
+<p>Seja <span class="arithmatex">\((N(t))_{t \ge 0}\)</span> um processo de contagem de <span class="arithmatex">\(PPP(\lambda)\)</span>. </p>
+<p>Defina,</p>
+<div class="arithmatex">\[N_{(t)}^{(k)} = N((\mathcal{S_k}, \mathcal{S_{k+t}}]), t \ge 0\]</div>
+<p>Então <span class="arithmatex">\((N_{(t)}^{(k)})_{t \ge 0}\)</span> define um processo de contagem de <span class="arithmatex">\(PPP(\lambda)\)</span>, que é independente de <span class="arithmatex">\((N_{(s)})_{s \le \mathcal{S_k}}\)</span></p>
+<hr />
+<p>Fixado <span class="arithmatex">\(h &gt; 0\)</span></p>
+<p>Defina:</p>
+<div class="arithmatex">\[\tilde{N}(t) = N((h, h + t]), \quad t \ge 0\]</div>
+<p><strong>Perguntas:</strong></p>
+<ol>
+<li><span class="arithmatex">\((\tilde{N}(t))_{t \ge 0} \in PPP(\lambda)\)</span>?</li>
+<li><span class="arithmatex">\((\tilde{N}(t))_{t \ge 0}\)</span> é independente de <span class="arithmatex">\((N(t))_{t \le h}\)</span>?</li>
+</ol>
+<hr />
+<p>Analisando um intervalo genérico <span class="arithmatex">\([a, b]\)</span>:</p>
+<div class="arithmatex">\[\tilde{N}([a, b]) = \tilde{N}(b) - \tilde{N}(a) = N((h, h + b]) - N((h, h + a]) = N((h + a, h + b])\]</div>
+<div class="arithmatex">\[= N((h + a, h + b]) \sim \text{Poi}(\lambda(b - a))\]</div>
+<hr />
+<p>Analisando a independência:</p>
+<p><span class="arithmatex">\(t_1 &lt; t_2 &lt; \dots &lt; t_k, \quad s_1 &lt; s_2&lt; \dots &lt; s_l \le h\)</span></p>
+<p><span class="arithmatex">\(h &lt; h + t_0 &lt; h + t_1 &lt; \dots &lt; h + t_k\)</span></p>
+<div class="arithmatex">\[\mathbb{P}\left( \tilde{N}(t_1) = n_1, \tilde{N}(t_2) = n_2, \dots, \tilde{N}(t_k) = n_k, N(s_1) = m_1, \dots, N(s_l) = m_l \right)\]</div>
+<div class="arithmatex">\[= \mathbb{P}\left( \bigcap_{j=0}^{k-1} \{N((h+t_j, h+t_{j+1}])) = n_{j+1} - n_j\}, \bigcap_{j=0}^{l-1} \{N((s_j, s_{j+1}])) = m_{j+1} - m_j\} \right)\]</div>
+<div class="arithmatex">\[= \mathbb{P}\left( \bigcap_{j=0}^{k-1} \{N((h+t_j, h+t_{j+1}])) = n_{j+1} - n_j\} \right) \cdot \mathbb{P}\left( \bigcap_{j=0}^{l-1} \{N((s_j, s_{j+1}])) = m_{j+1} - m_j\} \right)\]</div>
+<div class="arithmatex">\[= \left( \prod_{j=0}^{k-1} \frac{e^{-\lambda(t_{j+1}-t_j)} [\lambda(t_{j+1}-t_j)]^{n_{j+1}-n_j}}{(n_{j+1}-n_j)!} \right) \cdot \left( \prod_{j=0}^{l-1} \frac{e^{-\lambda(s_{j+1}-s_j)} [\lambda(s_{j+1}-s_j)]^{m_{j+1}-m_j}}{(m_{j+1}-m_j)!} \right)\]</div>
 
 
 
