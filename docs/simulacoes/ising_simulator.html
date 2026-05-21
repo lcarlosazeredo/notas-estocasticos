@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2D Ising Model — MCMC Simulator</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500&family=Syne:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0f;
+    --surface: #12121a;
+    --surface2: #1a1a26;
+    --border: rgba(140,120,255,0.15);
+    --border2: rgba(140,120,255,0.3);
+    --accent: #8c78ff;
+    --accent2: #56cfb2;
+    --accent3: #ff6e6e;
+    --text: #e8e4ff;
+    --muted: #6e6a8a;
+    --mono: 'JetBrains Mono', monospace;
+    --sans: 'Syne', sans-serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--mono);
+    min-height: 100vh;
+    padding: 2rem;
+  }
+
+  header {
+    display: flex;
+    align-items: baseline;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 1.25rem;
+  }
+
+  header h1 {
+    font-family: var(--sans);
+    font-size: 1.6rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--text);
+  }
+
+  header .subtitle {
+    font-size: 0.72rem;
+    color: var(--muted);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .layout {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 1.5rem;
+    align-items: start;
+  }
+
+  .sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .panel {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1rem 1.1rem;
+  }
+
+  .panel-title {
+    font-size: 0.65rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.9rem;
+  }
+
+  .ctrl-group { margin-bottom: 0.85rem; }
+  .ctrl-group:last-child { margin-bottom: 0; }
+
+  .ctrl-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-size: 0.72rem;
+    color: var(--muted);
+    margin-bottom: 5px;
+  }
+
+  .ctrl-label .ctrl-val {
+    font-size: 0.8rem;
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  input[type="range"] {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 2px;
+    background: var(--border2);
+    border-radius: 2px;
+    outline: none;
+    cursor: pointer;
+  }
+
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 14px; height: 14px;
+    border-radius: 50%;
+    background: var(--accent);
+    cursor: pointer;
+    border: 2px solid var(--bg);
+    box-shadow: 0 0 0 1px var(--accent);
+  }
+
+  input[type="range"]::-moz-range-thumb {
+    width: 14px; height: 14px;
+    border-radius: 50%;
+    background: var(--accent);
+    cursor: pointer;
+    border: 2px solid var(--bg);
+  }
+
+  .tc-marker {
+    font-size: 0.62rem;
+    color: var(--accent3);
+    text-align: right;
+    margin-top: 3px;
+  }
+
+  .alg-btns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+    margin-bottom: 0;
+  }
+
+  .alg-btn {
+    background: transparent;
+    border: 1px solid var(--border2);
+    border-radius: 5px;
+    color: var(--muted);
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    padding: 7px 0;
+    cursor: pointer;
+    letter-spacing: 0.04em;
+    transition: all 0.15s;
+    text-align: center;
+  }
+
+  .alg-btn:hover { border-color: var(--accent); color: var(--text); }
+  .alg-btn.active {
+    border-color: var(--accent);
+    background: rgba(140,120,255,0.12);
+    color: var(--accent);
+  }
+
+  .action-btns { display: flex; gap: 6px; }
+
+  .btn {
+    flex: 1;
+    background: transparent;
+    border: 1px solid var(--border2);
+    border-radius: 5px;
+    color: var(--text);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    padding: 8px 0;
+    cursor: pointer;
+    transition: all 0.15s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    letter-spacing: 0.03em;
+  }
+
+  .btn:hover { border-color: var(--accent); background: rgba(140,120,255,0.08); }
+
+  .btn.run-btn {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  .btn.run-btn:hover, .btn.run-btn.running {
+    background: rgba(140,120,255,0.18);
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+  }
+
+  .stat {
+    background: var(--surface2);
+    border-radius: 5px;
+    padding: 0.6rem 0.7rem;
+  }
+
+  .stat-label {
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 3px;
+  }
+
+  .stat-val {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text);
+  }
+
+  .stat-val.accent { color: var(--accent); }
+  .stat-val.green { color: var(--accent2); }
+
+  .main-area { display: flex; flex-direction: column; gap: 1rem; }
+
+  .grid-wrap {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #cv-grid {
+    display: block;
+    image-rendering: pixelated;
+    border-radius: 4px;
+    width: 480px;
+    height: 480px;
+  }
+
+  .chart-panel {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1rem 1.1rem;
+  }
+
+  .chart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 0.75rem;
+  }
+
+  .chart-title {
+    font-size: 0.65rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .legend {
+    display: flex;
+    gap: 14px;
+    font-size: 0.62rem;
+    color: var(--muted);
+  }
+
+  .legend-dot {
+    display: inline-block;
+    width: 8px; height: 2px;
+    border-radius: 1px;
+    vertical-align: middle;
+    margin-right: 4px;
+  }
+
+  .chart-wrap { position: relative; height: 130px; }
+
+  .info-panel {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    border-radius: 8px;
+    padding: 0.85rem 1rem;
+    font-size: 0.72rem;
+    line-height: 1.7;
+    color: var(--muted);
+  }
+
+  .info-panel b { color: var(--accent); font-weight: 500; }
+  .info-panel code {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 1px 5px;
+    font-size: 0.7rem;
+    color: var(--accent2);
+    font-family: var(--mono);
+  }
+
+  .phase-indicator {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.65rem;
+    letter-spacing: 0.08em;
+    margin-top: 4px;
+  }
+
+  .phase-dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--accent2);
+    animation: pulse 1.5s ease-in-out infinite;
+  }
+
+  .phase-dot.ordered { background: var(--accent); }
+  .phase-dot.critical { background: var(--accent3); }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.6; transform: scale(0.85); }
+  }
+
+  .speed-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.6rem;
+    color: var(--muted);
+    margin-top: 3px;
+  }
+
+  @media (max-width: 700px) {
+    body { padding: 1rem; }
+    .layout { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>2D Ising Model</h1>
+  <span class="subtitle">MCMC Simulator · J = 1 · h = 0</span>
+</header>
+
+<div class="layout">
+  <aside class="sidebar">
+
+    <div class="panel">
+      <div class="panel-title">Algorithm</div>
+      <div class="alg-btns">
+        <button class="alg-btn active" id="btn-mh" onclick="setAlg('mh')">Metropolis-<br>Hastings</button>
+        <button class="alg-btn" id="btn-gibbs" onclick="setAlg('gibbs')">Gibbs<br>sampler</button>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-title">Parameters</div>
+
+      <div class="ctrl-group">
+        <div class="ctrl-label">Temperature T / J <span class="ctrl-val" id="v-temp">2.27</span></div>
+        <input type="range" min="0.5" max="5" step="0.05" value="2.27" id="sl-temp" oninput="updateTemp()">
+        <div class="tc-marker">▲ T<sub>c</sub> ≈ 2.269</div>
+        <div class="phase-indicator">
+          <div class="phase-dot" id="phase-dot"></div>
+          <span id="phase-label">critical</span>
+        </div>
+      </div>
+
+      <div class="ctrl-group">
+        <div class="ctrl-label">Lattice size <span class="ctrl-val" id="v-size">40 × 40</span></div>
+        <input type="range" min="20" max="80" step="10" value="40" id="sl-size" oninput="updateSize()">
+      </div>
+
+      <div class="ctrl-group">
+        <div class="ctrl-label">Simulation speed <span class="ctrl-val" id="v-speed">3×</span></div>
+        <input type="range" min="1" max="10" step="1" value="3" id="sl-speed" oninput="updateSpeed()">
+        <div class="speed-labels"><span>slow</span><span>fast</span></div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-title">Controls</div>
+      <div class="action-btns">
+        <button class="btn run-btn" id="btn-run" onclick="toggleRun()">▶ run</button>
+        <button class="btn" onclick="reset()">↺ reset</button>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-title">Statistics</div>
+      <div class="stats-grid">
+        <div class="stat">
+          <div class="stat-label">|m| / spin</div>
+          <div class="stat-val accent" id="s-mag">—</div>
+        </div>
+        <div class="stat">
+          <div class="stat-label">Energy / spin</div>
+          <div class="stat-val" id="s-ene">—</div>
+        </div>
+        <div class="stat">
+          <div class="stat-label">Accept rate</div>
+          <div class="stat-val green" id="s-acc">—</div>
+        </div>
+        <div class="stat">
+          <div class="stat-label">Sweeps</div>
+          <div class="stat-val" id="s-sweep">0</div>
+        </div>
+      </div>
+    </div>
+
+  </aside>
+
+  <div class="main-area">
+
+    <div class="grid-wrap">
+      <canvas id="cv-grid"></canvas>
+    </div>
+    <div style="display:flex;gap:16px;justify-content:center;font-size:0.68rem;color:var(--muted);letter-spacing:0.08em;">
+      <span style="display:flex;align-items:center;gap:6px;">
+        <span style="display:inline-block;width:14px;height:14px;background:#e6e6e6;border-radius:3px;border:1px solid rgba(255,255,255,0.2);"></span>
+        σ = +1
+      </span>
+      <span style="display:flex;align-items:center;gap:6px;">
+        <span style="display:inline-block;width:14px;height:14px;background:#121212;border-radius:3px;border:1px solid rgba(255,255,255,0.12);"></span>
+        σ = −1
+      </span>
+    </div>
+
+    <div class="chart-panel">
+      <div class="chart-header">
+        <div class="chart-title">Observable history (last 300 sweeps)</div>
+        <div class="legend">
+          <span><span class="legend-dot" style="background:#8c78ff"></span>|m|</span>
+          <span><span class="legend-dot" style="background:#56cfb2; border-top: 2px dashed #56cfb2; background:none; display:inline-block; width:12px; height:0; vertical-align:middle; margin-right:4px; border-bottom: none;"></span>energy</span>
+        </div>
+      </div>
+      <div class="chart-wrap">
+        <canvas id="cv-chart" role="img" aria-label="Magnetization and energy history over simulation sweeps"></canvas>
+      </div>
+    </div>
+
+    <div class="info-panel" id="alg-info"></div>
+
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+let N = 40, T = 2.27, alg = 'mh', speed = 1;
+let spins, running = false, sweeps = 0;
+let accepted = 0, proposed = 0;
+let magHistory = [], eneHistory = [];
+let animId = null;
+
+const INFO = {
+  mh: `<b>Metropolis-Hastings</b>: At each step, a random spin σ<sub>i</sub> is proposed to flip. The energy change is <code>ΔE = 2 σ<sub>i</sub> Σ<sub>j∈nn(i)</sub> σ<sub>j</sub></code>. The flip is accepted with probability <code>min(1, e<sup>−ΔE/T</sup>)</code>. Below T<sub>c</sub> the chain mixes slowly; near T<sub>c</sub> critical slowing-down is pronounced. One <b>sweep</b> = N² single-spin proposals.`,
+  gibbs: `<b>Gibbs sampler</b>: Each spin is resampled from its exact conditional given its 4 neighbours. <code>P(σ<sub>i</sub>=+1 | nn) = sigmoid(2 h<sub>i</sub> / T)</code> where <code>h<sub>i</sub> = Σ<sub>j∈nn(i)</sub> σ<sub>j</sub></code>. No reject step — acceptance rate is always 100%. Every update draws from the exact local conditional, making this a valid MCMC kernel for the Boltzmann distribution.`
+};
+
+function sigmoid(x) { return 1 / (1 + Math.exp(-x)); }
+
+function init() {
+  spins = new Int8Array(N * N);
+  for (let i = 0; i < N * N; i++) spins[i] = 1;
+  sweeps = 0; accepted = 0; proposed = 0;
+  magHistory = []; eneHistory = [];
+  updateInfo();
+  drawGrid();
+  drawChart();
+  updateStats();
+}
+
+function idx(r, c) { return ((r + N) % N) * N + ((c + N) % N); }
+
+function localField(r, c) {
+  return spins[idx(r - 1, c)] + spins[idx(r + 1, c)] + spins[idx(r, c - 1)] + spins[idx(r, c + 1)];
+}
+
+function sweep() {
+  const n2 = N * N;
+  for (let k = 0; k < n2; k++) {
+    const i = (Math.random() * n2) | 0;
+    const r = (i / N) | 0, c = i % N;
+    const h = localField(r, c);
+    if (alg === 'mh') {
+      proposed++;
+      const dE = 2 * spins[i] * h;
+      if (dE <= 0 || Math.random() < Math.exp(-dE / T)) {
+        spins[i] = -spins[i];
+        accepted++;
+      }
+    } else {
+      const p1 = sigmoid(2 * h / T);
+      spins[i] = Math.random() < p1 ? 1 : -1;
+      accepted++;
+      proposed++;
+    }
+  }
+  sweeps++;
+}
+
+function magnetization() {
+  let s = 0;
+  for (let i = 0; i < N * N; i++) s += spins[i];
+  return Math.abs(s) / (N * N);
+}
+
+function energy() {
+  let e = 0;
+  for (let r = 0; r < N; r++)
+    for (let c = 0; c < N; c++)
+      e -= spins[idx(r, c)] * (spins[idx(r + 1, c)] + spins[idx(r, c + 1)]);
+  return e / (N * N);
+}
+
+const gridCanvas = document.getElementById('cv-grid');
+const gridCtx = gridCanvas.getContext('2d');
+
+function drawGrid() {
+  gridCanvas.width = N;
+  gridCanvas.height = N;
+  const img = gridCtx.createImageData(N, N);
+  for (let i = 0; i < N * N; i++) {
+    const v = spins[i] === 1 ? 230 : 18;
+    const a = 4 * i;
+    img.data[a] = v; img.data[a + 1] = v; img.data[a + 2] = v; img.data[a + 3] = 255;
+  }
+  gridCtx.putImageData(img, 0, 0);
+}
+
+let chart;
+function drawChart() {
+  const cv = document.getElementById('cv-chart');
+  if (chart) { chart.destroy(); }
+  chart = new Chart(cv, {
+    type: 'line',
+    data: {
+      labels: magHistory.map((_, i) => i),
+      datasets: [
+        {
+          label: '|m|',
+          data: magHistory,
+          borderColor: '#8c78ff',
+          borderWidth: 1.5,
+          pointRadius: 0,
+          tension: 0.3,
+          yAxisID: 'y'
+        },
+        {
+          label: 'energy',
+          data: eneHistory,
+          borderColor: '#56cfb2',
+          borderWidth: 1.5,
+          pointRadius: 0,
+          tension: 0.3,
+          borderDash: [4, 3],
+          yAxisID: 'y2'
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      animation: false,
+      scales: {
+        x: { display: false },
+        y: {
+          min: 0, max: 1,
+          ticks: { color: '#6e6a8a', font: { size: 10, family: 'JetBrains Mono' }, maxTicksLimit: 4 },
+          grid: { color: 'rgba(140,120,255,0.08)' },
+          position: 'left'
+        },
+        y2: {
+          ticks: { color: '#56cfb2', font: { size: 10, family: 'JetBrains Mono' }, maxTicksLimit: 4 },
+          grid: { display: false },
+          position: 'right'
+        }
+      },
+      plugins: { legend: { display: false } }
+    }
+  });
+}
+
+function updateChartData() {
+  if (!chart) return;
+  chart.data.labels = magHistory.map((_, i) => i);
+  chart.data.datasets[0].data = magHistory;
+  chart.data.datasets[1].data = eneHistory;
+  chart.update('none');
+}
+
+function updateStats() {
+  const m = magnetization(), e = energy();
+  document.getElementById('s-mag').textContent = m.toFixed(3);
+  document.getElementById('s-ene').textContent = e.toFixed(3);
+  const acc = proposed > 0 ? (accepted / proposed * 100).toFixed(1) + '%' : '—';
+  document.getElementById('s-acc').textContent = acc;
+  document.getElementById('s-sweep').textContent = sweeps;
+
+  // phase indicator
+  const dot = document.getElementById('phase-dot');
+  const lbl = document.getElementById('phase-label');
+  const tc = 2.269;
+  if (T < tc - 0.2) {
+    dot.className = 'phase-dot ordered'; lbl.textContent = 'ordered (ferromagnetic)';
+  } else if (T > tc + 0.2) {
+    dot.className = 'phase-dot'; lbl.style.color = '#56cfb2'; lbl.textContent = 'disordered (paramagnetic)';
+  } else {
+    dot.className = 'phase-dot critical'; lbl.style.color = '#ff6e6e'; lbl.textContent = 'critical';
+  }
+}
+
+// delay in ms between frames: speed 1=600ms, 2=300ms, ... 10=20ms
+function frameDelay() {
+  const delays = [600, 400, 250, 150, 100, 70, 50, 35, 25, 20];
+  return delays[speed - 1];
+}
+
+function loop() {
+  for (let i = 0; i < Math.ceil(speed / 3); i++) sweep();
+  const m = magnetization(), e = energy();
+  magHistory.push(m); eneHistory.push(e);
+  if (magHistory.length > 300) { magHistory.shift(); eneHistory.shift(); }
+  drawGrid();
+  updateChartData();
+  updateStats();
+  if (running) animId = setTimeout(loop, frameDelay());
+}
+
+function toggleRun() {
+  running = !running;
+  const btn = document.getElementById('btn-run');
+  if (running) {
+    btn.textContent = '⏸ pause';
+    btn.classList.add('running');
+    loop();
+  } else {
+    btn.textContent = '▶ run';
+    btn.classList.remove('running');
+    clearTimeout(animId);
+  }
+}
+
+function reset() {
+  const wasRunning = running;
+  running = false;
+  clearTimeout(animId);
+  document.getElementById('btn-run').textContent = '▶ run';
+  document.getElementById('btn-run').classList.remove('running');
+  init();
+  if (wasRunning) toggleRun();
+}
+
+function updateTemp() {
+  T = parseFloat(document.getElementById('sl-temp').value);
+  document.getElementById('v-temp').textContent = T.toFixed(2);
+  updateStats();
+}
+
+function updateSize() {
+  const wasRunning = running;
+  if (running) { running = false; clearTimeout(animId); document.getElementById('btn-run').textContent = '▶ run'; document.getElementById('btn-run').classList.remove('running'); }
+  N = parseInt(document.getElementById('sl-size').value);
+  document.getElementById('v-size').textContent = N + ' × ' + N;
+  init();
+  if (wasRunning) toggleRun();
+}
+
+function updateSpeed() {
+  speed = parseInt(document.getElementById('sl-speed').value);
+  document.getElementById('v-speed').textContent = speed + '×';
+}
+
+function setAlg(a) {
+  alg = a;
+  document.getElementById('btn-mh').classList.toggle('active', a === 'mh');
+  document.getElementById('btn-gibbs').classList.toggle('active', a === 'gibbs');
+  accepted = 0; proposed = 0;
+  updateInfo();
+  updateStats();
+}
+
+function updateInfo() { document.getElementById('alg-info').innerHTML = INFO[alg]; }
+
+init();
+</script>
+</body>
+</html>

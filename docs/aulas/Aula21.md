@@ -154,5 +154,6 @@ $$\iff \sum_{n=0}^{\infty} p_n = \infty (Exercício)$$
 
  *$\hookrightarrow$ A depender da escolha temos transiência e recorrência*
 
-
+!!! info "Simulação Interativa Disponível"
+    [Acessar Simulador :material-open-in-new:](../simulacoes/ising_simulator.html){: .md-button target="_blank" }
 
