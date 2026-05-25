@@ -35,6 +35,7 @@ Acesse diretamente as notas de cada encontro:
 | **Aula 24** | Teoremas Limites em Espaços Enumeráveis e Processos de Poisson | [:material-file-document: Ver Notas](aulas/Aula24.md) |
 | **Aula 25** | Processos Pontuais | [:material-file-document: Ver Notas](aulas/Aula25.md) |
 | **Aula 26** | Processos Pontuais de Poisson | [:material-file-document: Ver Notas](aulas/Aula26.md) |
+| **Aula 27** | Distribuição Condicional dos tempos de chegada | [:material-file-document: Ver Notas](aulas/Aula27.md) |
 
 ---
 
