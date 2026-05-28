@@ -36,6 +36,7 @@ Acesse diretamente as notas de cada encontro:
 | **Aula 25** | Processos Pontuais | [:material-file-document: Ver Notas](aulas/Aula25.md) |
 | **Aula 26** | Processos Pontuais de Poisson | [:material-file-document: Ver Notas](aulas/Aula26.md) |
 | **Aula 27** | Distribuição Condicional dos tempos de chegada | [:material-file-document: Ver Notas](aulas/Aula27.md) |
+| **Aula 28** | Poisson Composto, Não-Homogêneo e Filas $M/G/\infty$ | [:material-file-document: Ver Notas](aulas/Aula28.md) |
 
 ---
 
