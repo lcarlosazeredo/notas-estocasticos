@@ -39,6 +39,7 @@ Acesse diretamente as notas de cada encontro:
 | **Aula 28** | Poisson Composto, Não-Homogêneo e Filas $M/G/\infty$ | [:material-file-document: Ver Notas](aulas/Aula28.md) |
 | **Aula 29** | Filas $M/G/\infty$ e Cadeias em Tempo Contínuo | [:material-file-document: Ver Notas](aulas/Aula29.md) |
 | **Aula 30** | Exemplos de Cadeias em Tempo Contínuo e a Matriz Geradora $Q$ | [:material-file-document: Ver Notas](aulas/Aula30.md) |
+| **Aula 31** | Propriedades da Matriz Geradora $Q$ e Construção de Cadeias em Tempo Contínuo | [:material-file-document: Ver Notas](aulas/Aula31.md) |
 
 ---
 
