@@ -41,6 +41,7 @@ Acesse diretamente as notas de cada encontro:
 | **Aula 30** | Exemplos de Cadeias em Tempo Contínuo e a Matriz Geradora $Q$ | [:material-file-document: Ver Notas](aulas/Aula30.md) |
 | **Aula 31** | Propriedades da Matriz Geradora $Q$ e Construção de Cadeias em Tempo Contínuo | [:material-file-document: Ver Notas](aulas/Aula31.md) |
 | **Aula 32** | Construção de uma Cadeia de Markov em Tempo Contínuo | [:material-file-document: Ver Notas](aulas/Aula32.md) |
+| **Aula 33** | Cadeias Regulares e Processos de Nascimento | [:material-file-document: Ver Notas](aulas/Aula33.md) |
 
 ---
 
