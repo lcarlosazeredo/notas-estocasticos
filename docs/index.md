@@ -43,7 +43,7 @@ Acesse diretamente as notas de cada encontro:
 | **Aula 32** | Construção de uma Cadeia de Markov em Tempo Contínuo | [:material-file-document: Ver Notas](aulas/Aula32.md) |
 | **Aula 33** | Cadeias Regulares e Processo de Nascimento | [:material-file-document: Ver Notas](aulas/Aula33.md) |
 | **Aula 34** | Equações de Kolmogorov e Distribuição Estacionária | [:material-file-document: Ver Notas](aulas/Aula34.md) |
-
+| **Aula 35** | Irredutibilidade e Recorrência | [:material-file-document: Ver Notas](aulas/Aula35.md) |
 
 
 ---

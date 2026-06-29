@@ -10,7 +10,7 @@ Para cada $t \ge 0$, defina:
 
 $$X_t = \sum_{i=1}^{N(t)} Y_i$$
 
-Com a convenção de que $\sum_{i=1}^{\infty} Y_i = 0$. O processo $X = (X_t)_{t \ge 0}$ é chamado de **Processo de Poisson Composto**.
+Com a convenção de que $\sum_{i=1}^{0} Y_i = 0$. O processo $X = (X_t)_{t \ge 0}$ é chamado de **Processo de Poisson Composto**.
 
 **Perguntas:**
 
