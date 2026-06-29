@@ -45,6 +45,7 @@ Acesse diretamente as notas de cada encontro:
 | **Aula 34** | Equações de Kolmogorov e Distribuição Estacionária | [:material-file-document: Ver Notas](aulas/Aula34.md) |
 | **Aula 35** | Irredutibilidade e Recorrência | [:material-file-document: Ver Notas](aulas/Aula35.md) |
 | **Aula 36** | Comportamento Assintótico e Reversibilidade | [:material-file-document: Ver Notas](aulas/Aula36.md) |
+| **Aula 37** | Reversibilidade | [:material-file-document: Ver Notas](aulas/Aula37.md) |
 
 ---
 
