@@ -16,5 +16,5 @@ notas-estocasticos/
 │   ├── index.md     
 ├── .gitignore    
 ├── esquema.txt <-- Este documento
-├── LICENCE
+├── LICENSE
 └── requimrements.txt
